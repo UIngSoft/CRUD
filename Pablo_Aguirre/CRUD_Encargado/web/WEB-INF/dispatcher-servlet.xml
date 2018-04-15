@@ -25,6 +25,7 @@
                 <prop key="buscar.htm">EncargadoController</prop>
                 <prop key="editar.htm">EncargadoController</prop>
                 <prop key="inicio.htm">EncargadoController</prop>
+                <prop key="mostrar.htm">EncargadoController</prop>
                 
             </props>
         </property>

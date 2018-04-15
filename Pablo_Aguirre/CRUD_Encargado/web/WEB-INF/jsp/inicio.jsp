@@ -16,8 +16,10 @@
     <body>
         <h1>CRUD Encargado!</h1>
         
-        <a href="agregar.htm" > Agregar </a>
-        <a href="buscar.htm" > Buscar </a>
-        <a href="editar.htm" > Editar </a>
+        <input type="submit" value="Agregar" onclick = "location='/CRUD_Encargado/agregar.htm'" class="btn btn-primary"/>
+        <input type="submit" value="Buscar" onclick = "location='/CRUD_Encargado/buscar.htm'" class="btn btn-primary"/>
+        <input type="submit" value="Editar" onclick = "location='/CRUD_Encargado/editar.htm'" class="btn btn-primary"/>
+        <input type="submit" value="Ver Encargados" onclick = "location='/CRUD_Encargado/mostrar.htm'" class="btn btn-primary"/>
+        
     </body>
 </html>
