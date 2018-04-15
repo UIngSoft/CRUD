@@ -101,10 +101,4 @@ public class EncargadoController {
         modelo.setViewName("editar");        
         return modelo;
     }
-    
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView editar(HttpServletRequest request){
-        ModelAndView modelo = new ModelAndView();
-        int id = Integer.parseInt(request.getParameter("cedula"));
-    }
-}
+ }
