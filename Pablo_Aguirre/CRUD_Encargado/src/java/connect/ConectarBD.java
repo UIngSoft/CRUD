@@ -1,18 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package connect;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 /**
- *
+ * esta clase es para establecer la conexion con la base de datos
+ * my sql
  * @author PABLO
  */
 public class ConectarBD {
     
+    /**
+     * metodo que se conecta a la BD de mysql por medio del drive
+     * jdbc de mysql, establecionedo el nombre de la BD, el usuario
+     * y la contraseña
+     * @return un archivo de tipo DriverManagerDataSource
+     */
     public DriverManagerDataSource conectar(){
         
         DriverManagerDataSource data_Source = new DriverManagerDataSource();
