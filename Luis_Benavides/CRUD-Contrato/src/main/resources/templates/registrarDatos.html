@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Pagina de Registro</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container-fluid">
+  		<div class="row-fluid">
+   			<div class="col-md-10" style="background:lightblue">
+    			<h4 class="text-center">Gestión de contratos</h4>
+    			<hr>
+    			
+    			<!-- 
+    			Formulario con los campos necesarion para 
+    			gestionar la información de un contrato
+    			 -->
+    			<form name="formulario" action="#" th:action="@{/captura}" th:object="${contrato}" th:method="post">
+    				<div class="form-group" style="width:20%">
+	      				<label>ID: </label>
+	      				<input type="text" th:field="*{id}" class="form-control"/>
+	     			</div>
+	    			<div class="form-group" style="width:20%">
+	      				<label>Nombre: </label>
+	      				<input type="text" th:field="*{nombre}" class="form-control"/>
+	     			</div>
+	     			<div class="form-group" style="width:20%">
+	      				<label>Fecha de inicio: </label>
+	      				<input type="text" th:field="*{fechainicio}" class="form-control"/>
+	     			</div>
+	     			<div class="form-group" style="width:20%">
+	      				<label>Fecha de fin: </label>
+	      				<input type="text" th:field="*{fechafin}" class="form-control"/>
+	     			</div>
+	     			<div class="form-group">
+	      				<input type="submit" name="registrar" value="Registrar" class="btn btn-success"/>
+	      				<input type="submit" name="buscar" value="Buscar" class="btn btn-success"/>
+	      				<input type="submit" name="actualizar" value="Actualizar" class="btn btn-success"/>
+	      				<input type="submit" name="eliminar" value="Eliminar" class="btn btn-success"/>
+	     			</div>
+    			</form>
+    			<div class="form-group">
+    				<h4>Resultado de la busqueda:</h4>
+    				<span th:text="${mensaje}"></span>
+    			</div>
+    			
+    			<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
+    			<div class="form-group">
+    				<table id="registros" class="table table-bordered table-striped">
+    					<tr>
+	    					<td><label>ID</label></td>
+							<td><label>Nombre</label></td>
+							<td><label>Fecha inicio</label></td>
+							<td><label>Fecha fin</label></td>
+						</tr>
+    					<th:block th:each="contrato:${contratos}">
+						      <tr>
+						         <td th:text="${contrato.id}"><label>ID</label></td>
+						         <td th:text="${contrato.nombre}"><label>Nombre</label></td>
+						         <td th:text="${contrato.fechainicio}"><label>Fecha inicio</label></td>
+						         <td th:text="${contrato.fechafin}"><label>Fecha fin</label></td>
+						      </tr>
+						</th:block>
+			        </table>
+    			</div>
+   			</div>
+  		</div>
+ 	</div>
+</body>
+</html>
