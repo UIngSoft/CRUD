@@ -24,8 +24,10 @@ public class ElementoController {
 	}
 	
 	@PostMapping(value = "/registrarElementos")
-	public ModelAndView Post(Model modelo,@ModelAttribute Elemento elemento) {	
-		ModelAndView modelandview = new ModelAndView("redirect:/index");
+	public ModelAndView Post(Model modelo,@ModelAttribute Elemento elemento) {
+		System.out.println("ID: "+elemento.getId()+"\nPiso: "+elemento.getNumeropiso()+"\nContrato: "+elemento.getNumerocontrato()
+				+"\nCC encargado: "+elemento.getCedulaencargado()+"\nMantenimiento: "+elemento.getConsecutivomantenimiento());
+		ModelAndView modelandview = new ModelAndView("redirect:/");
 		return modelandview; 
 	}
 
