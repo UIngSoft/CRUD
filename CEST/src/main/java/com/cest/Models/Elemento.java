@@ -1,22 +1,15 @@
 package com.cest.Models;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /*
  * Un elemento que será registrado en el sistema
  */
 @Entity
-@Table(name = "elemento")
-public class Elemento implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Elemento{
 	
 	@Id
-	@Column(name = "id")
 	private int id;
 	/*Foreign Key*/
 	private int numeropiso;

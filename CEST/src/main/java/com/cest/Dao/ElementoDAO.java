@@ -1,12 +1,9 @@
 package com.cest.Dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 import com.cest.Models.Elemento;
 
-public interface ElementoDAO {
-	
-	public List<Elemento> getElementos();
-	public void guardarElemento(Elemento e);
+public interface ElementoDAO extends CrudRepository<Elemento, Long>{
 
 }
