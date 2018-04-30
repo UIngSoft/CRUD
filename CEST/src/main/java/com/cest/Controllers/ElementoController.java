@@ -27,8 +27,11 @@ public class ElementoController {
 	public ModelAndView Post(Model modelo,@ModelAttribute Elemento elemento) {
 		System.out.println("ID: "+elemento.getId()+"\nPiso: "+elemento.getNumeropiso()+"\nContrato: "+elemento.getNumerocontrato()
 				+"\nCC encargado: "+elemento.getCedulaencargado()+"\nMantenimiento: "+elemento.getConsecutivomantenimiento());
+<<<<<<< HEAD
 		System.out.println("------\n"+jpa.em.getProperties().toString());
 		//jpa.guardarElemento(elemento);
+=======
+>>>>>>> 900be0a5ede2d0d06188bd5a2910a329b459fe9d
 		ModelAndView modelandview = new ModelAndView("redirect:/");
 		return modelandview; 
 	}
