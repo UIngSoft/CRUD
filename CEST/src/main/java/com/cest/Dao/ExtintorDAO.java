@@ -1,4 +1,5 @@
 package com.cest.Dao;
+import com.cest.Models.Usuario;
 
 public class ExtintorDAO {
 
