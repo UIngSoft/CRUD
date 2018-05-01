@@ -1,9 +1,6 @@
 <%-- 
-    Document   : vistaUbicacion
-    Created on : Apr 14, 2018, 2:42:35 AM
     Author     : arch-linux
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
