@@ -14,11 +14,14 @@ public class Extintor extends Elemento{
 	/*Foreign Key*/
 	private String tipo;
 	
-	private int tamanio;
-	private LocalDate fechainstalacion;
-	private LocalDate fechaultimarecarga;
-	private LocalDate fechavencimiento;
+	private String id;
+	private String tipo;
+	private String tamaño;
+	private String ubicacion;
+	private LocalDate fechaUltimaRecarga;
+	private LocalDate fechaProximaRecarga;
+	private String caducidad;
+	private float encargado;
 	private String estado;
-	private int caducidadanios;
-	private String observacion;
+	private String nitEmpresa;
 }
