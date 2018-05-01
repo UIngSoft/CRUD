@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package com.cest.Controllers;
 
-import Modelos.Extintor;
+import com.cest.Models.Extintor;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
