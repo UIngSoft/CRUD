@@ -27,6 +27,7 @@ public class ElementoController {
 	
 	@PostMapping(value = "/registrarElementos")
 	public ModelAndView Post(Model modelo,@ModelAttribute Elemento elemento) {
+
 		elementoDao.save(elemento);
 		ModelAndView modelandview = new ModelAndView("redirect:/");
 		return modelandview; 
