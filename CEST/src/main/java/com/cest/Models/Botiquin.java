@@ -3,11 +3,17 @@ package com.cest.Models;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Botiquin extends Elemento{
+public class Botiquin{
 	/*Foreign Key*/
+	@Id
 	private int idelemento;
+	
+	@ManyToOne
+	private Elemento elemento;
 	
 	private int numerorecibdo;
 	private LocalDate fechavencimiento;

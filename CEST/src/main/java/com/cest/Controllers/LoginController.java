@@ -15,6 +15,7 @@ import com.cest.Models.Usuario;
 /**
  * Controla el ingreso a sesiones 
  * @author Santiago granada aguirre
+ * @author Luis Trejos
  */
 @Controller
 @RequestMapping
@@ -39,7 +40,7 @@ public class LoginController {
 	}
 	
 	@PostMapping(value = "/iniciarSesion")
-	public ModelAndView POST(Model modelo,@ModelAttribute Usuario usuario) {
+	public ModelAndView POST(Model modelo, @ModelAttribute Usuario usuario) {
 		ModelAndView modelandview = null;
 		System.out.println("Find all: "+usuarioDao.findAll().toString());
 		for (Usuario user : usuarioDao.findAll()) {
