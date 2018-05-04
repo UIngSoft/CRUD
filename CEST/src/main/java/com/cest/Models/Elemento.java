@@ -21,11 +21,7 @@ public class Elemento{
 	private int consecutivomantenimiento;
 	
 	public Elemento() {
-		/*this.id = 0;
-		this.numeropiso = 0;
-		this.numerocontrato = 0;
-		this.cedulaencargado = 0;
-		this.consecutivomantenimiento = 0;*/
+		
 	}
 	
 	public int getId() {
@@ -62,15 +58,6 @@ public class Elemento{
 	public void setConsecutivomantenimiento(int consecutivomantenimiento) {
 		this.consecutivomantenimiento = consecutivomantenimiento;
 	}
-	
-	public String toString() {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("ID: " + this.id + ";");
-        buffer.append("Piso: " + this.numeropiso + ";");
-        buffer.append("Contrato: " + this.numerocontrato + ";");
-        buffer.append("CC encargado: " + this.cedulaencargado);
-        return buffer.toString();
-    }
 	
 	
 }

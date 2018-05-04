@@ -8,6 +8,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Bloque {
+	
 	@Id
 	private char letra;
 	/*Foreign Key*/
