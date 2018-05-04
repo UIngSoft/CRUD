@@ -9,12 +9,12 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<title>Consulta de elementos - CEST</title>
+<title>Consulta de extintores - CEST</title>
 </head>
 <body>
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
-			<h1 align="center">Consulta de elementos</h1>
+			<h1 align="center">Consulta de extintores</h1>
 		</div>
 		
 	</div>
@@ -30,15 +30,19 @@
 							<td><label>Fecha de recarga</label></td>
 							<td><label>Fecha de vencimiento</label></td>
 							<td><label>Caducidad(años)</label></td>
-							<td><label>Tamaño</label></td>
 							<td><label>Estado</label></td>
 						</tr>
-    					<th:block th:each="contrato:${contratos}">
+    					<th:block th:each="extintor:${extintores}">
 						      <tr>
-						         <td th:text="${contrato.id}"><label>ID</label></td>
-						         <td th:text="${contrato.nombre}"><label>Nombre</label></td>
-						         <td th:text="${contrato.fechainicio}"><label>Fecha inicio</label></td>
-						         <td th:text="${contrato.fechafin}"><label>Fecha fin</label></td>
+						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
+						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
+						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
+						         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
+						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
+						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
+						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
+						         <td th:text="${extintor.estado}"><label>estado</label></td>
+						         
 						      </tr>
 						</th:block>
 			        </table>
