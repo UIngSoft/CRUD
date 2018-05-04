@@ -26,9 +26,6 @@ public class ConsultaExtintorController {
 	 */
 	@GetMapping(value = "/consultarExtintor")
 	public String getHome(Model modelo) {
-		for (Extintor ex : extintorDao.findAll()) {
-			System.out.println("ID: "+ex.getIdelemento());
-		}
 		modelo.addAttribute("extintores", extintorDao.findAll());
 		return "consultarExtintor";
 	}

@@ -20,8 +20,6 @@ public class Extintor{
 	
 	@OneToOne
 	private Fichatecnica fichatecnica;
-	
-	private String tipo;
 	private int tamanio;
 	private String fechainstalacion;
 	private String fechaultimarecarga;
@@ -82,13 +80,5 @@ public class Extintor{
 	public void setCaducidadanios(int caducidadanios) {
 		this.caducidadanios = caducidadanios;
 	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = fichatecnica.getTipo();
-	}
-	
-	
 	
 }
