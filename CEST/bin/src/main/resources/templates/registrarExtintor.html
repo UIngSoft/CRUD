@@ -18,8 +18,8 @@
 </head>
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-			<h1 align="center">Registro de Extintor</h1>
+		<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color: white">Registro de Extintor</h1>
 		</div>
 		<div class="container">
 			<form id="RegExtForm" class="form-signin" action="#" th:action="@{/registrarExtintor}" th:object="${extintor}" th:method="post">
@@ -27,11 +27,11 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>ID</label>
-						<input name="id" type="text" class="form-control" required pattern="\d+" title="INGRESA UN VALOR NUMÉRICO">
+						<input name="id" type="text" class="form-control"  maxlength="5" pattern="[A-Za-z0-9]{5}" title="INGRESA UN ID VALIDO, MAXIMO 5">
 					</div>
 					<div class="col-md-6">
 						<label>Tipo</label> <br>
-						<select id="fichatecnica" class="form-control" name="tipo"style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
+						<select id="fichatecnica" class="form-control" name="tipo" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
 						   	<option></option>
 						   	<th:block th:each="fichatecnica:${fichastecnicas}">
 						   		<option th:text="${fichatecnica.tipo}"></option>	
@@ -44,7 +44,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>Tamaño</label> <br>
-						<select class="form-control" name="tamanio" style="width: 100%">
+						<select class="form-control" name="tamanio" style="width: 100%" required title="SELECCIONA EL TAMAÑO DEL EXTINTOR">
 						   	<option>10 libras</option>
 						   	<option>15 libras</option>
 						   	<option>20 libras</option>
@@ -56,14 +56,14 @@
 					
 					<div class="col-md-6">
 						<label>Fecha Recarga</label>
-						<input type="date" class="form-control" required/>
+						<input type="date" class="form-control" value="aaaa/mm/dd" required />
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col-md-6">
 						<label>Caducidad</label>
-						<input type="text" class="form-control" required/>
+						<input type="text" class="form-control"  max="5" pattern="[0-9]" required title="LA CADUCIDAD MAXIMA DE UN EXTINTOR SON 5 AÑOS"/>
 					</div>
 					<div class="col-md-6">
 						<label>Empresa</label>
@@ -82,7 +82,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>Sede</label> <br>
-						<select id="sede" class="form-control" name="tamanio" style="width: 100%" onchange="ObtenerBloques();">
+						<select id="sede" class="form-control" name="sede" style="width: 100%" onchange="ObtenerBloques();">
 						   	<option>Seleccione</option>
 						   	<th:block th:each="sede:${sedes}">
 						   		<option th:text="${sede.nombre}"></option>	
@@ -92,21 +92,15 @@
 					
 					<div class="col-md-4">
 						<label>Bloque</label> <br>
-						<select id="bloque" class="form-control" name="tamanio" style="width: 100%">
-						   	<option>Seleccione</option>
-						   	<th:block th:each="bloque:${bloques}">
-						   		<option title="${bloque.nombre}"></option>	
-						   	</th:block>		   	
+						<select id="bloque" class="form-control" name="bloque" style="width: 100%" onchange="ObtenerPisos();">
+						   	<option>Seleccione</option>	   	
 						</select>						
 					</div>
 					
 					<div class="col-md-4">
 						<label>Piso</label> <br>
-						<select class="form-control" name="tamanio" style="width: 100%">
-						   	<option>Seleccione</option>
-						   	<th:block th:each="piso:${pisos}">
-						   		<option title="${piso.numero}"></option>	
-						   	</th:block>		   	
+						<select id="piso" class="form-control" name="tamanio" style="width: 100%">
+						   	<option>Seleccione</option>	   	
 						</select>						
 					</div>					
 				</div>
@@ -114,11 +108,12 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label>Encargado</label>
-						<input name="id" type="text" class="form-control">
+						<input name="id" type="text" class="form-control" required="required">
 					</div>
+					
 					<div class="col-md-6">
 						<label>Estado Extintor</label> <br>
-						<select class="form-control" name="tamanio"style="width: 100%">
+						<select class="form-control" name="estado"style="width: 100%" required title="SELECCIONA EL ESTADO DEL EXTINTOR">
 						   	<option>Activo</option>
 						   	<option>Baja</option>
 						   	<option>Mantenimiento</option>
