@@ -17,17 +17,27 @@ import com.cest.Models.Extintor;
  */
 @Controller
 @RequestMapping
-public class ConsultaExtintorController {
+public class ConsultaController {
 
 	@Autowired
 	private ExtintorDAO extintorDao;
+	
 	/*
-	 * Visualiza pagina index
+	 * Visualiza pagina de consultas
 	 */
-	@GetMapping(value = "/consultarExtintor")
-	public String getHome(Model modelo) {
-		modelo.addAttribute("extintores", extintorDao.findAll());
-		return "consultarExtintor";
+	@GetMapping(value = "/consulta")
+	public String getHome(Model modelo, @RequestParam String tipo) {
+		if (tipo.equals("general")) {
+			modelo.addAttribute("elementos", extintorDao.findAll());
+			return "consultaGeneral";
+		}else if (tipo.equals("extintor")) {
+			modelo.addAttribute("extintores", extintorDao.findAll());
+			return "consultaExtintor";
+		}else if (tipo.equals("botiquin")) {
+			return "consultaBotiquin";
+		}else{
+			return "consultaCamilla";
+		}
 	}
 	
 }
