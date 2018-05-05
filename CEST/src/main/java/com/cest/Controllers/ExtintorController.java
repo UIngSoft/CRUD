@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cest.Models.Elemento;
+import com.cest.Models.Extintor;
 
 
 
@@ -14,14 +14,14 @@ import com.cest.Models.Elemento;
  */
 @Controller
 @RequestMapping
-public class RegistrarExtintorController {
+public class ExtintorController {
 
 	/*
 	 * Visualiza pagina index
 	 */
 	@GetMapping(value = "/registrarExtintor")
 	public String getRegistrar(Model modelo) {
-		modelo.addAttribute("elemento", new Elemento());
+		modelo.addAttribute("extintor", new Extintor());
 		return "registrarExtintor";
 	}
 	
