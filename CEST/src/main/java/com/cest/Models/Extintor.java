@@ -20,6 +20,7 @@ public class Extintor{
 	
 	@OneToOne
 	private Fichatecnica fichatecnica;
+	
 	private int tamanio;
 	private String fechainstalacion;
 	private String fechaultimarecarga;
