@@ -14,33 +14,33 @@
 <body>
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
-			<h1 align="center">Registro de elementos</h1>
+			<h1 align="center">Registro de Extintor</h1>
 		</div>
 		<div class="container">
-			<form class="form-signin" action="#" th:action="@{/registrarElementos}" th:object="${elemento}" th:method="post">
+			<form class="form-signin" action="#" th:action="@{/registrarExtintor}" th:object="${extintor}" th:method="post">
 				<h2 class="form-signin-heading">Por favor llene todos los campos</h2>
 				<div class="row">
 					<div class="col-md-4">
 						<label>ID</label>
-						<input name="id" type="text" th:field="*{id}" class="form-control"/>
+						<input name="id" type="text" class="form-control" required/>
 					</div>
 					<div class="col-md-4">
 						<label>Número de piso</label>
-						<input type="text" th:field="*{numeropiso}" class="form-control"/>
+						<input type="text" class="form-control" required/>
 					</div>
 					<div class="col-md-4">
 						<label>Número de contrato</label>
-						<input type="text" th:field="*{numerocontrato}" class="form-control"/>
+						<input type="text" class="form-control" required/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-4">
 						<label>Cédula encargado</label>
-						<input name="id" type="text" th:field="*{cedulaencargado}" class="form-control"/>
+						<input name="id" type="text" class="form-control" required/>
 					</div>
 					<div class="col-md-4">
 						<label>Consecutivo mantenimiento</label>
-						<input type="text" th:field="*{consecutivomantenimiento}" class="form-control"/>
+						<input type="text" class="form-control" required/>
 					</div>
 				</div>
         		<button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>

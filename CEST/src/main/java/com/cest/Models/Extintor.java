@@ -1,6 +1,8 @@
 package com.cest.Models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -12,14 +14,17 @@ import javax.persistence.OneToOne;
 public class Extintor{
 	/*Foreign Key*/
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idelemento;
 	
+	/*Llave foranea a elemento*/
 	@ManyToOne
 	private Elemento elemento;
 	
-	
+	/*Llave foranea a ficha tecnica*/
 	@OneToOne
 	private Fichatecnica fichatecnica;
+	
 	private int tamanio;
 	private String fechainstalacion;
 	private String fechaultimarecarga;
