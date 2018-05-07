@@ -16,43 +16,78 @@
 		<div class="jumbotron">
 			<h1 align="center">Consulta de extintores</h1>
 		</div>
-		
 	</div>
 	<div class="container">
-		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
-    			<div class="form-group">
-    				<table id="registros" class="table table-bordered table-striped">
-    					<tr>
-	    					<td><label>Identificador</label></td>
-							<td><label>Tipo</label></td>
-							<td><label>Tamaño</label></td>
-							<td><label>Fecha de instalación</label></td>
-							<td><label>Fecha de recarga</label></td>
-							<td><label>Fecha de vencimiento</label></td>
-							<td><label>Caducidad(años)</label></td>
-							<td><label>Estado</label></td>
-						</tr>
-    					<th:block th:each="extintor:${extintores}">
-						      <tr>
-						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
-						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
-						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
-						         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
-						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
-						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
-						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
-						         <td th:text="${extintor.estado}"><label>estado</label></td>
-						         
-						      </tr>
-						</th:block>
-			        </table>
-    			</div>
-    			
-    			<div class="col-md-5"></div>
-	    		<div class="col-md-2">
-	    			<button class="btn btn-lg btn-primary" onclick="location.href='/registrarExtintor'">Registrar</button>
-	    		</div>
-	    		<div class="col-md-5"></div>
+	<div class="row"> 
+		<div class="col-md-2"> 
+			<label>Identificador</label> <br>
+			<input type="text" class="form-control">
+		</div>
+		<div class="col-md-2"></div>
+		<div class="col-md-2">
+			<label>Sede</label> <br>
+			<select name="tamanio" style="width: 100%">
+			   	<option>Palogrande</option>
+			   	<option>Salud</option>
+			   	<option>Veterinaria</option>
+			   	<option>Juridicas</option>					   	
+			</select>
+		</div>
+		<div class="col-md-1">
+			<label>Bloque</label> <br>
+			<select name="tamanio" style="width: 100%">
+			   							   	
+			</select>
+		</div>
+		<div class="col-md-1">
+			<label>Piso</label> <br>
+			<select name="tamanio" style="width: 100%">
+			 	  				   	
+			</select>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-1">
+			<a class="btn btn-primary"/> <span class="glyphicon glyphicon-pencil"></span></a>
+		</div>
+	 </div>
+			<!-- Tabla que muestra la información de la tabla extintor de la base de datos -->
+   			<div class="form-group">
+   				<table id="registros" class="table table-bordered table-striped">
+   					<tr>
+    					<td><label>Identificador</label></td>
+						<td><label>Caducidad(años)</label></td>
+						<td><label>Estado</label></td>
+						<td><label>Fecha de instalación</label></td>
+						<td><label>Fecha de recarga</label></td>
+						<td><label>Fecha de vencimiento</label></td>
+						<td><label>Tamanio</label></td>
+						<td><label>Elemento Id</label></td>
+						<td><label>Acciones</label></td>
+					</tr>
+   					<th:block th:each="extintor:${extintores}">
+					      <tr>
+					         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
+					         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
+					         <td th:text="${extintor.estado}"><label>Estado</label></td>
+					         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
+					         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
+					         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
+					         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
+					         <td th:text="${extintor.fichatecnica}"><label>Elemento</label></td>
+                             <td>
+	                             <a class="btn btn-primary"/> <span class="glyphicon glyphicon-pencil"></span></a>
+	                             <a class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span></a> 
+                             </td>					         
+					      </tr>
+					</th:block>
+		        </table>
+   			</div>
+   			
+   			<div class="col-md-5"></div>
+    		<div class="col-md-2">
+    			<button class="btn btn-lg btn-primary" onclick="location.href='/registrarExtintor'">Registrar</button>
+    		</div>
+    		<div class="col-md-5"></div>
 	</div>
 </body>
 </html>
