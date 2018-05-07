@@ -1,12 +1,15 @@
 package com.cest.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cest.Models.Usuario;
+import com.cest.Dao.ExtintorDAO;
+import com.cest.Models.Extintor;
+
 
 
 /*
@@ -14,15 +17,17 @@ import com.cest.Models.Usuario;
  */
 @Controller
 @RequestMapping
-public class HomeController {
+public class ConsultaExtintorController {
 
+	@Autowired
+	private ExtintorDAO extintorDao;
 	/*
 	 * Visualiza pagina index
 	 */
-	@GetMapping(value = "/home")
+	@GetMapping(value = "/consultarExtintor")
 	public String getHome(Model modelo) {
-		modelo.addAttribute("usuario", new Usuario());
-		return "home";
+		modelo.addAttribute("extintores", extintorDao.findAll());
+		return "consultarExtintor";
 	}
 	
 }

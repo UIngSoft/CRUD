@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cest.Models.Usuario;
+import com.cest.Models.Extintor;
+
 
 
 /*
@@ -14,15 +14,15 @@ import com.cest.Models.Usuario;
  */
 @Controller
 @RequestMapping
-public class HomeController {
+public class ExtintorController {
 
 	/*
 	 * Visualiza pagina index
 	 */
-	@GetMapping(value = "/home")
-	public String getHome(Model modelo) {
-		modelo.addAttribute("usuario", new Usuario());
-		return "home";
+	@GetMapping(value = "/registrarExtintor")
+	public String getRegistrar(Model modelo) {
+		modelo.addAttribute("extintor", new Extintor());
+		return "registrarExtintor";
 	}
 	
 }
