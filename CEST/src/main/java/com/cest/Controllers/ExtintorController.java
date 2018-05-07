@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cest.Dao.SedeDAO;
 import com.cest.Models.Extintor;
 import com.cest.Services.ExtintorService;
 
@@ -21,10 +22,15 @@ import com.cest.Services.ExtintorService;
 @Controller
 @RequestMapping
 public class ExtintorController {
+
 	
 	@Autowired
 	private ExtintorService extintorService;
 	
+
+	@Autowired
+	private SedeDAO sedeDao;
+
 
 	/*
 	 * Visualiza pagina index
@@ -32,6 +38,7 @@ public class ExtintorController {
 	@GetMapping(value = "/registrarExtintor")
 	public String getRegistrar(Model modelo) {
 		modelo.addAttribute("extintor", new Extintor());
+		modelo.addAttribute("sedes", sedeDao.findAll());
 		return "registrarExtintor";
 	}
 	
