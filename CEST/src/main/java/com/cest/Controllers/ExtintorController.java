@@ -15,6 +15,7 @@ import com.cest.Models.Extintor;
 @Controller
 @RequestMapping
 public class ExtintorController {
+	
 
 	/*
 	 * Visualiza pagina index
