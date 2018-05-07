@@ -75,7 +75,9 @@
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
-						         <td ><label><a class="btn btn-primary"/> <span class="glyphicon glyphicon-pencil"></span></a>  <a class="btn btn-primary"/> <span class="glyphicon glyphicon-trash"></span></a></label></td>
+						         <td >
+						         	<button class="glyphicon glyphicon-pencil btn btn-primary" onclick="location.href='/actualizarExtintor'"></button>
+									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
 						      </tr>
 						</th:block>
 			        </table>
