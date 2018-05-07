@@ -27,6 +27,7 @@
 					<div class="col-md-6">
 						<label>Tipo</label> <br>
 						<select class="form-control" name="tipo"style="width: 100%">
+						   	<option>Seleccione</option>
 						   	<option>ABC</option>
 						   	<option>H2O</option>
 						   	<option>CO2</option>
@@ -70,23 +71,40 @@
 				
 				<div class="row">
 					<div class="col-md-6">
-						<label>Ubicacion: </label>						
+						<label><br>Ubicacion: </label>						
 					</div>
 					
 				</div>
 				
 				<div class="row">
 					<div class="col-md-4">
-						<label>Sede</label>
-						<input type="text" class="form-control" required/>
-					</div>
+						<label>Sede</label> <br>
+						<select class="form-control" name="tamanio" style="width: 100%">
+						   	<option>Seleccione</option>
+						   	<th:block th:each="sede:${sedes}">
+						   		<option th:text="${sede.nombre}"></option>	
+						   	</th:block>		   	
+						</select>						
+					</div>				
+					
 					<div class="col-md-4">
-						<label>Bloque</label>
-						<input type="text" class="form-control" required/>
+						<label>Bloque</label> <br>
+						<select class="form-control" name="tamanio" style="width: 100%">
+						   	<option>Seleccione</option>
+						   	<th:block th:each="bloque:${bloques}">
+						   		<option title="${bloque.nombre}"></option>	
+						   	</th:block>		   	
+						</select>						
 					</div>
+					
 					<div class="col-md-4">
-						<label>Piso</label>
-						<input type="text" class="form-control" required/>
+						<label>Piso</label> <br>
+						<select class="form-control" name="tamanio" style="width: 100%">
+						   	<option>Seleccione</option>
+						   	<th:block th:each="piso:${pisos}">
+						   		<option title="${piso.numero}"></option>	
+						   	</th:block>		   	
+						</select>						
 					</div>					
 				</div>
 				
