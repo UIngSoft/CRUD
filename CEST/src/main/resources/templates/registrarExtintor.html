@@ -8,6 +8,12 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function filtrar(){
+		var sede = document.getElementById('sedeSelected').value;
+		location.href='/consulta?tipo=general&sede='+sede;
+	}
+</script>
 
 <title>Registro de elementos - CEST</title>
 </head>
@@ -79,7 +85,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>Sede</label> <br>
-						<select class="form-control" name="tamanio" style="width: 100%">
+						<select id="sedeSelected" class="form-control" name="tamanio" style="width: 100%" onchange="filtrar();">
 						   	<option>Seleccione</option>
 						   	<th:block th:each="sede:${sedes}">
 						   		<option th:text="${sede.nombre}"></option>	
