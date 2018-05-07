@@ -16,7 +16,6 @@
 		<div class="jumbotron">
 			<h1 align="center">Consulta de extintores</h1>
 		</div>
-		
 	</div>
 	<div class="container">
 		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
@@ -31,18 +30,21 @@
 							<td><label>Fecha de vencimiento</label></td>
 							<td><label>Caducidad(años)</label></td>
 							<td><label>Estado</label></td>
+							<td><label>Acciones</label></td>
 						</tr>
     					<th:block th:each="extintor:${extintores}">
 						      <tr>
 						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
 						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
+						         <td th:text="${extintor.fichatecnica}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>
-						         
+						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
+						         <td ><label><a class="btn btn-primary"/> <span class="glyphicon glyphicon-pencil"></span></a>  <a class="btn btn-primary"/> <span class="glyphicon glyphicon-trash"></span></a></label></td>
 						      </tr>
 						</th:block>
 			        </table>

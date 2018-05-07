@@ -16,7 +16,6 @@
 		<div class="jumbotron">
 			<h1 align="center">Registro de Extintor</h1>
 		</div>
-
 		<div class="container">
 			<form class="form-signin" action="#" th:action="@{/registrarExtintor}" th:object="${extintor}" th:method="post">
 				<h2 class="form-signin-heading">Por favor llene todos los campos</h2>
@@ -39,7 +38,6 @@
 					</div>
 
 				</div>
-
 				<div class="row">
 					<div class="col-md-6">
 						<label>Tamaño</label> <br>
@@ -49,10 +47,10 @@
 						   	<option>20 libras</option>
 						   	<option>370 gramos</option>
 						   	<option>2,5 litros</option>
-						   	<option>150 litros</option>
+						   	<option>150 litros</option>						   	
 						</select>
 					</div>
-
+				
 					<div class="col-md-6">
 						<label>Fecha Recarga</label>
 						<input type="date" class="form-control" required/>
@@ -70,13 +68,11 @@
 						   	<option>5</option>
 						</select>
 					</div>
-
 					<div class="col-md-6">
 						<label>Empresa</label>
 						<input type="text" class="form-control" required/>
 					</div>
 				</div>
-
 
 				<div class="row">
 					<div class="col-md-6">
@@ -96,18 +92,15 @@
 								<option>Versalles</option>
 						</select>
 					</div>
-
 					<div class="col-md-4">
 						<label>Bloque</label>
 						<input type="text" class="form-control" required/>
 					</div>
-
 					<div class="col-md-4">
 						<label>Piso</label>
 						<input type="text" class="form-control" required/>
-					</div>
+					</div>					
 				</div>
-
 				<div class="row">
 					<div class="col-md-6">
 						<label>Encargado</label>
@@ -121,12 +114,12 @@
 						   	<option>Mantenimiento</option>
 						   	<option>Vencido</option>
 
+
 						</select>
 
 					</div>
 
-				</div>
-
+				</div>	
         		<div class="col-md-5"></div>
 	    			<div class="col-md-2">
 	    				<button class="btn btn-lg btn-primary">Registrar</button>
