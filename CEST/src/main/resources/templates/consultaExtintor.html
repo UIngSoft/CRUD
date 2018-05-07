@@ -13,8 +13,8 @@
 </head>
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-			<h1 align="center">Consulta de extintores</h1>
+		<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color: white">Consulta de extintores</h1>
 		</div>
 		<div class="row"> 
 		<div class="col-md-2"> 
@@ -68,7 +68,7 @@
     					<th:block th:each="extintor:${extintores}">
 						      <tr>
 						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
-						         <td th:text="${extintor.fichatecnica}"><label>Tipo</label></td>
+						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
