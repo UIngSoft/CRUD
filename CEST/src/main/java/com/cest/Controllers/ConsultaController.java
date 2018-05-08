@@ -15,7 +15,6 @@ import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.PisoDAO;
 import com.cest.Models.Extintor;
-import com.cest.Models.Sede;
 import com.cest.Models.Bloque;
 import com.cest.Models.Piso;
 
