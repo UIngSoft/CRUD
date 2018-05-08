@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cest.Dao.ExtintorDAO;
-import com.cest.Models.Extintor;
 
 
 
