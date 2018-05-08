@@ -14,35 +14,62 @@
 <body>
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
-			<h1 align="center">Actualizar Extintor cgsfdgdfg</h1>
+			<h1 align="center">Actualizar Extintor</h1>
 		</div>
-		<div class="container">			
+		<div class="container">
+		<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>	
 			<th:block th:each="exti : ${extintores}">
 				<div class="row">
 					<div class="col-md-6">
 						<label>ID</label>
-						<input name="id" type="text" class="form-control" required value="${extintor.idelemento}"/>
-						 <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
-						 
+						<input disabled="disabled" type="text" th:value="${exti.elemento.id}" name="id" class="form-control" required />
 					</div>				
-				</div>
+				
+				<div class="col-md-6">
+						<label>Tipo</label> <br>
+						<select class="form-control" name="tipo"style="width: 100%">
+						   	<option>Seleccione</option>
+						   	<option>ABC</option>
+						   	<option>H2O</option>
+						   	<option>CO2</option>
+						   	<option>Solkaflam</option>
+						</select>
+					</div>
+					</div>
 				
 				<div class="row">
 					<div class="col-md-6">
-						<label>Tamaño</label> <br>
-						
+						<label>Tamaño</label>
+						<select class="form-control" name="tamanio" style="width: 100%">
+							<option>Seleccione</option>
+						   	<option>10 libras</option>
+						   	<option>15 libras</option>
+						   	<option>20 libras</option>
+						   	<option>370 gramos</option>
+						   	<option>2,5 litros</option>
+						   	<option>150 litros</option>						   	
+						</select>
 					</div>
 					
 					<div class="col-md-6">
 						<label>Fecha Recarga</label>
-						<input type="date" class="form-control" required/>
+						<input type="date" th:text="${exti.fechaultimarecarga}" name="fecha" class="form-control" required />
+						
+						
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col-md-6">
 						<label>Caducidad</label>
-						<input type="text" class="form-control" required/>
+						<select class="form-control" name="caducidad" style="width: 100%">
+							<option>Seleccione</option>
+						   	<option>1</option>
+						   	<option>2</option>
+						   	<option>3</option>
+						   	<option>4</option>
+						   	<option>5</option>
+						</select>
 					</div>
 					
 					<div class="col-md-6">
@@ -51,18 +78,22 @@
 					</div>
 				</div>
 				
-				
 				<div class="row">
 					<div class="col-md-6">
-						<label>Ubicacion: </label>						
-					</div>
-					
+						<label>Ubicacion: </label>
+					</div>				
 				</div>
 				
 				<div class="row">
 					<div class="col-md-4">
 						<label>Sede</label>
-						<input type="text" class="form-control" required/>
+						<select class="form-control" name="tamanio" style="width: 100%">
+						   	<option>Principal</option>
+						   	<option>Bellas Artes</option>
+						   	<option>Palogrande</option>
+						   	<option>Sancancio</option>
+						   	<option>Versalles</option>						   	
+						</select>
 					</div>
 					
 					<div class="col-md-4">
@@ -89,47 +120,14 @@
 										
 				</div>		
 			
-        		<div class="col-md-5"></div>
+        		
+		</div>
+		<div class="col-md-5"></div>
 	    			<div class="col-md-2">
-	    				<button class="btn btn-lg btn-primary">Registrar</button>
+	    				<button class="btn btn-lg btn-primary">Actualizar</button>
 	    			</div>
 	    		<div class="col-md-5"></div>
-		</div>
 		</th:block>
 	</div>
-	
-	
-	
-	
-	
-	<div class="container">
-		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
-    			<div class="form-group">
-    				<table id="registros" class="table table-bordered table-striped">
-    					<tr>
-	    					<td><label>Identificador</label></td>
-	    					<td><label>tamaño</label></td>
-						</tr>
-    					<th:block th:each="exti:${extintor}">
-						      <tr>
-						         <td th:text="${exti.idelemento}"><label>Identificador</label></td>
-						         <td th:text="${exti.tamanio}"><label>tamaño</label></td>	        
-						         
-						      </tr>
-						</th:block>
-			        </table>
-    			</div>
-    			</div>
-	
-	
-	
-	<form action="#" th:object="${extintor}" method="post">
-    <input type="text" id="idelemento" name="idelemento" th:value="*{idelemento}" />
-</form>
-	
-	
-	
-	
-	
 </body>
 </html>

@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.SedeDAO;
 import com.cest.Models.Extintor;
 import com.cest.Services.ExtintorService;
@@ -23,13 +23,13 @@ import com.cest.Services.ExtintorService;
 @RequestMapping
 public class ExtintorController {
 
-	
-	@Autowired
 	private ExtintorService extintorService;
 	
 
 	@Autowired
 	private SedeDAO sedeDao;
+	@Autowired
+	private ExtintorDAO extintorDao;
 
 
 	/*
@@ -44,7 +44,7 @@ public class ExtintorController {
 	
 	@GetMapping(value = "/actualizarExtintor")
 	public String getActualizar(Model modelo) {
-		modelo.addAttribute("extintor", new Extintor());
+		modelo.addAttribute("extintores", extintorDao.findAll());
 		return "actualizarExtintor";
 	}
 	
