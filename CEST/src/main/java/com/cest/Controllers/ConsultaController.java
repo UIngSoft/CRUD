@@ -26,7 +26,8 @@ public class ConsultaController {
 	 * Visualiza pagina de consultas
 	 */
 	@GetMapping(value = "/consulta")
-	public String getHome(Model modelo, @RequestParam String tipo) {
+	public String getHome(Model modelo, @RequestParam String tipo, @RequestParam String sede, @RequestParam String bloque, @RequestParam String piso) {
+		System.out.println(sede);
 		if (tipo.equals("general")) {
 			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";

@@ -13,9 +13,44 @@
 </head>
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-			<h1 align="center">Consulta de extintores</h1>
+		<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color: white">Consulta de extintores</h1>
 		</div>
+
+		<div class="row"> 
+		<div class="col-md-2"> 
+			<label>Identificador</label> <br>
+			<input type="text" class="form-control">
+		</div>
+		<div class="col-md-2"></div>
+		<div class="col-md-2">
+			<label>Sede</label> <br>
+			<select class="form-control" name="tamanio" style="width: 100%">
+			   	<option>Palogrande</option>
+			   	<option>Salud</option>
+			   	<option>Veterinaria</option>
+			   	<option>Juridicas</option>					   	
+			</select>
+		</div>
+		<div class="col-md-1">
+			<label>Bloque</label> <br>
+			<select class="form-control" name="tamanio" style="width: 100%">
+			   							   	
+			</select>
+		</div>
+		<div class="col-md-1">
+			<label>Piso</label> <br>
+			<select class="form-control" name="tamanio" style="width: 100%">
+			 	  				   	
+			</select>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-1">
+			<a class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span></a>
+		</div>
+	 </div>
+		
+>>>>>>> backup
 	</div>
 	<div class="container">
 		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
@@ -36,15 +71,24 @@
 						      <tr>
 						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
 						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
+
 						         <td th:text="${extintor.fichatecnica}"><label>Tipo</label></td>
+
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>
+
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
 						         <td ><label><a class="btn btn-primary"/> <span class="glyphicon glyphicon-pencil"></span></a>  <a class="btn btn-primary"/> <span class="glyphicon glyphicon-trash"></span></a></label></td>
+
+						         <td >
+						         	<button class="glyphicon glyphicon-pencil btn btn-primary" onclick="location.href='/actualizarExtintor'"></button>
+									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
+						         </td>
+
 						      </tr>
 						</th:block>
 			        </table>
