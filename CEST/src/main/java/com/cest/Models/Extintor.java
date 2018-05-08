@@ -25,12 +25,14 @@ public class Extintor{
 	@OneToOne
 	private Fichatecnica fichatecnica;
 	
+	
 	private int tamanio;
 	private String fechainstalacion;
 	private String fechaultimarecarga;
 	private String fechavencimiento;
 	private String estado;
 	private int caducidadanios;
+	
 	public int getIdelemento() {
 		return idelemento;
 	}
