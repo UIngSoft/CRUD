@@ -3,3 +3,7 @@ function filtrar(){
 	alert('Será redirecionado');
 	location.href='/consulta?tipo=general&sede='+sede+'&bloque&piso';
 }
+
+function validar(){
+	
+}
