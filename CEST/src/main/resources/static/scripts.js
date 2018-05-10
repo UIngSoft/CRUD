@@ -1,9 +1,8 @@
 function filtrar(){
-	var sede = document.getElementById('sedeSelected').value;
-	alert('Será redirecionado');
-	location.href='/consulta?tipo=general&sede='+sede+'&bloque&piso';
-}
-
-function validar(){
+	$.post( "/obtenerBloques",{ sede: $('#sede').val()}, function( data ) {
+		$.each(data, function(i,val){
+			$('#bloque').append('<option>'+val+'</option>');
+		});
+	});
 	
 }
