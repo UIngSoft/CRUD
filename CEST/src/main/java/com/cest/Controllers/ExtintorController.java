@@ -38,8 +38,6 @@ public class ExtintorController {
 	@Autowired
 	private SedeDAO sedeDao;
 	@Autowired
-	private BloqueDAO bloqueDao;
-	@Autowired
 	private ExtintorDAO extintorDao;
 	
 
@@ -53,18 +51,6 @@ public class ExtintorController {
 		modelo.addAttribute("sedes", sedeDao.findAll());
 		modelo.addAttribute("fichastecnicas", fichatecnicaDao.findAll());
 		return "registrarExtintor";
-	}
-	
-	@PostMapping(value = "/obtenerBloques")
-	@ResponseBody
-	public List<Character> getBloques(@RequestParam String sede) {
-		List<Character> misBloques = new LinkedList<>();
-		for (Bloque bloque : bloqueDao.findAll()) {
-			if (bloque.getSede().getNombre().equals(sede)) {
-				misBloques.add(bloque.getLetra());
-			}
-		}
-		return misBloques;
 	}
 	
 	@GetMapping(value = "/actualizarExtintor")

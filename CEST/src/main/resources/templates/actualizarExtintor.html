@@ -18,16 +18,11 @@
 		</div>
 		<div class="container">
 		<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>	
-			<th:block th:each="exti : ${extintores}">
+			<th:block th:each="extintor : ${extintores}">
 				<div class="row">
 					<div class="col-md-6">
 						<label>ID</label>
-<<<<<<< HEAD
-						<input name="id" type="text" class="form-control" required value="${extintor.idelemento}"/>
-						 
-=======
-						<input disabled="disabled" type="text" th:value="${exti.elemento.id}" name="id" class="form-control" required />
->>>>>>> 4440be2d33acce09d31055d45dafbf8025104d04
+						<input disabled="disabled" type="text" th:value="${extintor.elemento.id}" name="id" class="form-control" required />
 					</div>				
 				
 				<div class="col-md-6">
