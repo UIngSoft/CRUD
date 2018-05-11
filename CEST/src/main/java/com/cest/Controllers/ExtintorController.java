@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.ExtintorDAO;
+import com.cest.Dao.FichatecnicaDAO;
 import com.cest.Dao.SedeDAO;
 import com.cest.Models.Bloque;
 import com.cest.Models.Extintor;
@@ -32,13 +33,15 @@ public class ExtintorController {
 
 	private ExtintorService extintorService;
 	
-
+	@Autowired
+	private FichatecnicaDAO fichatecnicaDao;
 	@Autowired
 	private SedeDAO sedeDao;
 	@Autowired
 	private BloqueDAO bloqueDao;
 	@Autowired
 	private ExtintorDAO extintorDao;
+	
 
 
 	/*
@@ -48,6 +51,7 @@ public class ExtintorController {
 	public String getRegistrar(Model modelo) {
 		modelo.addAttribute("extintor", new Extintor());
 		modelo.addAttribute("sedes", sedeDao.findAll());
+		modelo.addAttribute("fichastecnicas", fichatecnicaDao.findAll());
 		return "registrarExtintor";
 	}
 	
