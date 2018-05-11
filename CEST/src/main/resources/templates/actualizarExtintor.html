@@ -17,31 +17,26 @@
 			<h1 align="center">Actualizar Extintor</h1>
 		</div>
 		<div class="container">
-		<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>	
-			<th:block th:each="extintor : ${extintores}">
+			<form id="RegExtForm" class="form-signin" action="#" th:object="${extintor}" th:method="post">
+				<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>
 				<div class="row">
 					<div class="col-md-6">
 						<label>ID</label>
-						<input disabled="disabled" type="text" th:value="${extintor.elemento.id}" name="id" class="form-control" required />
-					</div>				
-				
-				<div class="col-md-6">
+						<input th:value="*{idelemento}"name="id" type="text" class="form-control" disabled="disabled">
+					</div>
+					<div class="col-md-6">
 						<label>Tipo</label> <br>
-						<select class="form-control" name="tipo"style="width: 100%">
-						   	<option>Seleccione</option>
-						   	<option>ABC</option>
-						   	<option>H2O</option>
-						   	<option>CO2</option>
-						   	<option>Solkaflam</option>
+						<select id="fichatecnica" class="form-control" name="tipo"style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
+						   	<option></option>
 						</select>
 					</div>
-					</div>
+				
+				</div>
 				
 				<div class="row">
 					<div class="col-md-6">
-						<label>Tamaño</label>
+						<label>Tamaño</label> <br>
 						<select class="form-control" name="tamanio" style="width: 100%">
-							<option>Seleccione</option>
 						   	<option>10 libras</option>
 						   	<option>15 libras</option>
 						   	<option>20 libras</option>
@@ -53,57 +48,58 @@
 					
 					<div class="col-md-6">
 						<label>Fecha Recarga</label>
-						<input type="date" th:text="${exti.fechaultimarecarga}" name="fecha" class="form-control" required />
-						
-						
+						<input type="date" class="form-control" required/>
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col-md-6">
 						<label>Caducidad</label>
-						<select class="form-control" name="caducidad" style="width: 100%">
-							<option>Seleccione</option>
-						   	<option>1</option>
-						   	<option>2</option>
-						   	<option>3</option>
-						   	<option>4</option>
-						   	<option>5</option>
-						</select>
+						<input type="text" class="form-control" required/>
 					</div>
-					
 					<div class="col-md-6">
 						<label>Empresa</label>
 						<input type="text" class="form-control" required/>
 					</div>
 				</div>
 				
+				
 				<div class="row">
 					<div class="col-md-6">
-						<label>Ubicacion: </label>
-					</div>				
+						<label><br>Ubicacion: </label>						
+					</div>
+					
 				</div>
 				
 				<div class="row">
 					<div class="col-md-4">
-						<label>Sede</label>
+						<label>Sede</label> <br>
+						<select id="sede" class="form-control" name="tamanio" style="width: 100%" onchange="ObtenerBloques();">
+						   	<option>Seleccione</option>
+						   	<th:block th:each="sede:${sedes}">
+						   		<option th:text="${sede.nombre}"></option>	
+						   	</th:block>		   	
+						</select>						
+					</div>				
+					
+					<div class="col-md-4">
+						<label>Bloque</label> <br>
+						<select id="bloque" class="form-control" name="tamanio" style="width: 100%">
+						   	<option>Seleccione</option>
+						   	<th:block th:each="bloque:${bloques}">
+						   		<option title="${bloque.nombre}"></option>	
+						   	</th:block>		   	
+						</select>						
+					</div>
+					
+					<div class="col-md-4">
+						<label>Piso</label> <br>
 						<select class="form-control" name="tamanio" style="width: 100%">
-						   	<option>Principal</option>
-						   	<option>Bellas Artes</option>
-						   	<option>Palogrande</option>
-						   	<option>Sancancio</option>
-						   	<option>Versalles</option>						   	
-						</select>
-					</div>
-					
-					<div class="col-md-4">
-						<label>Bloque</label>
-						<input type="text" class="form-control" required/>
-					</div>
-					
-					<div class="col-md-4">
-						<label>Piso</label>
-						<input type="text" class="form-control" required/>
+						   	<option>Seleccione</option>
+						   	<th:block th:each="piso:${pisos}">
+						   		<option title="${piso.numero}"></option>	
+						   	</th:block>		   	
+						</select>						
 					</div>					
 				</div>
 				
@@ -112,22 +108,26 @@
 						<label>Encargado</label>
 						<input name="id" type="text" class="form-control">
 					</div>
-					
 					<div class="col-md-6">
 						<label>Estado Extintor</label> <br>
-						
+						<select class="form-control" name="tamanio"style="width: 100%">
+						   	<option>Activo</option>
+						   	<option>Baja</option>
+						   	<option>Mantenimiento</option>
+						   	<option>Vencido</option>
+						   					   	
+						</select>
 					</div>
 										
 				</div>		
 			
-        		
-		</div>
-		<div class="col-md-5"></div>
+        		<div class="col-md-5"></div>
 	    			<div class="col-md-2">
-	    				<button class="btn btn-lg btn-primary">Actualizar</button>
+	    				<button type="submit" class="btn btn-lg btn-primary" >Actualizar</button>
 	    			</div>
 	    		<div class="col-md-5"></div>
-		</th:block>
+     		</form>
+		</div>
 	</div>
 </body>
 </html>

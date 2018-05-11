@@ -54,8 +54,12 @@ public class ExtintorController {
 	}
 	
 	@GetMapping(value = "/actualizarExtintor")
-	public String getActualizar(Model modelo) {
-		modelo.addAttribute("extintores", extintorDao.findAll());
+	public String getActualizar(Model modelo, @RequestParam String id) {
+		for (Extintor extintor : extintorDao.findAll()) {
+			if (extintor.getIdelemento() == Integer.valueOf(id)) {
+				modelo.addAttribute("extintor", extintor);
+			}
+		}
 		return "actualizarExtintor";
 	}
 	
