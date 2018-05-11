@@ -82,7 +82,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>Sede</label> <br>
-						<select id="sede" class="form-control" name="tamanio" style="width: 100%" onchange="filtrar();">
+						<select id="sede" class="form-control" name="tamanio" style="width: 100%" onchange="ObtenerBloques();">
 						   	<option>Seleccione</option>
 						   	<th:block th:each="sede:${sedes}">
 						   		<option th:text="${sede.nombre}"></option>	
