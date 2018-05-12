@@ -27,7 +27,6 @@ public class Extintor{
 	
 	
 	private int tamanio;
-	private String fechainstalacion;
 	private String fechaultimarecarga;
 	private String fechavencimiento;
 	private String estado;
@@ -56,12 +55,6 @@ public class Extintor{
 	}
 	public void setTamanio(int tamanio) {
 		this.tamanio = tamanio;
-	}
-	public String getFechainstalacion() {
-		return fechainstalacion;
-	}
-	public void setFechainstalacion(String fechainstalacion) {
-		this.fechainstalacion = fechainstalacion;
 	}
 	public String getFechaultimarecarga() {
 		return fechaultimarecarga;

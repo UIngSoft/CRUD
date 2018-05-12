@@ -13,6 +13,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script src="scripts.js"></script>
+	
+<script>
+function enviar(){
+	location.href='/actualizarExtintor?id='+document.getElementById('idelemento').textContent;
+}
+</script>
 
 <script>
 	function enviar(id){
@@ -78,7 +84,7 @@
 						</tr>
     					<th:block th:each="extintor:${extintores}">
 						      <tr>
-						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
+						         <td id="idelemento" th:text="${extintor.idelemento}"><label>Identificador</label></td>
 						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
@@ -87,7 +93,11 @@
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
 						         <td >
+<<<<<<< HEAD
+						         	<button class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar();"></button>
+=======
 						         	<button th:id="${extintor.idelemento}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>
+>>>>>>> 560eb6b81d75f7b98c3e338c3c9519567309a110
 									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
 								</td>
 						      </tr>

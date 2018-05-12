@@ -60,6 +60,21 @@ public class ExtintorController {
 				modelo.addAttribute("extintor", extintor);
 			}
 		}
+<<<<<<< HEAD
+		return misBloques;
+	}
+	
+	@GetMapping(value = "/actualizarExtintor")
+	public String getActualizar(Model modelo, @RequestParam String id) {
+		for (Extintor extintor : extintorDao.findAll()) {
+			if (extintor.getIdelemento() == Integer.valueOf(id)) {
+				modelo.addAttribute("extintor", extintor);
+			}
+			
+		}
+		modelo.addAttribute("fichastecnicas", fichatecnicaDao.findAll());
+=======
+>>>>>>> 560eb6b81d75f7b98c3e338c3c9519567309a110
 		return "actualizarExtintor";
 	}
 	
