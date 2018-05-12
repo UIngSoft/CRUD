@@ -20,6 +20,12 @@ function enviar(){
 }
 </script>
 
+<script>
+	function enviar(id){
+		location.href='/actualizarExtintor?id='+id;
+	}
+</script> 
+
 <title>CEST - Extintores</title>
 </head>
 <body>
@@ -87,9 +93,13 @@ function enviar(){
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
 						         <td >
+<<<<<<< HEAD
 						         	<button class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar();"></button>
+=======
+						         	<button th:id="${extintor.idelemento}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>
+>>>>>>> 560eb6b81d75f7b98c3e338c3c9519567309a110
 									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
-						         </td>
+								</td>
 						      </tr>
 						</th:block>
 			        </table>

@@ -42,14 +42,10 @@ public class LoginController {
 	@PostMapping(value = "/iniciarSesion")
 	public ModelAndView POST(Model modelo, @ModelAttribute Usuario usuario) {
 		ModelAndView modelandview = null;
-		System.out.println("Find all: "+usuarioDao.findAll().toString());
 		for (Usuario user : usuarioDao.findAll()) {
-			System.out.println("Usuario: "+user.getUsuario()+ " Contraseña: " + user.getContrasena());
 			if (usuario.getUsuario().equals(user.getUsuario()) && usuario.getContrasena().equals(user.getContrasena())) {
 				modelandview = new ModelAndView("redirect:/home");
-				System.out.println("Encontro");
 			}else {
-				System.out.println("No hay registros");
 				modelandview = new ModelAndView("redirect:/iniciarSesion");
 			}
 		}
