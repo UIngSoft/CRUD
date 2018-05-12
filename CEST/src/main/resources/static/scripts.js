@@ -10,3 +10,17 @@ function ObtenerBloques(){
 			}
 	);
 }
+
+
+function ObtenerPisos(){
+	$.post( "/obtenerPisos",
+			{bloque: $('#bloque').val()},
+			function( data ) {
+				$.each(data, 
+						function(i,val){
+							$('#pisos').append('<option>'+val+'</option>');
+						}
+				);
+			}
+	);
+}
