@@ -13,6 +13,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script src="scripts.js"></script>
+	
+<script>
+function enviar(){
+	location.href='/actualizarExtintor?id='+document.getElementById('idelemento').textContent;
+}
+</script>
 
 <title>CEST - Extintores</title>
 </head>
@@ -72,7 +78,7 @@
 						</tr>
     					<th:block th:each="extintor:${extintores}">
 						      <tr>
-						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
+						         <td id="idelemento" th:text="${extintor.idelemento}"><label>Identificador</label></td>
 						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
@@ -81,12 +87,7 @@
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
 						         <td >
-						         	<button class="glyphicon glyphicon-pencil btn btn-primary" onclick="location.href='/actualizarExtintor'"></button>
-									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
-
-						         <td th:text="${extintor.estado}"><label>estado</label></td>
-						         <td >
-						         	<button class="glyphicon glyphicon-pencil btn btn-primary" onclick="location.href='/actualizarExtintor'"></button>
+						         	<button class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar();"></button>
 									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
 						         </td>
 						      </tr>
