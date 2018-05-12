@@ -93,20 +93,14 @@
 					<div class="col-md-4">
 						<label>Bloque</label> <br>
 						<select id="bloque" class="form-control" name="bloque" style="width: 100%" onchange="ObtenerPisos();">
-						   	<option>Seleccione</option>
-						   	<th:block th:each="bloque:${bloques}">
-						   		<option title="${bloque.nombre}"></option>	
-						   	</th:block>		   	
+						   	<option>Seleccione</option>	   	
 						</select>						
 					</div>
 					
 					<div class="col-md-4">
 						<label>Piso</label> <br>
-						<select class="form-control" name="tamanio" style="width: 100%">
-						   	<option>Seleccione</option>
-						   	<th:block th:each="piso:${pisos}">
-						   		<option title="${piso.numero}"></option>	
-						   	</th:block>		   	
+						<select id="piso" class="form-control" name="tamanio" style="width: 100%">
+						   	<option>Seleccione</option>	   	
 						</select>						
 					</div>					
 				</div>

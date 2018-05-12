@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.ExtintorDAO;
+import com.cest.Dao.PisoDAO;
 import com.cest.Models.Bloque;
+import com.cest.Models.Piso;
 
 
 
@@ -29,6 +31,8 @@ public class ConsultaController {
 	private ExtintorDAO extintorDao;
 	@Autowired
 	private BloqueDAO bloqueDao;
+	@Autowired
+	private PisoDAO pisoDao;
 	
 	/*
 	 * Visualiza pagina de consultas
@@ -60,6 +64,21 @@ public class ConsultaController {
 		return misBloques;
 	}
 	
-	
+	@PostMapping(value = "/obtenerPisos")
+	@ResponseBody
+	public List<String> getPisos(@RequestParam String sede, @RequestParam Character bloque) {
+		List<String> misPisos = new LinkedList<>();
+		System.out.println("SOLICITO: Sede:"+sede+" Bloque:"+bloque);
+		for (Piso piso : pisoDao.findAll()) {
+			System.out.println("Piso:"+piso.getNumero() +"  Bloque: "+piso.getBloque().getLetra());
+			if (String.valueOf(piso.getBloque().getLetra()).equals(String.valueOf(bloque))) {
+				Bloque b= piso.getBloque();
+				if (b.getSede().getNombre().equals(sede)) {
+					misPisos.add(String.valueOf(piso.getNumero()));
+				}
+			}
+		}
+		return misPisos;
+	}
 	
 }

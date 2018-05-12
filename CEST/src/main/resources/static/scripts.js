@@ -2,6 +2,8 @@ function ObtenerBloques(){
 	$.post( "/obtenerBloques",
 			{sede: $('#sede').val()},
 			function( data ) {
+				$('#bloque').empty();
+				$('#bloque').append('<option>Seleccione</option>');
 				$.each(data, 
 						function(i,val){
 							$('#bloque').append('<option>'+val+'</option>');
@@ -14,11 +16,13 @@ function ObtenerBloques(){
 
 function ObtenerPisos(){
 	$.post( "/obtenerPisos",
-			{bloque: $('#bloque').val()},
+			{sede: $('#sede').val(), bloque: $('#bloque').val()},
 			function( data ) {
+				$('#piso').empty();
+				$('#piso').append('<option>Seleccione</option>');
 				$.each(data, 
 						function(i,val){
-							$('#pisos').append('<option>'+val+'</option>');
+							$('#piso').append('<option>'+val+'</option>');
 						}
 				);
 			}
