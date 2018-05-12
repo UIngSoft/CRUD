@@ -1,7 +1,5 @@
 package com.cest.Models;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -10,11 +8,11 @@ import javax.persistence.ManyToOne;
  * Un piso perteneciente a un bloque de la sede
  */
 @Entity
-public class Piso implements Serializable{
+public class Piso{
 	@Id
 	private int numero;
 	
-	@Id
+
 	@ManyToOne
 	private Bloque bloque;
 	
