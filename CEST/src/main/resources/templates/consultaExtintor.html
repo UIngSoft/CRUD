@@ -15,7 +15,8 @@
 		var sede = document.getElementById('sedeSelected').value;
 		var bloque = document.getElementById('bloqueSelected').value;
 		var piso = document.getElementById('pisoSelected').value;
-		location.href='/consulta?tipo=extintor&nombresede='+sede+'&nombrebloque='+bloque+'&nombrepiso='+piso;
+		var idelemento = document.getElementById('idelemento').value;
+		location.href='/consulta?tipo=extintor&nombresede='+sede+'&nombrebloque='+bloque+'&nombrepiso='+piso+'&idelemento='+idelemento;
 	}
 	
 </script>
@@ -29,7 +30,7 @@
 		<div class="row"> 
 		<div class="col-md-2"> 
 			<label>Identificador</label> <br>
-			<input type="text" class="form-control">
+			<input id="idelemento" type="text" class="form-control">
 		</div>
 		<div class="col-md-2"></div>
 		<div class="col-md-2">
@@ -59,6 +60,12 @@
 			</th:block>	   	
 			</select>
 		</div>
+		
+		<div class="col-md-2"> 
+			<a class="btn btn-primary" onclick="filtrar();"/> <span class="glyphicon glyphicon-search"></span></a>
+		 </div>
+		
+		
 		<div class="col-md-1"></div>
 	 </div>
 		
@@ -89,7 +96,7 @@
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
-						         <td ><label><a class="btn btn-primary"/> <span class="glyphicon glyphicon-pencil"></span></a>  <a class="btn btn-primary"/> <span class="glyphicon glyphicon-trash"></span></a></label></td>
+						         <td ><label><a class="btn btn-success"/> <span class="glyphicon glyphicon-pencil"></span></a>  <a class="btn btn-danger"/> <span class="glyphicon glyphicon-trash"></span></a></label></td>
 						      </tr>
 						</th:block>
 			        </table>

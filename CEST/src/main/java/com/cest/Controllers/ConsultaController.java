@@ -43,34 +43,48 @@ public class ConsultaController {
 	 * Visualiza pagina de consultas
 	 */
 	@GetMapping(value = "/consulta")
-	public String getHome(Model modelo, @RequestParam String tipo, @RequestParam String nombresede, @RequestParam String nombrebloque, @RequestParam String nombrepiso) {
+	public String getHome(Model modelo, @RequestParam String tipo, @RequestParam String nombresede, @RequestParam String nombrebloque, @RequestParam String nombrepiso, @RequestParam String idelemento) {
 		if (tipo.equals("general")) {
 			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
+			if(idelemento.equals("")) {				
+				modelo.addAttribute("extintores", extintorDao.findAll());			
+			return "consultaExtintor";
+		}else if(!idelemento.equals("")) {				
+					List<Extintor> extintores = new ArrayList<>();		
+					for (Extintor extintor: extintorDao.findAll()) {
+						if (extintor.getIdelemento() == Integer.parseInt(idelemento)) {
+							extintores.add(extintor);
+						}
+					}
+					modelo.addAttribute("extintores", extintores);			
+				return "consultaExtintor";
+			}
+				
 			if(nombrepiso.equals("")) {
-			modelo.addAttribute("extintores", extintorDao.findAll());
-			modelo.addAttribute("sedes", sedeDao.findAll());
-			List<Bloque> bloques = new ArrayList<>();
-			List<Piso> pisos = new ArrayList<>();
-			if(!nombresede.equals("")) {
-				for (Bloque bloque: bloqueDao.findAll()) {
-					if (bloque.getSede().getNombre().equals(nombresede)) {
-						bloques.add(bloque);
-						
+				modelo.addAttribute("extintores", extintorDao.findAll());
+				modelo.addAttribute("sedes", sedeDao.findAll());
+				List<Bloque> bloques = new ArrayList<>();
+				List<Piso> pisos = new ArrayList<>();
+				if(!nombresede.equals("")) {
+					for (Bloque bloque: bloqueDao.findAll()) {
+						if (bloque.getSede().getNombre().equals(nombresede)) {
+							bloques.add(bloque);
+							
+						}
 					}
+					modelo.addAttribute("bloques", bloques);
 				}
-				modelo.addAttribute("bloques", bloques);
-			}
-			if(!nombrebloque.equals("")) {
-				for (Piso piso: pisoDao.findAll()) {
-					if (piso.getBloque().getNombre().equals(nombrebloque)) {
-						pisos.add(piso);
-						
+				if(!nombrebloque.equals("")) {
+					for (Piso piso: pisoDao.findAll()) {
+						if (piso.getBloque().getNombre().equals(nombrebloque)) {
+							pisos.add(piso);
+							
+						}
 					}
+					modelo.addAttribute("pisos", pisos);
 				}
-				modelo.addAttribute("pisos", pisos);
-			}
 			}else {
 				List<Extintor> Extintores = new ArrayList<>();
 				for (Extintor extintor: extintorDao.findAll()) {
@@ -90,8 +104,10 @@ public class ConsultaController {
 		}
 	}
 	
+
 	
 	
 
-	
+
+		
 }
