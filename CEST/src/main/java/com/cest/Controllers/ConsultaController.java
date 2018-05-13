@@ -50,8 +50,9 @@ public class ConsultaController {
 		}else if (tipo.equals("extintor")) {
 			if(idelemento.equals("")) {				
 				modelo.addAttribute("extintores", extintorDao.findAll());			
-			return "consultaExtintor";
-		}else if(!idelemento.equals("")) {				
+			
+			}
+			if(!idelemento.equals("")) {				
 					List<Extintor> extintores = new ArrayList<>();		
 					for (Extintor extintor: extintorDao.findAll()) {
 						if (extintor.getIdelemento() == Integer.parseInt(idelemento)) {
@@ -59,7 +60,7 @@ public class ConsultaController {
 						}
 					}
 					modelo.addAttribute("extintores", extintores);			
-				return "consultaExtintor";
+				
 			}
 				
 			if(nombrepiso.equals("")) {
