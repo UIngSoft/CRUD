@@ -2,6 +2,7 @@ package com.cest.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /*
  * Un elemento que será registrado en el sistema
@@ -11,52 +12,91 @@ public class Elemento{
 	
 	@Id
 	private int id;
-	/*Foreign Key*/
-	private int numeropiso;
-	/*Foreign Key*/
-	private int numerocontrato;
-	/*Foreign Key*/
-	private int cedulaencargado;
-	/*Foreign Key*/
-	private int consecutivomantenimiento;
+
+	@ManyToOne
+	private Piso piso;
+	
+	@ManyToOne
+	private Contrato contrato;
+
+	@ManyToOne
+	private Encargado encargado;
+	
+	@ManyToOne
+	private Mantenimiento mantenimiento;
 	
 	public Elemento() {
 		
 	}
-	
+
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
+
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public int getNumeropiso() {
-		return numeropiso;
+
+	/**
+	 * @return the piso
+	 */
+	public Piso getPiso() {
+		return piso;
 	}
-	public void setNumeropiso(int numeropiso) {
-		this.numeropiso = numeropiso;
+
+	/**
+	 * @param piso the piso to set
+	 */
+	public void setPiso(Piso piso) {
+		this.piso = piso;
 	}
-	
-	public int getNumerocontrato() {
-		return numerocontrato;
+
+	/**
+	 * @return the contrato
+	 */
+	public Contrato getContrato() {
+		return contrato;
 	}
-	public void setNumerocontrato(int numerocontrato) {
-		this.numerocontrato = numerocontrato;
+
+	/**
+	 * @param contrato the contrato to set
+	 */
+	public void setContrato(Contrato contrato) {
+		this.contrato = contrato;
 	}
-	
-	public int getCedulaencargado() {
-		return cedulaencargado;
+
+	/**
+	 * @return the encargado
+	 */
+	public Encargado getEncargado() {
+		return encargado;
 	}
-	public void setCedulaencargado(int cedulaencargado) {
-		this.cedulaencargado = cedulaencargado;
+
+	/**
+	 * @param encargado the encargado to set
+	 */
+	public void setEncargado(Encargado encargado) {
+		this.encargado = encargado;
 	}
-	
-	public int getConsecutivomantenimiento() {
-		return consecutivomantenimiento;
+
+	/**
+	 * @return the mantenimiento
+	 */
+	public Mantenimiento getMantenimiento() {
+		return mantenimiento;
 	}
-	public void setConsecutivomantenimiento(int consecutivomantenimiento) {
-		this.consecutivomantenimiento = consecutivomantenimiento;
+
+	/**
+	 * @param mantenimiento the mantenimiento to set
+	 */
+	public void setMantenimiento(Mantenimiento mantenimiento) {
+		this.mantenimiento = mantenimiento;
 	}
 	
 	
