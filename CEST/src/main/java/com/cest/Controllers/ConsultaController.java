@@ -54,7 +54,7 @@ public class ConsultaController {
 	
 	@PostMapping(value = "/obtenerBloques")
 	@ResponseBody
-	public List<String> getBloques(@RequestParam Bloque sede) {
+	public List<String> getBloques(@RequestParam String sede) {
 		List<String> misBloques = new LinkedList<>();
 		for (Bloque bloque : bloqueDao.findAll()) {
 			if (bloque.getSede().getNombre().equals(sede)) {
@@ -66,17 +66,14 @@ public class ConsultaController {
 	
 	@PostMapping(value = "/obtenerPisos")
 	@ResponseBody
-	public List<Bloque> getPisos(@RequestParam Bloque sede, @RequestParam Character bloque) {
-		List<Bloque> misPisos = new LinkedList<>();
-		System.out.println("SOLICITO: Sede:"+sede+" Bloque:"+bloque);
+	public List<String> getPisos(@RequestParam String sede, @RequestParam String bloque) {
+		List<String> misPisos = new LinkedList<>();
 		for (Piso piso : pisoDao.findAll()) {
-			//System.out.println("Piso:"+piso.getPisoPk().getNumero() +"  Bloque: "+piso.getPisoPk().getBloque().getLetra());
-			/*if (String.valueOf(piso.getBloque().getLetra()).equals(String.valueOf(bloque))) {
-				Bloque b= piso.getBloque();
-				if (b.getSede().getNombre().equals(sede)) {
-					misPisos.add(String.valueOf(piso.getNumero()));
+			if (piso.getPisoPk().getLetrabloque().equals(bloque)) {
+				if (piso.getBloque().getSede().getNombre().equals(sede)) {
+					misPisos.add(String.valueOf(piso.getPisoPk().getNumero()));
 				}
-			}*/
+			}
 		}
 		return misPisos;
 	}
