@@ -54,11 +54,11 @@ public class ConsultaController {
 	
 	@PostMapping(value = "/obtenerBloques")
 	@ResponseBody
-	public List<Character> getBloques(@RequestParam Bloque sede) {
-		List<Character> misBloques = new LinkedList<>();
+	public List<String> getBloques(@RequestParam Bloque sede) {
+		List<String> misBloques = new LinkedList<>();
 		for (Bloque bloque : bloqueDao.findAll()) {
 			if (bloque.getSede().getNombre().equals(sede)) {
-				misBloques.add(bloque.getLetra());
+				misBloques.add(bloque.bloquePk.getLetra());
 			}
 		}
 		return misBloques;
