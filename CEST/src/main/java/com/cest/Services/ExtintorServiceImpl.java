@@ -17,7 +17,6 @@ public class ExtintorServiceImpl implements ExtintorService{
 	
 	@Override
 	public Extintor update(Extintor extintor) {
-		
 		return extintorDao.save(extintor);
 	}
 	

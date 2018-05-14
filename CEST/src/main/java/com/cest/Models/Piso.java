@@ -11,6 +11,14 @@ import com.cest.LlavesCompuestas.PisoPK;
  */
 @Entity
 public class Piso{
+<<<<<<< HEAD
+=======
+	@Id
+	private int numero;
+	@ManyToOne
+	private Bloque bloque;
+	
+>>>>>>> 8be1d27fecc6a72e2e298ffd0e927cd62c97d704
 	public Piso() {
 		// TODO Auto-generated constructor stub
 	}
