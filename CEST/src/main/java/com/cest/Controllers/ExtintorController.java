@@ -57,7 +57,6 @@ public class ExtintorController {
 		return "registrarExtintor";
 	}
 	
-
 	@GetMapping(value = "/actualizarExtintor")
 	public String getActualizar(Model modelo, @RequestParam String id) {
 		for (Extintor extintor : extintorDao.findAll()) {

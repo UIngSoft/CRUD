@@ -13,12 +13,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script src="scripts.js"></script>
-	
-<script>
-function enviar(){
-	location.href='/actualizarExtintor?id='+document.getElementById('idelemento').textContent;
-}
-</script>
 
 <script>
 	function enviar(id){
@@ -75,7 +69,6 @@ function enviar(){
 	    					<td><label>Identificador</label></td>
 							<td><label>Tipo</label></td>
 							<td><label>Tamaño</label></td>
-							<td><label>Fecha de instalación</label></td>
 							<td><label>Fecha de recarga</label></td>
 							<td><label>Fecha de vencimiento</label></td>
 							<td><label>Caducidad(años)</label></td>
@@ -87,7 +80,6 @@ function enviar(){
 						         <td id="idelemento" th:text="${extintor.idelemento}"><label>Identificador</label></td>
 						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
-						         <td th:text="${extintor.fechainstalacion}"><label>Fecha de instalación</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
