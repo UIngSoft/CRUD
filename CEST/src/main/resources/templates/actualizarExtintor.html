@@ -36,7 +36,7 @@
 						<div class="col-md-6">
 							<label>Tipo</label> <br>
 							<select id="fichatecnica" class="form-control" name="tipo"style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
-							   	<option></option>
+							   	<option th:text="*{fichatecnica.tipo}"></option>
 							   	<th:block th:each="fichatecnica:${fichastecnicas}">
 						   			<option th:text="${fichatecnica.tipo}"></option>	
 						   		</th:block>
@@ -128,5 +128,7 @@
 				</div>
 	        </form>
 	     	</div>
+	     </div>
+	     </div>
 </body>
 </html>

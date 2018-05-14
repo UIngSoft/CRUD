@@ -23,6 +23,7 @@ import com.cest.Dao.FichatecnicaDAO;
 import com.cest.Dao.SedeDAO;
 import com.cest.Models.Bloque;
 import com.cest.Models.Extintor;
+import com.cest.Models.Fichatecnica;
 import com.cest.Services.ExtintorService;
 import com.cest.Services.ExtintorServiceImpl;
 
@@ -62,10 +63,15 @@ public class ExtintorController {
 		for (Extintor extintor : extintorDao.findAll()) {
 			if (extintor.getIdelemento() == Integer.valueOf(id)) {
 				modelo.addAttribute("extintor", extintor);
+				List<Fichatecnica> fichas = new LinkedList<>();
+				for (Fichatecnica fichatecnica : fichatecnicaDao.findAll()) {
+					if (!fichatecnica.equals(extintor.getFichatecnica())) {
+						fichas.add(fichatecnica);
+					}
+				}
+				modelo.addAttribute("fichastecnicas", fichas);
 			}
-			
-		}
-		modelo.addAttribute("fichastecnicas", fichatecnicaDao.findAll());
+		}		
 		return "actualizarExtintor";
 	}
 	
