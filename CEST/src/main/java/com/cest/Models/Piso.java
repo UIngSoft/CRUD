@@ -14,7 +14,6 @@ public class Piso implements Serializable{
 	@Id
 	private int numero;
 	
-	@Id
 	@ManyToOne
 	private Bloque bloque;
 	

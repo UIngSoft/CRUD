@@ -68,9 +68,9 @@ public class ConsultaController {
 	@ResponseBody
 	public List<String> getPisos(@RequestParam String sede, @RequestParam Character bloque) {
 		List<String> misPisos = new LinkedList<>();
-		System.out.println("SOLICITO: Sede:"+sede+" Bloque:"+bloque);
+		//System.out.println("SOLICITO: Sede:"+sede+" Bloque:"+bloque);
 		for (Piso piso : pisoDao.findAll()) {
-			System.out.println("Piso:"+piso.getNumero() +"  Bloque: "+piso.getBloque().getLetra());
+			//System.out.println("Piso:"+piso.getNumero() +"  Bloque: "+piso.getBloque().getLetra());
 			if (String.valueOf(piso.getBloque().getLetra()).equals(String.valueOf(bloque))) {
 				Bloque b= piso.getBloque();
 				if (b.getSede().getNombre().equals(sede)) {
