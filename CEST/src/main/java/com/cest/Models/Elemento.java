@@ -24,9 +24,7 @@ public class Elemento{
 	@NotNull
 	@ManyToOne
 	private Encargado encargado;
-	
-	@ManyToOne
-	private Mantenimiento mantenimiento;
+
 	
 	public Elemento() {
 		
@@ -87,20 +85,5 @@ public class Elemento{
 	public void setEncargado(Encargado encargado) {
 		this.encargado = encargado;
 	}
-
-	/**
-	 * @return the mantenimiento
-	 */
-	public Mantenimiento getMantenimiento() {
-		return mantenimiento;
-	}
-
-	/**
-	 * @param mantenimiento the mantenimiento to set
-	 */
-	public void setMantenimiento(Mantenimiento mantenimiento) {
-		this.mantenimiento = mantenimiento;
-	}
-	
 	
 }
