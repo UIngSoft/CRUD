@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /*
  * Un extintor que será registrado en el sistema
  */
@@ -29,7 +31,9 @@ public class Extintor{
 	
 	
 	private int tamanio;
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date fechaultimarecarga;
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date fechavencimiento;
 	private String estado;
 	private int caducidadanios;
