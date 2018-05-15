@@ -18,7 +18,11 @@ import com.cest.Models.Extintor;
 import com.cest.Models.Bloque;
 import com.cest.Models.Piso;
 
-
+/**
+ * 
+ * @author arch-linux
+ *
+ */
 
 /*
  * Contrador para el index
@@ -39,8 +43,16 @@ public class ConsultaController {
 	@Autowired
 	private PisoDAO pisoDao;
 	
-	/*
-	 * Visualiza pagina de consultas
+	/**
+	 * Recibe la vista y los atributos requeridos para las busquedas(ubicacion, id)
+	 * 
+	 * @param modelo
+	 * @param tipo
+	 * @param nombresede
+	 * @param nombrebloque
+	 * @param nombrepiso
+	 * @param idelemento
+	 * @return
 	 */
 	@GetMapping(value = "/consulta")
 	public String getHome(Model modelo, @RequestParam String tipo, @RequestParam String nombresede, @RequestParam String nombrebloque, @RequestParam String nombrepiso, @RequestParam String idelemento) {
@@ -48,6 +60,18 @@ public class ConsultaController {
 			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
+			if(idelemento.equals("")) {				
+				modelo.addAttribute("extintores", extintorDao.findAll());			
+			}
+			else if(!idelemento.equals("")) {				
+					List<Extintor> extintores = new ArrayList<>();		
+					for (Extintor extintor: extintorDao.findAll()) {
+						if (extintor.getIdelemento() == Integer.parseInt(idelemento)) {
+							extintores.add(extintor);
+						}
+					}
+					modelo.addAttribute("extintores", extintores);			
+			}
 			if(idelemento.equals("")) {				
 				modelo.addAttribute("extintores", extintorDao.findAll());			
 			
@@ -81,7 +105,6 @@ public class ConsultaController {
 					for (Piso piso: pisoDao.findAll()) {
 						if (piso.getBloque().getNombre().equals(nombrebloque)) {
 							pisos.add(piso);
-							
 						}
 					}
 					modelo.addAttribute("pisos", pisos);
