@@ -1,5 +1,6 @@
 package com.cest.Models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -32,9 +33,9 @@ public class Extintor{
 	
 	private int tamanio;
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
-	private Date fechaultimarecarga;
+	private LocalDate fechaultimarecarga;
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
-	private Date fechavencimiento;
+	private LocalDate fechavencimiento;
 	private String estado;
 	private int caducidadanios;
 	
@@ -62,16 +63,16 @@ public class Extintor{
 	public void setTamanio(int tamanio) {
 		this.tamanio = tamanio;
 	}
-	public Date getFechaultimarecarga() {
+	public LocalDate getFechaultimarecarga() {
 		return fechaultimarecarga;
 	}
-	public void setFechaultimarecarga(Date fechaultimarecarga) {
+	public void setFechaultimarecarga(LocalDate fechaultimarecarga) {
 		this.fechaultimarecarga = fechaultimarecarga;
 	}
-	public Date getFechavencimiento() {
+	public LocalDate getFechavencimiento() {
 		return fechavencimiento;
 	}
-	public void setFechavencimiento(Date fechavencimiento) {
+	public void setFechavencimiento(LocalDate fechavencimiento) {
 		this.fechavencimiento = fechavencimiento;
 	}
 	public String getEstado() {
