@@ -11,10 +11,10 @@ import com.cest.LlavesCompuestas.PisoPK;
  */
 @Entity
 public class Piso{
+	
 	public Piso() {
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 	//Llave compuesta
 	

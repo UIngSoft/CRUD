@@ -3,6 +3,7 @@ package com.cest.Models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /*
  * Un elemento que será registrado en el sistema
@@ -13,17 +14,16 @@ public class Elemento{
 	@Id
 	private int id;
 
+	@NotNull
 	@ManyToOne
 	private Piso piso;
 	
 	@ManyToOne
 	private Contrato contrato;
 
+	@NotNull
 	@ManyToOne
 	private Encargado encargado;
-	
-	@ManyToOne
-	private Mantenimiento mantenimiento;
 	
 	public Elemento() {
 		
@@ -84,20 +84,5 @@ public class Elemento{
 	public void setEncargado(Encargado encargado) {
 		this.encargado = encargado;
 	}
-
-	/**
-	 * @return the mantenimiento
-	 */
-	public Mantenimiento getMantenimiento() {
-		return mantenimiento;
-	}
-
-	/**
-	 * @param mantenimiento the mantenimiento to set
-	 */
-	public void setMantenimiento(Mantenimiento mantenimiento) {
-		this.mantenimiento = mantenimiento;
-	}
-	
 	
 }

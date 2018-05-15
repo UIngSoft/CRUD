@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /*
  * Un contrato que tendrá involucrados diferentes elementos
  */
@@ -18,7 +20,8 @@ public class Contrato {
 	@ManyToOne
 	private Empresa empresa;
 	
-	private Date fecha;
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	private LocalDate fecha;
 	private float valor;
 	private String descripcion;
 	
@@ -57,14 +60,14 @@ public class Contrato {
 	/**
 	 * @return the fecha
 	 */
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
 	/**
 	 * @param fecha the fecha to set
 	 */
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

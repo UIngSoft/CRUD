@@ -77,7 +77,7 @@
 						</tr>
     					<th:block th:each="extintor:${extintores}">
 						      <tr>
-						         <td id="idelemento" th:text="${extintor.idelemento}"><label>Identificador</label></td>
+						         <td id="idelemento" th:text="${extintor.elemento.id}"><label>Identificador</label></td>
 						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
@@ -85,7 +85,7 @@
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
 						         <td >
-						         	<button th:id="${extintor.idelemento}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>
+						         	<button th:id="${extintor.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>
 									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
 								</td>
 						      </tr>
