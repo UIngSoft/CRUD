@@ -20,7 +20,8 @@ import com.cest.Models.Piso;
 
 /**
  * 
- * @author arch-linux
+ * @author Lorenzo Zuluaga Urrea
+ * @author Santiago granada aguirre
  *
  */
 
