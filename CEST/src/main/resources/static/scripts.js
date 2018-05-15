@@ -28,12 +28,3 @@ function ObtenerPisos(){
 			}
 	);
 }
-
-<<<<<<< HEAD
-function fecha(){
-	alert('casd');
-=======
-function CalcularVencimiento(){
-	alert('Calcumando vencimiento');
->>>>>>> 144b80de60ecd82b27fe88b518788bb174013c5d
-}

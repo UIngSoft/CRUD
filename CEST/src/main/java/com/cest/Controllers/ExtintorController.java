@@ -13,11 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cest.Dao.ContratoDAO;
+import com.cest.Dao.EncargadoDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.FichatecnicaDAO;
 import com.cest.Dao.SedeDAO;
+import com.cest.Models.Contrato;
+import com.cest.Models.Encargado;
 import com.cest.Models.Extintor;
 import com.cest.Models.Fichatecnica;
+import com.cest.Models.Usuario;
 import com.cest.Services.ExtintorService;
 
 
@@ -37,6 +42,10 @@ public class ExtintorController {
 	private ExtintorDAO extintorDao;
 	@Autowired
 	private ExtintorService extintorService;
+	@Autowired
+	private EncargadoDAO encargadoDao;
+	@Autowired
+	private ContratoDAO contratoDao;
 	
 
 
@@ -49,6 +58,31 @@ public class ExtintorController {
 		modelo.addAttribute("sedes", sedeDao.findAll());
 		modelo.addAttribute("fichastecnicas", fichatecnicaDao.findAll());
 		return "registrarExtintor";
+	}
+	
+	@PostMapping(value = "/registrarExtintor")
+	public ModelAndView postRegistrar(Model modelo,@ModelAttribute Extintor extintor
+			, @RequestParam("cedulaencargado") String cedulaencargado
+			, @RequestParam("numerocontrato") String numerocontrato) 
+	{
+		Encargado encargado = null;
+		for (Encargado e : encargadoDao.findAll()) {
+			if (e.getCedula() == Integer.valueOf(cedulaencargado)) {
+				encargado = e;
+			}
+		}
+		Contrato contrato = null;
+		for (Contrato c : contratoDao.findAll()) {
+			if (c.getNumero() == Integer.valueOf(numerocontrato)) {
+				contrato = c;
+			}
+		}
+		if (encargado != null) {
+			if (contrato != null) {
+				//Terminar registro
+			}
+		}
+		return new ModelAndView("redirect:/consulta?tipo=extintor");
 	}
 	
 	@GetMapping(value = "/actualizarExtintor")

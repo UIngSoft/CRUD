@@ -27,7 +27,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>ID</label>
-						<input id="id" name="id" type="text" class="form-control"  required maxlength="5" pattern="\d+" title="INGRESA VALOR NUMÉRICO, MAXIMO 5">
+						<input th:field="*{idelemento}" id="id" name="id" type="text" class="form-control"  required maxlength="5" pattern="\d+" title="INGRESA VALOR NUMÉRICO, MAXIMO 5">
 					</div>
 					
 					<div class="col-md-4">
@@ -76,12 +76,12 @@
 					
 					<div class="col-md-4">
 						<label>Fecha última recarga</label>
-						<input type="date" class="form-control" value="aaaa/mm/dd" required />
+						<input type="date" class="form-control" required />
 					</div>
 					
 					<div class="col-md-4">
 						<label>Caducidad en años</label>
-						<select id="caducidad" class="form-control" name="caducidad" required style="width: 100%" onchange="CalcularVencimiento();">
+						<select id="caducidad" class="form-control" name="caducidad" required style="width: 100%">
 						   	<option>Seleccione</option>
 						   	<option>1</option>
 						   	<option>2</option>
@@ -93,7 +93,7 @@
 					
 					<div class="col-md-4">
 						<label>Fecha de vencimiento</label>
-						<input type="date" class="form-control" value="aaaa/mm/dd" disabled="disabled" />
+						<input type="date" class="form-control" disabled="disabled" />
 					</div>
 				</div>
 				
@@ -142,7 +142,7 @@
 						</select>						
 					</div>					
 				</div>
-				
+				<br>
 				<div class="row">
 					<div class="col-md-5"></div>
 	    			<div class="col-md-2">
