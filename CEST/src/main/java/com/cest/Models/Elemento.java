@@ -3,6 +3,7 @@ package com.cest.Models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /*
  * Un elemento que será registrado en el sistema
@@ -13,12 +14,14 @@ public class Elemento{
 	@Id
 	private int id;
 
+	@NotNull
 	@ManyToOne
 	private Piso piso;
 	
 	@ManyToOne
 	private Contrato contrato;
 
+	@NotNull
 	@ManyToOne
 	private Encargado encargado;
 	
