@@ -19,7 +19,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Extintor{
 	/*Foreign Key*/
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idelemento;
 	
 	/*Llave foranea a elemento*/
