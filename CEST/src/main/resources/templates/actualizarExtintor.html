@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- Latest compiled and minified JQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="scripts.js"></script>
+	<script src="scripts.js"></script>
 
 
-<title>Actualizar Extintor</title>
+	<title>Actualizar Extintor</title>
 </head>
-	<body>
-		<div class="container theme-showcase" role="main">
-			<div class="jumbotron" style="background: rgb(13,67,113)">
+
+<body>
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron" style="background: rgb(13,67,113)">
 			<h1 align="center" style="color: white">Actualizar Extintor</h1>
-			</div>
-		
+		</div>
+
 		<div class="container">
-			<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>	
-			<div class="container">
+			<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>
 				<form id="RegExtForm" class="form-signin" action="#" th:object="${extintor}" th:method="post">
+
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<label>ID</label>
 							<input th:value="*{idelemento}"name="id" type="text" class="form-control" disabled="disabled">
 						</div>
-						
-						<div class="col-md-6">
+
+						<div class="col-md-4">
 							<label>Tipo</label> <br>
-							<select id="fichatecnica" class="form-control" name="tipo"style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
+							<select id="fichatecnica" class="form-control" name="tipo" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
 							   	<option th:text="*{fichatecnica.tipo}"></option>
 							   	<th:block th:each="fichatecnica:${fichastecnicas}">
-						   			<option th:text="${fichatecnica.tipo}"></option>	
+						   			<option th:text="${fichatecnica.tipo}"></option>
 						   		</th:block>
 							</select>
 						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-md-6">
+
+						<div class="col-md-4">
 							<label>Tamaño</label> <br>
 							<select class="form-control" name="tamanio" style="width: 100%">
 							   	<option>10 libras</option>
@@ -53,87 +53,105 @@
 							   	<option>20 libras</option>
 							   	<option>370 gramos</option>
 							   	<option>2,5 litros</option>
-							   	<option>150 litros</option>						   	
+							   	<option>150 litros</option>
 							</select>
 						</div>
-						
-						<div class="col-md-6">
-							<label>Fecha Recarga</label>
+					</div>
+					<br>
+
+					<div class="row">
+						<div class="col-md-4">
+							<label>Fecha ultima Recarga</label>
 							<input type="date" class="form-control" required/>
 						</div>
+
+						<div class="col-md-4">
+							<label>Caducidad años</label>
+							<select class="form-control" id="caducidad" name="caducidad" style="width: 100%" onchange="fecha();">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+							</select>
+						</div>
+
+						<div class="col-md-4">
+							<label>Fecha Proxima Recarga</label>
+							<input type="text" class="form-control" required disabled="disabled" />
+						</div>
 					</div>
-					
+					<br>
+
 					<div class="row">
-						<div class="col-md-6">
-							<label>Caducidad</label>
+						<div class="col-md-4">
+							<label>Código Contrato</label>
 							<input type="text" class="form-control" required/>
 						</div>
-						<div class="col-md-6">
-							<label>Empresa</label>
-							<input type="text" class="form-control" required/>
+
+						<div class="col-md-4">
+							<label>Cédula Encargado</label>
+							<input name="id" type="text" class="form-control">
+						</div>
+
+						<div class="col-md-4">
+							<label>Estado Extintor</label> <br>
+							<select class="form-control" name="tamanio"style="width: 100%">
+							   	<option>Activo</option>
+							   	<option>Baja</option>
+							   	<option>Mantenimiento</option>
+							   	<option>Vencido</option>
+							</select>
 						</div>
 					</div>
-				
+					<br>
+
 				<div class="row">
 					<div class="col-md-6">
-						<label><br>Ubicacion: </label>						
+						<label><br>Ubicación: </label>
 					</div>
 				</div>
+
 				<div class="row">
 					<div class="col-md-4">
 						<label>Sede</label> <br>
-						<select id="sede" class="form-control" name="tamanio" style="width: 100%" onchange="ObtenerBloques();">
+						<select id="sede" name="sede" class="form-control" style="width: 100%" onchange="ObtenerBloques();">
 						   	<option>Seleccione</option>
 						   	<th:block th:each="sede:${sedes}">
-					   			<option th:text="${sede.nombre}"></option>	
-							</th:block>		   	
+						   		<option th:text="${sede.nombre}"></option>	
+						   	</th:block>		   	
 						</select>						
 					</div>				
-						
+					
 					<div class="col-md-4">
 						<label>Bloque</label> <br>
-							<select id="bloque" class="form-control" name="tamanio" style="width: 100%">
-							   	<option>Seleccione</option>
-							</select>						
-						</div>
-						
+						<select id="bloque" name="bloque" class="form-control" style="width: 100%" onchange="ObtenerPisos();">
+						   	<option>Seleccione</option>	   	
+						</select>						
+					</div>
+					
 					<div class="col-md-4">
 						<label>Piso</label> <br>
-						<select id="piso" class="form-control" name="tamanio" style="width: 100%">
-						   	<option>Seleccione</option>
+						<select id="piso" name="piso" class="form-control" style="width: 100%">
+						   	<option>Seleccione</option>	   	
 						</select>						
 					</div>					
-					</div>									
-			
-        		<div class="col-md-5"></div>
-	    			<div class="col-md-2">
-	    				<button type="submit" class="btn btn-lg btn-primary" value="save" >Actualizar</button>
-	    			</div>
-	    		<div class="col-md-5"></div>
-     						
-				<div class="row">
-					<div class="col-md-6">
-						<label>Encargado</label>
-						<input name="id" type="text" class="form-control">
-					</div>
-					<div class="col-md-6">
-						<label>Estado Extintor</label> <br>
-						<select class="form-control" name="tamanio"style="width: 100%">
-						   	<option>Activo</option>
-						   	<option>Baja</option>
-						   	<option>Mantenimiento</option>
-						   	<option>Vencido</option>
-						</select>
-					</div>
 				</div>
+					<br>
+
+        		<div class="col-md-5">
+        		</div>
+
+        		<div class="col-md-2">
+					<button type="submit" class="btn btn-lg btn-primary" value="save" >Actualizar</button>
+	    		</div>
+
+	    		<div class="col-md-5">
+	    		</div>
+
 	        </form>
-	     	</div>
-<<<<<<< HEAD
-	     </div>
-	     </div>
-=======
-	     	</div>
-	     	</div>
->>>>>>> f6132d541e61b942f9c3b8e67802aad4b47b66df
+			</div>
+		</div>
+
 </body>
 </html>

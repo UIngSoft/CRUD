@@ -28,3 +28,7 @@ function ObtenerPisos(){
 			}
 	);
 }
+
+function fecha(){
+	alert('casd');
+}
