@@ -24,7 +24,10 @@ public class Elemento{
 	@NotNull
 	@ManyToOne
 	private Encargado encargado;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d8ab32157fddad27c111f2e4ae7803c8ecd6b2e6
 	
 	public Elemento() {
 		
@@ -85,5 +88,9 @@ public class Elemento{
 	public void setEncargado(Encargado encargado) {
 		this.encargado = encargado;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> d8ab32157fddad27c111f2e4ae7803c8ecd6b2e6
 	
 }
