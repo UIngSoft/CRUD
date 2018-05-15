@@ -32,7 +32,7 @@
 					<div class="row">
 						<div class="col-md-4">
 							<label>ID</label>
-							<input th:value="*{idelemento}"name="id" type="text" class="form-control" disabled="disabled">
+							<input th:value="*{elemento.id}"name="id" type="text" class="form-control" disabled="disabled">
 						</div>
 
 						<div class="col-md-4">
@@ -104,62 +104,52 @@
 							</select>
 						</div>
 					</div>
-				
-					<div class="row">
-						<div class="col-md-6">
-							<label><br>Ubicacion: </label>						
-						</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<label><br>Ubicación: </label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<label>Sede</label> <br>
+						<select id="sede" name="sede" class="form-control" style="width: 100%" onchange="ObtenerBloques();">
+						   	<option>Seleccione</option>
+						   	<th:block th:each="sede:${sedes}">
+						   		<option th:text="${sede.nombre}"></option>	
+						   	</th:block>		   	
+						</select>						
+					</div>				
+					
+					<div class="col-md-4">
+						<label>Bloque</label> <br>
+						<select id="bloque" name="bloque" class="form-control" style="width: 100%" onchange="ObtenerPisos();">
+						   	<option>Seleccione</option>	   	
+						</select>						
 					</div>
 					
-					<div class="row">
-						<div class="col-md-4">
-							<label>Sede</label> <br>
-							<select id="sede" class="form-control" name="tamanio" style="width: 100%" onchange="ObtenerBloques();">
-							   	<option>Seleccione</option>
-							   	<th:block th:each="sede:${sedes}">
-						   			<option th:text="${sede.nombre}"></option>	
-								</th:block>		   	
-							</select>						
-						</div>				
-						
-						<div class="col-md-4">
-							<label>Bloque</label> <br>
-							<select id="bloque" class="form-control" name="tamanio" style="width: 100%">
-							   	<option>Seleccione</option>
-							</select>						
-						</div>
-						
-						<div class="col-md-4">
-							<label>Piso</label> <br>
-							<select id="piso" class="form-control" name="tamanio" style="width: 100%">
-							   	<option>Seleccione</option>
-							</select>						
-						</div>					
-					</div>	
-					
-	        		<div class="col-md-5"></div>
-		    			<div class="col-md-2">
-		    				<button type="submit" class="btn btn-lg btn-primary" value="save" >Actualizar</button>
-		    			</div>
-		    		<div class="col-md-5"></div>
-	     						
-					<div class="row">
-						<div class="col-md-6">
-							<label>Encargado</label>
-							<input name="id" type="text" class="form-control">
-						</div>
-						<div class="col-md-6">
-							<label>Estado Extintor</label> <br>
-							<select class="form-control" name="tamanio"style="width: 100%">
-							   	<option>Activo</option>
-							   	<option>Baja</option>
-							   	<option>Mantenimiento</option>
-							   	<option>Vencido</option>
-							</select>
-						</div>
-					</div>
-	        	</form>
-	    	</div>
+					<div class="col-md-4">
+						<label>Piso</label> <br>
+						<select id="piso" name="piso" class="form-control" style="width: 100%">
+						   	<option>Seleccione</option>	   	
+						</select>						
+					</div>					
+				</div>
+					<br>
+
+        		<div class="col-md-5">
+        		</div>
+
+        		<div class="col-md-2">
+					<button type="submit" class="btn btn-lg btn-primary" value="save" >Actualizar</button>
+	    		</div>
+
+	    		<div class="col-md-5">
+	    		</div>
+
+	        </form>
 		</div>
+	</div>
 </body>
 </html>
