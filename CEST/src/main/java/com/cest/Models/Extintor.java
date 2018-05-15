@@ -1,5 +1,7 @@
 package com.cest.Models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,9 +29,8 @@ public class Extintor{
 	
 	
 	private int tamanio;
-	private String fechainstalacion;
-	private String fechaultimarecarga;
-	private String fechavencimiento;
+	private Date fechaultimarecarga;
+	private Date fechavencimiento;
 	private String estado;
 	private int caducidadanios;
 	
@@ -57,28 +58,16 @@ public class Extintor{
 	public void setTamanio(int tamanio) {
 		this.tamanio = tamanio;
 	}
-	
-	
-	public String getFechainstalacion() {
-		return fechainstalacion;
-	}
-	public void setFechainstalacion(String fechainstalacion) {
-		this.fechainstalacion = fechainstalacion;
-	}
-	
-	
-	
-	
-	public String getFechaultimarecarga() {
+	public Date getFechaultimarecarga() {
 		return fechaultimarecarga;
 	}
-	public void setFechaultimarecarga(String fechaultimarecarga) {
+	public void setFechaultimarecarga(Date fechaultimarecarga) {
 		this.fechaultimarecarga = fechaultimarecarga;
 	}
-	public String getFechavencimiento() {
+	public Date getFechavencimiento() {
 		return fechavencimiento;
 	}
-	public void setFechavencimiento(String fechavencimiento) {
+	public void setFechavencimiento(Date fechavencimiento) {
 		this.fechavencimiento = fechavencimiento;
 	}
 	public String getEstado() {
