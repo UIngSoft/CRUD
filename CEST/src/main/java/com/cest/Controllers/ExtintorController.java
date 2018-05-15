@@ -62,6 +62,7 @@ public class ExtintorController {
 	public String getActualizar(Model modelo, @RequestParam String id) {
 		for (Extintor extintor : extintorDao.findAll()) {
 			if (extintor.getIdelemento() == Integer.valueOf(id)) {
+				modelo.addAttribute("sedes", sedeDao.findAll());
 				modelo.addAttribute("extintor", extintor);
 				List<Fichatecnica> fichas = new LinkedList<>();
 				for (Fichatecnica fichatecnica : fichatecnicaDao.findAll()) {
@@ -78,7 +79,7 @@ public class ExtintorController {
 	@PostMapping(value = "/actualizarExtintor")
 	public ModelAndView postActualizar(@ModelAttribute Extintor extintor) {
 		extintorService.update(extintor);
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:/consultaExtintor");
 	}
 	
 }
