@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-function filtrar(){
-	var sede = document.getElementById('sedeSelected').value;
-	alert('Será redirecionado');
-	location.href='/consulta?tipo=general&sede='+sede+'&bloque&piso';
-}
-=======
 function ObtenerBloques(){
 	$.post( "/obtenerBloques",
 			{sede: $('#sede').val()},
@@ -35,9 +28,3 @@ function ObtenerPisos(){
 			}
 	);
 }
-
-function CalcularVencimiento(caducidad){
-	var fecharecarga = $('#fechaultimarecarga').val();
-	alert(fecharecarga);
-}
->>>>>>> backup

@@ -1,20 +1,32 @@
 package com.cest.Controllers;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.util.LinkedList;
+>>>>>>> backup
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+<<<<<<< HEAD
 import com.cest.Dao.SedeDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.PisoDAO;
 import com.cest.Models.Extintor;
+=======
+import com.cest.Dao.BloqueDAO;
+import com.cest.Dao.ExtintorDAO;
+import com.cest.Dao.PisoDAO;
+>>>>>>> backup
 import com.cest.Models.Bloque;
 import com.cest.Models.Piso;
 
@@ -34,6 +46,10 @@ public class ConsultaController {
 
 	@Autowired
 	private ExtintorDAO extintorDao;
+	@Autowired
+	private BloqueDAO bloqueDao;
+	@Autowired
+	private PisoDAO pisoDao;
 	
 	@Autowired
 	private SedeDAO sedeDao;
@@ -56,7 +72,11 @@ public class ConsultaController {
 	 * @return
 	 */
 	@GetMapping(value = "/consulta")
+<<<<<<< HEAD
 	public String getHome(Model modelo, @RequestParam String tipo, @RequestParam String nombresede, @RequestParam String nombrebloque, @RequestParam String nombrepiso, @RequestParam String idelemento) {
+=======
+	public String getHome(Model modelo, @RequestParam String tipo) {
+>>>>>>> backup
 		if (tipo.equals("general")) {
 			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";
@@ -129,10 +149,39 @@ public class ConsultaController {
 		}
 	}
 	
+<<<<<<< HEAD
 
 	
 	
 
 
 		
+=======
+	@PostMapping(value = "/obtenerBloques")
+	@ResponseBody
+	public List<String> getBloques(@RequestParam String sede) {
+		List<String> misBloques = new LinkedList<>();
+		for (Bloque bloque : bloqueDao.findAll()) {
+			if (bloque.getSede().getNombre().equals(sede)) {
+				misBloques.add(bloque.bloquePk.getLetra());
+			}
+		}
+		return misBloques;
+	}
+	
+	@PostMapping(value = "/obtenerPisos")
+	@ResponseBody
+	public List<String> getPisos(@RequestParam String sede, @RequestParam String bloque) {
+		List<String> misPisos = new LinkedList<>();
+		for (Piso piso : pisoDao.findAll()) {
+			if (piso.getPisoPk().getLetrabloque().equals(bloque)) {
+				if (piso.getBloque().getSede().getNombre().equals(sede)) {
+					misPisos.add(String.valueOf(piso.getPisoPk().getNumero()));
+				}
+			}
+		}
+		return misPisos;
+	}
+	
+>>>>>>> backup
 }

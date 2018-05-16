@@ -1,11 +1,16 @@
 package com.cest.Models;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /*
  * Un extintor que será registrado en el sistema
@@ -14,7 +19,6 @@ import javax.persistence.OneToOne;
 public class Extintor{
 	/*Foreign Key*/
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idelemento;
 	
 	/*Llave foranea a elemento*/
@@ -25,12 +29,15 @@ public class Extintor{
 	@OneToOne
 	private Fichatecnica fichatecnica;
 	
-	private int tamanio;
-	private String fechainstalacion;
-	private String fechaultimarecarga;
-	private String fechavencimiento;
+	
+	private String tamanio;
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	private LocalDate fechaultimarecarga;
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	private LocalDate fechavencimiento;
 	private String estado;
 	private int caducidadanios;
+	
 	public int getIdelemento() {
 		return idelemento;
 	}
@@ -49,28 +56,22 @@ public class Extintor{
 	public void setFichatecnica(Fichatecnica fichatecnica) {
 		this.fichatecnica = fichatecnica;
 	}
-	public int getTamanio() {
+	public String getTamanio() {
 		return tamanio;
 	}
-	public void setTamanio(int tamanio) {
+	public void setTamanio(String tamanio) {
 		this.tamanio = tamanio;
 	}
-	public String getFechainstalacion() {
-		return fechainstalacion;
-	}
-	public void setFechainstalacion(String fechainstalacion) {
-		this.fechainstalacion = fechainstalacion;
-	}
-	public String getFechaultimarecarga() {
+	public LocalDate getFechaultimarecarga() {
 		return fechaultimarecarga;
 	}
-	public void setFechaultimarecarga(String fechaultimarecarga) {
+	public void setFechaultimarecarga(LocalDate fechaultimarecarga) {
 		this.fechaultimarecarga = fechaultimarecarga;
 	}
-	public String getFechavencimiento() {
+	public LocalDate getFechavencimiento() {
 		return fechavencimiento;
 	}
-	public void setFechavencimiento(String fechavencimiento) {
+	public void setFechavencimiento(LocalDate fechavencimiento) {
 		this.fechavencimiento = fechavencimiento;
 	}
 	public String getEstado() {
