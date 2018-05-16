@@ -13,11 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cest.Dao.BloqueDAO;
+import com.cest.Dao.ContratoDAO;
+import com.cest.Dao.ElementoDAO;
+import com.cest.Dao.EncargadoDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.FichatecnicaDAO;
+import com.cest.Dao.PisoDAO;
 import com.cest.Dao.SedeDAO;
+import com.cest.Models.Bloque;
+import com.cest.Models.Contrato;
+import com.cest.Models.Elemento;
+import com.cest.Models.Encargado;
 import com.cest.Models.Extintor;
 import com.cest.Models.Fichatecnica;
+import com.cest.Models.Piso;
+import com.cest.Models.Sede;
 import com.cest.Services.ExtintorService;
 
 
@@ -37,6 +48,16 @@ public class ExtintorController {
 	private ExtintorDAO extintorDao;
 	@Autowired
 	private ExtintorService extintorService;
+	@Autowired
+	private EncargadoDAO encargadoDao;
+	@Autowired
+	private ContratoDAO contratoDao;
+	@Autowired
+	private ElementoDAO elementoDao;
+	@Autowired
+	private BloqueDAO bloqueDao;
+	@Autowired 
+	private PisoDAO pisoDao;
 	
 
 
@@ -49,6 +70,37 @@ public class ExtintorController {
 		modelo.addAttribute("sedes", sedeDao.findAll());
 		modelo.addAttribute("fichastecnicas", fichatecnicaDao.findAll());
 		return "registrarExtintor";
+	}
+	
+	@PostMapping(value = "/registrarExtintor")
+	public ModelAndView postRegistrar(Model modelo,@ModelAttribute Extintor extintor
+			, @RequestParam("cedulaencargado") String cedulaencargado
+			, @RequestParam("numerocontrato") String numerocontrato
+			, @RequestParam("sede") String nombresede
+			, @RequestParam("bloque") String letrabloque
+			, @RequestParam("piso") String numeropiso
+			, @RequestParam("fichatecnica") String tipo) 
+	{
+		Elemento elemento = null;
+		for (Elemento e : elementoDao.findAll()) {
+			if (e.getId() == extintor.getIdelemento()) {
+				elemento = e;
+			}
+		}
+		if (elemento != null) {
+			extintor.setElemento(elemento);
+		}else {
+			elemento = registrarElemento(extintor.getIdelemento(), nombresede, letrabloque, numeropiso, cedulaencargado, numerocontrato);
+		}
+		Fichatecnica fichatecnica = null;
+		for (Fichatecnica f : fichatecnicaDao.findAll()) {
+			if (f.getTipo().equals(tipo)) {
+				fichatecnica = f;
+			}
+		}
+		extintor.setFichatecnica(fichatecnica);
+		extintorDao.save(extintor);
+		return new ModelAndView("redirect:/consulta?tipo=extintor");
 	}
 	
 	@GetMapping(value = "/actualizarExtintor")
@@ -73,6 +125,54 @@ public class ExtintorController {
 	public ModelAndView postActualizar(@ModelAttribute Extintor extintor) {
 		extintorService.update(extintor);
 		return new ModelAndView("redirect:/consultaExtintor");
+	}
+	
+	public Elemento registrarElemento(int id, String nombresede
+			, String letrabloque, String numeropiso
+			, String cedulaencargado, String numerocontrato)
+	{
+		Encargado encargado = null;
+		for (Encargado e : encargadoDao.findAll()) {
+			if (e.getCedula() == Integer.valueOf(cedulaencargado)) {
+				encargado = e;
+			}
+		}
+		Contrato contrato = null;
+		for (Contrato c : contratoDao.findAll()) {
+			if (c.getNumero() == Integer.valueOf(numerocontrato)) {
+				contrato = c;
+			}
+		}
+		Sede sede = null;
+		for (Sede s : sedeDao.findAll()) {
+			if (s.getNombre().equals(nombresede)) {
+				sede = s;
+			}
+		}
+		Bloque bloque = null;
+		for (Bloque b : bloqueDao.findAll()) {
+			if (b.getBloquePk().getLetra().equals(letrabloque) && b.getSede()==sede) {
+				bloque = b;
+			}
+		}
+		Piso piso = null;
+		for (Piso p : pisoDao.findAll()) {
+			if (p.getPisoPk().getNumero() == Integer.valueOf(numeropiso) && p.getBloque() == bloque) {
+				piso = p;
+			}
+		}
+		Elemento elemento = null;
+		if (encargado != null) {
+			if (contrato != null) {
+				elemento = new Elemento();
+				elemento.setId(id);
+				elemento.setContrato(contrato);
+				elemento.setEncargado(encargado);
+				elemento.setPiso(piso);
+				elementoDao.save(elemento);
+			}
+		}
+		return elemento;
 	}
 	
 }

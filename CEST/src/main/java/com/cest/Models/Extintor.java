@@ -19,7 +19,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Extintor{
 	/*Foreign Key*/
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idelemento;
 	
 	/*Llave foranea a elemento*/
@@ -31,7 +30,7 @@ public class Extintor{
 	private Fichatecnica fichatecnica;
 	
 	
-	private int tamanio;
+	private String tamanio;
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private LocalDate fechaultimarecarga;
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
@@ -57,10 +56,10 @@ public class Extintor{
 	public void setFichatecnica(Fichatecnica fichatecnica) {
 		this.fichatecnica = fichatecnica;
 	}
-	public int getTamanio() {
+	public String getTamanio() {
 		return tamanio;
 	}
-	public void setTamanio(int tamanio) {
+	public void setTamanio(String tamanio) {
 		this.tamanio = tamanio;
 	}
 	public LocalDate getFechaultimarecarga() {

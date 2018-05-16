@@ -27,8 +27,11 @@ function ObtenerPisos(){
 				);
 			}
 	);
+<<<<<<< HEAD
 }
 
 function CalcularVencimiento(){
 	alert('Calcumando vencimiento');
+=======
+>>>>>>> 669416525bb28225375f5c59b453c9fa08583460
 }
