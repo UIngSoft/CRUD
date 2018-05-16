@@ -36,22 +36,23 @@
 		<div class="col-md-2">
 			<label>Sede</label> <br>
 			<select class="form-control" name="tamanio" style="width: 100%">
+				<option>Seleccionar</option>
 			   	<option>Palogrande</option>
 			   	<option>Salud</option>
 			   	<option>Veterinaria</option>
 			   	<option>Juridicas</option>					   	
 			</select>
 		</div>
-		<div class="col-md-1">
+		<div class="col-md-2">
 			<label>Bloque</label> <br>
 			<select class="form-control" name="tamanio" style="width: 100%">
-			   							   	
+				<option>Seleccionar</option>
 			</select>
 		</div>
-		<div class="col-md-1">
+		<div class="col-md-2">
 			<label>Piso</label> <br>
 			<select class="form-control" name="tamanio" style="width: 100%">
-			 	  				   	
+				<option>Seleccionar</option>
 			</select>
 		</div>
 		<div class="col-md-1"></div>
@@ -59,6 +60,7 @@
 			<a class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span></a>
 		</div>
 	 </div>
+	 <br>
 		
 	</div>
 	<div class="container">
@@ -71,7 +73,7 @@
 							<td><label>Tamaño</label></td>
 							<td><label>Fecha ultima recarga</label></td>
 							<td><label>Fecha de vencimiento</label></td>
-							<td><label>Caducidad(años)</label></td>
+							<td><label>Caducidad (años)</label></td>
 							<td><label>Estado</label></td>
 							<td><label>Acciones</label></td>
 						</tr>
@@ -82,7 +84,7 @@
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
-						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
+						         <td th:text="${extintor.caducidadanios}"><label>Caducidad (años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
 						         <td >
 						         	<button th:id="${extintor.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>

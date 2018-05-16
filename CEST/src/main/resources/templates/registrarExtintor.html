@@ -36,7 +36,7 @@
 					</div>
 					
 					<div class="col-md-4">
-						<label>Número de contrato</label>
+						<label>Código contrato</label>
 						<input id="numerocontrato" name="numerocontrato" type="text" class="form-control"  required pattern="\d+" title="INGRESA UN VALOR NUMÉRICO">
 					</div>
 				</div>
@@ -74,11 +74,8 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>Fecha última recarga</label>
-<<<<<<< HEAD
-						<input type="date" class="form-control" required />
-=======
 						<input th:field="*{fechaultimarecarga}" id="fechaultimarecarga" name="fechaultimarecarga" type="date" class="form-control" required />
->>>>>>> 669416525bb28225375f5c59b453c9fa08583460
+
 					</div>
 					
 					<div class="col-md-4">
@@ -95,11 +92,7 @@
 					
 					<div class="col-md-4">
 						<label>Fecha de vencimiento</label>
-<<<<<<< HEAD
-						<input type="date" class="form-control" disabled="disabled" />
-=======
 						<input th:field="*{fechavencimiento}" id="fechavencimiento" name="fechavencimiento" type="date" class="form-control" disabled="disabled" />
->>>>>>> 669416525bb28225375f5c59b453c9fa08583460
 					</div>
 				</div>
 				
@@ -136,6 +129,7 @@
 					
 					<div class="col-md-4">
 						<label>Bloque</label> <br>
+						
 						<select id="bloque" class="form-control" name="bloque" style="width: 100%" onchange="ObtenerPisos();">
 						   	<option value="">Seleccione</option>   	
 						</select>						
@@ -143,6 +137,7 @@
 					
 					<div class="col-md-4">
 						<label>Piso</label> <br>
+						
 						<select id="piso" class="form-control" name="piso" style="width: 100%">
 						   	<option value="">Seleccione</option>   	
 						</select>						
