@@ -1,5 +1,7 @@
 package com.cest.Controllers;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -65,7 +67,7 @@ public class ExtintorController {
 	 * Visualiza pagina index
 	 */
 	@GetMapping(value = "/registrarExtintor")
-	public String getRegistrar(Model modelo) {
+	public String getRegistrarExtintor(Model modelo) {
 		modelo.addAttribute("extintor", new Extintor());
 		modelo.addAttribute("sedes", sedeDao.findAll());
 		modelo.addAttribute("fichastecnicas", fichatecnicaDao.findAll());
@@ -73,7 +75,7 @@ public class ExtintorController {
 	}
 	
 	@PostMapping(value = "/registrarExtintor")
-	public ModelAndView postRegistrar(Model modelo,@ModelAttribute Extintor extintor
+	public ModelAndView postRegistrarExtintor(Model modelo,@ModelAttribute Extintor extintor
 			, @RequestParam("cedulaencargado") String cedulaencargado
 			, @RequestParam("numerocontrato") String numerocontrato
 			, @RequestParam("sede") String nombresede
@@ -81,26 +83,36 @@ public class ExtintorController {
 			, @RequestParam("piso") String numeropiso
 			, @RequestParam("fichatecnica") String tipo) 
 	{
-		Elemento elemento = null;
-		for (Elemento e : elementoDao.findAll()) {
-			if (e.getId() == extintor.getIdelemento()) {
-				elemento = e;
-			}
-		}
+		Elemento elemento = BuscarElemento(extintor.getIdelemento());
 		if (elemento != null) {
 			extintor.setElemento(elemento);
 		}else {
 			elemento = registrarElemento(extintor.getIdelemento(), nombresede, letrabloque, numeropiso, cedulaencargado, numerocontrato);
 		}
+		Fichatecnica fichatecnica = BuscarFichatecnica(tipo);
+		extintor.setFichatecnica(fichatecnica);	
+		extintorDao.save(extintor);
+		return new ModelAndView("redirect:/consulta?tipo=extintor");
+	}
+
+	public Elemento BuscarElemento(int idelemento) {
+		Elemento elemento = null;
+		for (Elemento e : elementoDao.findAll()) {
+			if (e.getId() == idelemento) {
+				elemento = e;
+			}
+		}
+		return elemento;
+	}
+	
+	public Fichatecnica BuscarFichatecnica(String tipo) {
 		Fichatecnica fichatecnica = null;
 		for (Fichatecnica f : fichatecnicaDao.findAll()) {
 			if (f.getTipo().equals(tipo)) {
 				fichatecnica = f;
 			}
 		}
-		extintor.setFichatecnica(fichatecnica);
-		extintorDao.save(extintor);
-		return new ModelAndView("redirect:/consulta?tipo=extintor");
+		return fichatecnica;
 	}
 	
 	@GetMapping(value = "/actualizarExtintor")

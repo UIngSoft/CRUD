@@ -74,13 +74,17 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>Fecha última recarga</label>
+<<<<<<< HEAD
 						<input th:field="*{fechaultimarecarga}" id="fechaultimarecarga" name="fechaultimarecarga" type="date" class="form-control" required />
 
+=======
+						<input th:field="*{fechaultimarecarga}" id="fechaultimarecarga" name="fechaultimarecarga" type="date" class="form-control" required onchange="document.getElementById('caducidad').disabled=false;"/>
+>>>>>>> 7e0783600334b4386ab1725ec7858a957b8ff9de
 					</div>
 					
 					<div class="col-md-4">
 						<label>Caducidad en años</label>
-						<select th:field="*{caducidadanios}" id="caducidad" class="form-control" name="caducidad" required style="width: 100%">
+						<select th:field="*{caducidadanios}" id="caducidad" class="form-control" name="caducidad" required disabled="disabled" style="width: 100%" onchange="CalcularVencimiento(this.value);">
 						   	<option value="0">Seleccione</option>
 						   	<option value="1">1</option>
 						   	<option value="2">2</option>
