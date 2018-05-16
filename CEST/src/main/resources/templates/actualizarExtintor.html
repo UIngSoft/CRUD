@@ -48,6 +48,7 @@
 						<div class="col-md-4">
 							<label>Tamaño</label> <br>
 							<select class="form-control" name="tamanio" style="width: 100%">
+								<option th:text="*{tamanio}"></option>
 							   	<option>10 libras</option>
 							   	<option>15 libras</option>
 							   	<option>20 libras</option>
@@ -62,23 +63,25 @@
 					<div class="row">
 						<div class="col-md-4">
 							<label>Fecha ultima Recarga</label>
-							<input type="date" class="form-control" required/>
+							<input th:value="*{fechaultimarecarga}" type="date" class="form-control" required="se queriere la fecha"/>
 						</div>
 
 						<div class="col-md-4">
 							<label>Caducidad años</label>
 							<select class="form-control" id="caducidad" name="caducidad" style="width: 100%" onchange="fecha();">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
+								<option th:text="*{caducidadanios}"></option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
 							</select>
 						</div>
 
 						<div class="col-md-4">
 							<label>Fecha Proxima Recarga</label>
-							<input type="text" class="form-control" required disabled="disabled" />
+							<input th:value="*{fechavencimiento}" type="date" class="form-control" disabled="disabled"/>
+							
 						</div>
 					</div>
 					<br>
@@ -86,17 +89,18 @@
 					<div class="row">
 						<div class="col-md-4">
 							<label>Código Contrato</label>
-							<input type="text" class="form-control" required/>
+							<input th:value="*{elemento.contrato.numero}" type="text" class="form-control" required/>
 						</div>
 
 						<div class="col-md-4">
 							<label>Cédula Encargado</label>
-							<input name="id" type="text" class="form-control">
+							<input th:value="*{elemento.encargado.cedula}" type="text" class="form-control" required/>
 						</div>
 
 						<div class="col-md-4">
 							<label>Estado Extintor</label> <br>
 							<select class="form-control" name="tamanio"style="width: 100%">
+								<option th:text="*{estado}"></option>
 							   	<option>Activo</option>
 							   	<option>Baja</option>
 							   	<option>Mantenimiento</option>
@@ -115,6 +119,7 @@
 					<div class="col-md-4">
 						<label>Sede</label> <br>
 						<select id="sede" name="sede" class="form-control" style="width: 100%" onchange="ObtenerBloques();">
+						<option th:text="*{elemento.piso.bloque.sede.nombre}"></option>
 						   	<option>Seleccione</option>
 						   	<th:block th:each="sede:${sedes}">
 						   		<option th:text="${sede.nombre}"></option>	
@@ -125,6 +130,7 @@
 					<div class="col-md-4">
 						<label>Bloque</label> <br>
 						<select id="bloque" name="bloque" class="form-control" style="width: 100%" onchange="ObtenerPisos();">
+							<option th:text="*{elemento.piso.bloque.nombre}"></option>
 						   	<option>Seleccione</option>	   	
 						</select>						
 					</div>
