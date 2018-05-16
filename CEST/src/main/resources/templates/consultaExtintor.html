@@ -46,29 +46,48 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-2">
 			<label>Sede</label> <br>
+<<<<<<< HEAD
 			<select id="sedeSelected"  style="width: 100%" onchange="filtrar();" >
 			<option></option>
 			<th:block th:each="sede:${sedes}">
 			   	<option th:text="${sede.nombre}" ></option>
 			</th:block>				   	
+=======
+			<select class="form-control" name="tamanio" style="width: 100%">
+				<option>Seleccionar</option>
+			   	<option>Palogrande</option>
+			   	<option>Salud</option>
+			   	<option>Veterinaria</option>
+			   	<option>Juridicas</option>					   	
+>>>>>>> backup
 			</select>
 		</div>
-		<div class="col-md-1">
+		<div class="col-md-2">
 			<label>Bloque</label> <br>
+<<<<<<< HEAD
 			<select id="bloqueSelected"  style="width: 100%" onchange="filtrar();" >
 			<option></option>
 			<th:block th:each="bloque:${bloques}">
 			   	<option th:text="${bloque.letra}" ></option>
 			</th:block>	   	
+=======
+			<select class="form-control" name="tamanio" style="width: 100%">
+				<option>Seleccionar</option>
+>>>>>>> backup
 			</select>
 		</div>
-		<div class="col-md-1">
+		<div class="col-md-2">
 			<label>Piso</label> <br>
+<<<<<<< HEAD
 			<select id="pisoSelected"  style="width: 100%" onchange="filtrar();" >
 			<option></option>
 			<th:block th:each="piso:${pisos}">
 			   	<option th:text="${piso.numero}" ></option>
 			</th:block>	   	
+=======
+			<select class="form-control" name="tamanio" style="width: 100%">
+				<option>Seleccionar</option>
+>>>>>>> backup
 			</select>
 		</div>
 		
@@ -79,6 +98,7 @@
 		
 		<div class="col-md-1"></div>
 	 </div>
+	 <br>
 		
 	</div>
 	<div class="container">
@@ -92,7 +112,7 @@
 							<td><label>Tamaño</label></td>
 							<td><label>Fecha ultima recarga</label></td>
 							<td><label>Fecha de vencimiento</label></td>
-							<td><label>Caducidad(años)</label></td>
+							<td><label>Caducidad (años)</label></td>
 							<td><label>Estado</label></td>
 							<td><label>Acciones</label></td>
 						</tr>
@@ -108,7 +128,7 @@
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
-						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
+						         <td th:text="${extintor.caducidadanios}"><label>Caducidad (años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
 <<<<<<< HEAD
 						         <td ><label><a class="btn btn-success"/> <span class="glyphicon glyphicon-pencil"></span></a>  <a class="btn btn-danger"/> <span class="glyphicon glyphicon-trash"></span></a></label></td>
