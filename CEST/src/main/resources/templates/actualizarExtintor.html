@@ -14,8 +14,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script src="scripts.js"></script>
-
-
+	<script src="cargarActualizar.js"></script>
+	
 	<title>Actualizar Extintor</title>
 </head>
 
@@ -27,17 +27,17 @@
 
 		<div class="container">
 			<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>
-				<form id="RegExtForm" class="form-signin" action="#" th:object="${extintor}" th:method="post">
+				<form class="form-signin" action="#" th:action="@{/actualizarExtintor}" th:object="${extintor}" th:method="post">
 
 					<div class="row">
 						<div class="col-md-4">
 							<label>ID</label>
-							<input th:value="*{elemento.id}"name="id" type="text" class="form-control" disabled="disabled">
+							<input th:value="*{elemento.id}" id="id" name="id" type="text" class="form-control" disabled="disabled">
 						</div>
 
 						<div class="col-md-4">
 							<label>Tipo</label> <br>
-							<select id="fichatecnica" class="form-control" name="tipo" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
+							<select id="fichatecnica" class="form-control" name="fichatecnica" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
 							   	<option th:text="*{fichatecnica.tipo}"></option>
 							   	<th:block th:each="fichatecnica:${fichastecnicas}">
 						   			<option th:text="${fichatecnica.tipo}"></option>
@@ -47,7 +47,7 @@
 
 						<div class="col-md-4">
 							<label>Tamaño</label> <br>
-							<select class="form-control" name="tamanio" style="width: 100%">
+							<select id="tamanio" class="form-control" name="tamanio" style="width: 100%">
 								<option th:text="*{tamanio}"></option>
 							   	<option>10 libras</option>
 							   	<option>15 libras</option>
@@ -63,7 +63,7 @@
 					<div class="row">
 						<div class="col-md-4">
 							<label>Fecha ultima Recarga</label>
-							<input th:value="*{fechaultimarecarga}" type="date" class="form-control" required="se queriere la fecha"/>
+							<input th:value="*{fechaultimarecarga}" type="date" class="form-control" required title="LA FECHA DE ÚLTIMA RECARGA ES REQUERIDA"/>
 						</div>
 
 						<div class="col-md-4">
@@ -80,7 +80,7 @@
 
 						<div class="col-md-4">
 							<label>Fecha Proxima Recarga</label>
-							<input th:value="*{fechavencimiento}" type="date" class="form-control" disabled="disabled"/>
+							<input id="fechavencimiento" name="fechavencimiento" th:value="*{fechavencimiento}" type="date" class="form-control" disabled="disabled"/>
 							
 						</div>
 					</div>
@@ -89,17 +89,17 @@
 					<div class="row">
 						<div class="col-md-4">
 							<label>Código Contrato</label>
-							<input th:value="*{elemento.contrato.numero}" type="text" class="form-control" required/>
+							<input id="numerocontrato" name="numerocontrato" th:value="*{elemento.contrato.numero}" type="text" class="form-control" required/>
 						</div>
 
 						<div class="col-md-4">
 							<label>Cédula Encargado</label>
-							<input th:value="*{elemento.encargado.cedula}" type="text" class="form-control" required/>
+							<input id="cedulaencargado" name="cedulaencargado" th:value="*{elemento.encargado.cedula}" type="text" class="form-control" required/>
 						</div>
 
 						<div class="col-md-4">
 							<label>Estado Extintor</label> <br>
-							<select class="form-control" name="tamanio"style="width: 100%">
+							<select id="estado" name="estado" class="form-control" style="width: 100%">
 								<option th:text="*{estado}"></option>
 							   	<option>Activo</option>
 							   	<option>Baja</option>

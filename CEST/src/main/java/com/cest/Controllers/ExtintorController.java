@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.BloqueDAO;
@@ -125,29 +126,44 @@ public class ExtintorController {
 	}
 	
 	@GetMapping(value = "/actualizarExtintor")
-	public String getActualizar(Model modelo, @RequestParam String id) {
+	public String getActualizar() {
+		return "actualizarExtintor2";
+	}
+	
+	@PostMapping(value = "/obtenerExtintor")
+	@ResponseBody
+	public Extintor getExtintor(@RequestParam String id) {
 		for (Extintor extintor : extintorDao.findAll()) {
 			if (extintor.getIdelemento() == Integer.valueOf(id)) {
-				modelo.addAttribute("sedes", sedeDao.findAll());
-				modelo.addAttribute("extintor", extintor);
-				List<Fichatecnica> fichas = new LinkedList<>();
-				for (Fichatecnica fichatecnica : fichatecnicaDao.findAll()) {
-					if (!fichatecnica.equals(extintor.getFichatecnica())) {
-						fichas.add(fichatecnica);
-					}
-				}
-				modelo.addAttribute("fichastecnicas", fichas);
+				return  extintor;
 			}
-		}		
-		return "actualizarExtintor";
+		}
+		return null;
 	}
 	
 	@PostMapping(value = "/actualizarExtintor")
-	public ModelAndView postActualizar(@ModelAttribute Extintor extintor) {
-		extintorService.update(extintor);
-		return new ModelAndView("redirect:/consultaExtintor");
+	public ModelAndView postActualizar(@RequestParam("id") String id
+			, @RequestParam("cedulaencargado") String cedulaencargado
+			, @RequestParam("numerocontrato") String numerocontrato
+			, @RequestParam("sede") String nombresede
+			, @RequestParam("bloque") String letrabloque
+			, @RequestParam("piso") String numeropiso
+			, @RequestParam("fichatecnica") String tipo
+			, @RequestParam("estado") String estado
+			, @RequestParam("fechaultimarecarga") String fecharecarga)
+	{
+		for (Extintor extintor : extintorDao.findAll()) {
+			if (extintor.getIdelemento() == Integer.valueOf(id)) {
+				System.out.println("ENCONTRADO PARA ACTUALIZAR!!");
+				//extintor.setEstado(estado);
+			}
+		}
+		return new ModelAndView("redirect:/consulta?tipo=extintor");
 	}
 	
+	/*
+	 * Registra un elemento en la base de datos
+	 */
 	public Elemento registrarElemento(int id, String nombresede
 			, String letrabloque, String numeropiso
 			, String cedulaencargado, String numerocontrato)
