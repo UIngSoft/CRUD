@@ -30,6 +30,18 @@ function ObtenerPisos(){
 }
 
 function CalcularVencimiento(caducidad){
-	var fecharecarga = $('#fechaultimarecarga').val();
-	alert(fecharecarga);
+	var array = $('#fechaultimarecarga').val().split('-');
+	var fechavencimiento = (parseInt(array[0])+parseInt(caducidad))+'-'+array[1]+'-'+array[2]
+	$('#fechavencimiento').val(fechavencimiento);
+	$('#fechavencimiento').text(fechavencimiento);
+}
+
+function ObtenerEmpresa(nit){
+	$.post( "/obtenerEmpresa",
+			{numerocontrato: $('#numerocontrato').val()},
+			function( data ) {
+				$('#empresa').val(data);
+				$('#empresa').text(data);
+			}
+	);
 }

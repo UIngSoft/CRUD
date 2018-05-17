@@ -1,6 +1,5 @@
 package com.cest.Controllers;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,22 +75,31 @@ public class ExtintorController {
 	}
 	
 	@PostMapping(value = "/registrarExtintor")
-	public ModelAndView postRegistrarExtintor(Model modelo,@ModelAttribute Extintor extintor
+	public ModelAndView postRegistrarExtintor(Model modelo, @ModelAttribute("extintor") Extintor extintor, BindingResult rsult
 			, @RequestParam("cedulaencargado") String cedulaencargado
 			, @RequestParam("numerocontrato") String numerocontrato
 			, @RequestParam("sede") String nombresede
 			, @RequestParam("bloque") String letrabloque
 			, @RequestParam("piso") String numeropiso
-			, @RequestParam("fichatecnica") String tipo) 
+			, @RequestParam("fichatecnica") String tipo
+			, @RequestParam("fechaultimarecarga") String fecharecarga)
 	{
 		Elemento elemento = BuscarElemento(extintor.getIdelemento());
 		if (elemento != null) {
 			extintor.setElemento(elemento);
 		}else {
 			elemento = registrarElemento(extintor.getIdelemento(), nombresede, letrabloque, numeropiso, cedulaencargado, numerocontrato);
+			extintor.setElemento(elemento);
 		}
+		String[] fechaRecarga = fecharecarga.split("-");
 		Fichatecnica fichatecnica = BuscarFichatecnica(tipo);
 		extintor.setFichatecnica(fichatecnica);	
+		extintor.setFechaultimarecarga(LocalDate.of(Integer.valueOf(fechaRecarga[0])
+				,Integer.valueOf(fechaRecarga[1])
+				,Integer.valueOf(fechaRecarga[2])));
+		extintor.setFechavencimiento(LocalDate.of(Integer.valueOf(fechaRecarga[0])+Integer.valueOf(extintor.getCaducidadanios())
+				,Integer.valueOf(fechaRecarga[1])
+				,Integer.valueOf(fechaRecarga[2])));
 		extintorDao.save(extintor);
 		return new ModelAndView("redirect:/consulta?tipo=extintor");
 	}

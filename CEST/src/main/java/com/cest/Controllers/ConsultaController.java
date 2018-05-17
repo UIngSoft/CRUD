@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cest.Dao.BloqueDAO;
+import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.PisoDAO;
 import com.cest.Models.Bloque;
+import com.cest.Models.Contrato;
 import com.cest.Models.Piso;
 
 
@@ -33,6 +35,8 @@ public class ConsultaController {
 	private BloqueDAO bloqueDao;
 	@Autowired
 	private PisoDAO pisoDao;
+	@Autowired
+	private ContratoDAO contratoDao;
 	
 	/*
 	 * Visualiza pagina de consultas
@@ -76,6 +80,18 @@ public class ConsultaController {
 			}
 		}
 		return misPisos;
+	}
+	
+	@PostMapping(value = "/obtenerEmpresa")
+	@ResponseBody
+	public String getEmpresa(@RequestParam String numerocontrato) {
+		String nombreempresa = null;
+		for (Contrato contrato : contratoDao.findAll()) {
+			if (contrato.getNumero() == Integer.valueOf(numerocontrato)) {
+				nombreempresa = contrato.getEmpresa().getNombre();
+			}
+		}
+		return nombreempresa;
 	}
 	
 }

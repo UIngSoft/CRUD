@@ -1,16 +1,11 @@
 package com.cest.Models;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 /*
  * Un extintor que será registrado en el sistema
@@ -31,12 +26,10 @@ public class Extintor{
 	
 	
 	private String tamanio;
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private LocalDate fechaultimarecarga;
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private LocalDate fechavencimiento;
 	private String estado;
-	private int caducidadanios;
+	private String caducidadanios;
 	
 	public int getIdelemento() {
 		return idelemento;
@@ -80,10 +73,10 @@ public class Extintor{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public int getCaducidadanios() {
+	public String getCaducidadanios() {
 		return caducidadanios;
 	}
-	public void setCaducidadanios(int caducidadanios) {
+	public void setCaducidadanios(String caducidadanios) {
 		this.caducidadanios = caducidadanios;
 	}
 	
