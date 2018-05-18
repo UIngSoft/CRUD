@@ -126,7 +126,9 @@ public class ExtintorController {
 	}
 	
 	@GetMapping(value = "/actualizarExtintor")
-	public String getActualizar() {
+	public String getActualizar(Model modelo) {
+		modelo.addAttribute("sedes", sedeDao.findAll());
+		modelo.addAttribute("fichastecnicas",fichatecnicaDao.findAll());
 		return "actualizarExtintor2";
 	}
 	
@@ -154,8 +156,8 @@ public class ExtintorController {
 	{
 		for (Extintor extintor : extintorDao.findAll()) {
 			if (extintor.getIdelemento() == Integer.valueOf(id)) {
-				System.out.println("ENCONTRADO PARA ACTUALIZAR!!");
-				//extintor.setEstado(estado);
+				extintor.setEstado(estado);
+				extintorDao.save(extintor);
 			}
 		}
 		return new ModelAndView("redirect:/consulta?tipo=extintor");

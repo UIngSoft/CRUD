@@ -50,14 +50,22 @@
 					<div class="col-md-4">
 						<label>Tamaño</label> <br>
 						<select id="tamanio" name="tamanio" class="form-control"  style="width: 100%" required title="SELECCIONA EL TAMAÑO DEL EXTINTOR">
-						   						   	
+						   	<option value="10 Libras">10 libras</option>
+						   	<option value="15 Libras">15 libras</option>
+						   	<option value="20 Libras">20 libras</option>
+						   	<option value="370 Gramos">370 gramos</option>
+						   	<option value="2,5 Litros">2,5 litros</option>
+						   	<option value="150 Libras">150 litros</option>						   	
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Tipo</label> <br>
 						<select id="fichatecnica"  class="form-control" name="fichatecnica" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
-						   		
+						   	<option value="">Seleccione</option>
+						   	<th:block th:each="fichatecnica:${fichastecnicas}">
+						   		<option th:value="${fichatecnica.tipo}" th:text="${fichatecnica.tipo}"></option>	
+						   	</th:block>	
 						</select>
 					</div>
 					
@@ -76,7 +84,12 @@
 					<div class="col-md-4">
 						<label>Caducidad en años</label>
 						<select id="caducidad" class="form-control" name="caducidad" required disabled="disabled" style="width: 100%" onchange="CalcularVencimiento(this.value);">
-						   		   	
+						   	<option value="">Seleccione</option>
+						   	<option value="1">1</option>
+						   	<option value="2">2</option>
+						   	<option value="3">3</option>
+						   	<option value="4">4</option>
+						   	<option value="5">5</option>	   	
 						</select>
 					</div>
 					
@@ -90,7 +103,10 @@
 					<div class="col-md-4">
 						<label>Estado Extintor</label> <br>
 						<select id="estado" name="estado" class="form-control" style="width: 100%" required title="SELECCIONA EL ESTADO DEL EXTINTOR">
-						   					   	
+						   	<option value="Activo">Activo</option>
+						   	<option value="Baja">Baja</option>
+						   	<option value="Mantenimiento">Mantenimiento</option>
+						   	<option value="Vencido">Vencido</option>				   	
 						</select>
 					</div>
 				</div>
@@ -106,6 +122,10 @@
 					<div class="col-md-4">
 						<label>Sede</label> <br>
 						<select id="sede" class="form-control" name="sede" style="width: 100%" onchange="ObtenerBloques();">	   	
+							<option value="">Seleccione</option>
+						   	<th:block th:each="sede:${sedes}">
+						   		<option th:value="${sede.nombre}" th:text="${sede.nombre}"></option>	
+						   	</th:block>
 						</select>						
 					</div>				
 					

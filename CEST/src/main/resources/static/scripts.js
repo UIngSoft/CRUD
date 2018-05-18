@@ -6,7 +6,7 @@ function ObtenerBloques(){
 				$('#bloque').append('<option>Seleccione</option>');
 				$.each(data, 
 						function(i,val){
-							$('#bloque').append('<option>'+val+'</option>');
+							$('#bloque').append('<option value="'+val+'">'+val+'</option>');
 						}
 				);
 			}
@@ -22,7 +22,7 @@ function ObtenerPisos(){
 				$('#piso').append('<option>Seleccione</option>');
 				$.each(data, 
 						function(i,val){
-							$('#piso').append('<option>'+val+'</option>');
+							$('#piso').append('<option value="'+val+'">'+val+'</option>');
 						}
 				);
 			}
