@@ -1,10 +1,7 @@
 package com.cest.Controllers;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
 import java.util.LinkedList;
->>>>>>> backup
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<< HEAD
+
 import com.cest.Dao.SedeDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.PisoDAO;
 import com.cest.Models.Extintor;
-=======
+
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.PisoDAO;
->>>>>>> backup
+
 import com.cest.Models.Bloque;
 import com.cest.Models.Piso;
 
@@ -54,11 +51,7 @@ public class ConsultaController {
 	@Autowired
 	private SedeDAO sedeDao;
 	
-	@Autowired
-	private BloqueDAO bloqueDao;
-	
-	@Autowired
-	private PisoDAO pisoDao;
+
 	
 	/**
 	 * Recibe la vista y los atributos requeridos para las busquedas(ubicacion, id)
@@ -72,11 +65,7 @@ public class ConsultaController {
 	 * @return
 	 */
 	@GetMapping(value = "/consulta")
-<<<<<<< HEAD
 	public String getHome(Model modelo, @RequestParam String tipo, @RequestParam String nombresede, @RequestParam String nombrebloque, @RequestParam String nombrepiso, @RequestParam String idelemento) {
-=======
-	public String getHome(Model modelo, @RequestParam String tipo) {
->>>>>>> backup
 		if (tipo.equals("general")) {
 			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";
@@ -133,7 +122,7 @@ public class ConsultaController {
 			}else {
 				List<Extintor> Extintores = new ArrayList<>();
 				for (Extintor extintor: extintorDao.findAll()) {
-					if (extintor.getElemento().getNumeropiso() == Integer.parseInt(nombrepiso)) {
+					if (extintor.getElemento().getPiso().equals(nombrepiso)) {
 						Extintores.add(extintor);
 					}
 				}
@@ -149,14 +138,6 @@ public class ConsultaController {
 		}
 	}
 	
-<<<<<<< HEAD
-
-	
-	
-
-
-		
-=======
 	@PostMapping(value = "/obtenerBloques")
 	@ResponseBody
 	public List<String> getBloques(@RequestParam String sede) {
@@ -182,6 +163,4 @@ public class ConsultaController {
 		}
 		return misPisos;
 	}
-	
->>>>>>> backup
 }
