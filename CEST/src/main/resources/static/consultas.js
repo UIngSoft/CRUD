@@ -3,7 +3,6 @@ function BuscarExt(){
 			{id: $('#id').val()},
 			function( extintor ) {
 				console.log(extintor);
-				
 				var tabla = '<table id="Extintores" class="table table-bordered table-striped">' +
 						'<tr>' +
 						'<td><label>Identificador</label></td>' +
