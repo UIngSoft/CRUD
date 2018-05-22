@@ -20,10 +20,12 @@ function Leer(){
 				$('#fechavencimiento').val(extintor.fechavencimiento);
 				$('#estado').val(extintor.estado);
 				$('#sede').val(extintor.elemento.piso.bloque.sede.nombre);
-				ObtenerBloques();
-				$('#bloque').val(extintor.elemento.piso.pisoPk.letrabloque);
-				ObtenerPisos();
-				$('#piso').val(extintor.elemento.piso.pisoPk.numero);
+				
+				$('#bloque').html('<option>'+extintor.elemento.piso.pisoPk.letrabloque+'</option>');
+				
+				$('#piso').html('<option>'+extintor.elemento.piso.pisoPk.numero+'</option>');
+				//ObtenerBloques();
+				//ObtenerPisos();
 			}
 	);
 }

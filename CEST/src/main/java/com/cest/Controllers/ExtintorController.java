@@ -214,4 +214,15 @@ public class ExtintorController {
 		return elemento;
 	}
 	
+	@PostMapping(value = "/buscarID")
+	@ResponseBody
+	public Extintor buscarID(@RequestParam("id") String id){
+		for (Extintor extintor : extintorDao.findAll()) {
+			if (extintor.getIdelemento() == Integer.valueOf(id)) {
+				return extintor;
+			}
+		}
+		return null;
+	}
+	
 }

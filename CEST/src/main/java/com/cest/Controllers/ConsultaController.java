@@ -16,6 +16,7 @@ import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.PisoDAO;
+import com.cest.Dao.SedeDAO;
 import com.cest.Models.Bloque;
 import com.cest.Models.Contrato;
 import com.cest.Models.Piso;
@@ -31,6 +32,8 @@ public class ConsultaController {
 
 	@Autowired
 	private ExtintorDAO extintorDao;
+	@Autowired
+	private SedeDAO sedeDao;
 	@Autowired
 	private BloqueDAO bloqueDao;
 	@Autowired
@@ -48,6 +51,7 @@ public class ConsultaController {
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
 			modelo.addAttribute("extintores", extintorDao.findAll());
+			modelo.addAttribute("sedes", sedeDao.findAll());
 			return "consultaExtintor";
 		}else if (tipo.equals("botiquin")) {
 			return "consultaBotiquin";
