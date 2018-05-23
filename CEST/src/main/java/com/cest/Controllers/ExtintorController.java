@@ -32,7 +32,6 @@ import com.cest.Models.Extintor;
 import com.cest.Models.Fichatecnica;
 import com.cest.Models.Piso;
 import com.cest.Models.Sede;
-import com.cest.Services.ExtintorService;
 
 
 
@@ -49,8 +48,6 @@ public class ExtintorController {
 	private SedeDAO sedeDao;
 	@Autowired
 	private ExtintorDAO extintorDao;
-	@Autowired
-	private ExtintorService extintorService;
 	@Autowired
 	private EncargadoDAO encargadoDao;
 	@Autowired
@@ -129,7 +126,7 @@ public class ExtintorController {
 	public String getActualizar(Model modelo) {
 		modelo.addAttribute("sedes", sedeDao.findAll());
 		modelo.addAttribute("fichastecnicas",fichatecnicaDao.findAll());
-		return "actualizarExtintor2";
+		return "actualizarExtintor";
 	}
 	
 	@PostMapping(value = "/obtenerExtintor")
@@ -216,13 +213,61 @@ public class ExtintorController {
 	
 	@PostMapping(value = "/buscarID")
 	@ResponseBody
-	public Extintor buscarID(@RequestParam("id") String id){
-		for (Extintor extintor : extintorDao.findAll()) {
-			if (extintor.getIdelemento() == Integer.valueOf(id)) {
-				return extintor;
+	public List<Extintor> buscarID(@RequestParam("id") String id){
+		List<Extintor> extintores = new LinkedList<>();
+		if (id.equals("")) {
+			extintores = (List<Extintor>)extintorDao.findAll();
+		}else {
+			for (Extintor extintor : extintorDao.findAll()) {
+				if (extintor.getIdelemento() == Integer.valueOf(id)) {
+					extintores.add(extintor);
+				}
 			}
 		}
-		return null;
+		return extintores;
 	}
-	
+
+	@PostMapping(value = "/buscarUbicacion")
+	@ResponseBody
+	public List<Extintor> buscarBunicacion(@RequestParam("sede") String sede, @RequestParam("bloque") String bloque, @RequestParam("piso") String piso){
+		List<Extintor> extintores = null;
+		if (!sede.equals("")) {
+			if (!bloque.equals("Seleccione") && !bloque.equals("")) {
+				if (!piso.equals("Seleccione") && !piso.equals("")) {
+					//Busqueda por Sede, Bloque y Piso
+					extintores = new LinkedList<>();
+					for (Extintor extintor : extintorDao.findAll()) {
+						if (extintor.getElemento().getPiso().getBloque().getSede().getNombre().equals(sede)) {
+							if (extintor.getElemento().getPiso().getBloque().getBloquePk().getLetra().equals(bloque)) {
+								if (extintor.getElemento().getPiso().getPisoPk().getNumero() == Integer.valueOf(piso)) {
+									extintores.add(extintor);
+								}
+							}
+						}
+					}
+				}else {
+					//Busqueda por Sede y Bloque
+					extintores = new LinkedList<>();
+					for (Extintor extintor : extintorDao.findAll()) {
+						if (extintor.getElemento().getPiso().getBloque().getSede().getNombre().equals(sede)) {
+							if (extintor.getElemento().getPiso().getBloque().getBloquePk().getLetra().equals(bloque)) {
+								extintores.add(extintor);
+							}
+						}
+					}
+				}
+			}else {
+				//Busqueda por Sede
+				extintores = new LinkedList<>();
+				for (Extintor extintor : extintorDao.findAll()) {
+					if (extintor.getElemento().getPiso().getBloque().getSede().getNombre().equals(sede)) {
+						extintores.add(extintor);
+					}
+				}
+			}
+		}else {
+			extintores = (List<Extintor>) extintorDao.findAll();
+		}
+		return extintores;
+	}
 }

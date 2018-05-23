@@ -1,5 +1,7 @@
 package com.cest.Controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,12 +65,13 @@ public class ConsultaController {
 	@PostMapping(value = "/obtenerBloques")
 	@ResponseBody
 	public List<String> getBloques(@RequestParam String sede) {
-		List<String> misBloques = new LinkedList<>();
+		List<String> misBloques = new ArrayList<>();
 		for (Bloque bloque : bloqueDao.findAll()) {
 			if (bloque.getSede().getNombre().equals(sede)) {
 				misBloques.add(bloque.bloquePk.getLetra());
 			}
 		}
+		Collections.sort(misBloques);
 		return misBloques;
 	}
 	

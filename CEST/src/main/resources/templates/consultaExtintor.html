@@ -25,7 +25,8 @@
 </head>
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron" style="background: rgb(13,67,113)">
+		<div>
+			<div class="jumbotron" style="background: rgb(13,67,113)">
 			<h1 align="center" style="color: white">Consulta de extintores</h1>
 		</div>
 		<div class="container">
@@ -37,8 +38,8 @@
 				</div>
 				<div class="col-md-2">
 					<label>Sede</label> <br>
-					<select id="sede" name="sede" class="form-control" style="width: 100%">
-						<option value="">Seleccione</option>
+					<select id="sede" name="sede" class="form-control" style="width: 100%" onchange="ObtenerBloques(); BuscarUbicacion();">
+						<option value="">Todos</option>
 					   	<th:block th:each="sede:${sedes}">
 					   		<option th:text="${sede.nombre}"></option>	
 						</th:block>				   	
@@ -46,20 +47,20 @@
 				</div>
 				<div class="col-md-2">
 					<label>Bloque</label> <br>
-						<select id="bloque" name="bloque" class="form-control" style="width: 100%">
+						<select id="bloque" name="bloque" class="form-control" style="width: 100%" onchange="ObtenerPisos(); BuscarUbicacion();">
 						
 						</select>
 				</div>
 				<div class="col-md-2">
 					<label>Piso</label> <br>
-						<select id="piso" name="piso" class="form-control" style="width: 100%">
+						<select id="piso" name="piso" class="form-control" style="width: 100%" onchange="BuscarUbicacion();">
 				
 						</select>
 				</div>
 
 				<div class="col-md-1">
 					<br>
-					<button class="btn btn-primary glyphicon glyphicon-search"></button>
+					<button class="btn btn-primary" onclick="LimpiarFiltros();">Limpiar filtros</button>
 				</div>
 	 		</div>
 		</div>
@@ -68,25 +69,31 @@
 	 	<div class="container">
 		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
     			<div id="contenido" class="form-group">
-    				<table id="Extintores" class="table table-bordered table-striped">
-    					<tr>
+    				<table id="Extintores" class="table table-bordered">
+    					<tr class="bg-primary">
 	    					<td><label>Identificador</label></td>
 							<td><label>Tipo</label></td>
 							<td><label>Tamaño</label></td>
 							<td><label>Fecha ultima recarga</label></td>
 							<td><label>Fecha de vencimiento</label></td>
 							<td><label>Caducidad (años)</label></td>
+							<td><label>Sede</label></td>
+							<td><label>Bloque</label></td>
+							<td><label>Piso</label></td>
 							<td><label>Estado</label></td>
 							<td><label>Acciones</label></td>
 						</tr>
     					<th:block th:each="extintor:${extintores}">
-						      <tr id="infoExt">
+						      <tr>
 						         <td id="idelemento" th:text="${extintor.elemento.id}"><label>Identificador</label></td>
 						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
 						         <td th:text="${extintor.caducidadanios}"><label>Caducidad (años)</label></td>
+						         <td th:text="${extintor.elemento.piso.bloque.sede.nombre}"><label>Sede</label></td>
+						         <td th:text="${extintor.elemento.piso.pisoPk.letrabloque}"><label>Bloque</label></td>
+						         <td th:text="${extintor.elemento.piso.pisoPk.numero}"><label>Piso</label></td>
 						         <td th:text="${extintor.estado}"><label>Estado</label></td>		        
 						         <td >
 						         	<button th:id="${extintor.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>
@@ -102,8 +109,8 @@
 	    			<button class="btn btn-lg btn-primary" onclick="location.href='/registrarExtintor'">Registrar</button>
 	    		</div>
 	    		<div class="col-md-5"></div>
-	</div>
-		
+		</div>
+		</div>
 	</div>
 	
 </body>
