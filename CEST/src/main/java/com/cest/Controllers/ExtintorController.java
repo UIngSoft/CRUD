@@ -144,19 +144,76 @@ public class ExtintorController {
 	public ModelAndView postActualizar(@RequestParam("id") String id
 			, @RequestParam("cedulaencargado") String cedulaencargado
 			, @RequestParam("numerocontrato") String numerocontrato
+			, @RequestParam("tamanio") String tamanio
+			, @RequestParam("fichatecnica") String tipo
+			, @RequestParam("fechaultimarecarga") String fecharecarga
+			, @RequestParam("caducidad") String caducidad
+			, @RequestParam("fechavencimiento") String fechavencimiento
+			, @RequestParam("estado") String estado
 			, @RequestParam("sede") String nombresede
 			, @RequestParam("bloque") String letrabloque
-			, @RequestParam("piso") String numeropiso
-			, @RequestParam("fichatecnica") String tipo
-			, @RequestParam("estado") String estado
-			, @RequestParam("fechaultimarecarga") String fecharecarga)
+			, @RequestParam("piso") String numeropiso			
+			)
 	{
-		for (Extintor extintor : extintorDao.findAll()) {
-			if (extintor.getIdelemento() == Integer.valueOf(id)) {
-				extintor.setEstado(estado);
-				extintorDao.save(extintor);
+		Extintor extintor = null;
+		for (Extintor extintorr : extintorDao.findAll()) {
+			if (extintorr.getIdelemento() == Integer.valueOf(id)) {
+				extintor = extintorr;
 			}
 		}
+		Contrato contrato = null;
+		for (Contrato contratoo : contratoDao.findAll()) {
+			if (contratoo.getNumero() == Integer.valueOf(numerocontrato)) {
+				contrato = contratoo;
+			}
+		}
+		Encargado encargado = null;
+		for (Encargado encargadoo : encargadoDao.findAll()) {
+			if (encargadoo.getCedula() == Integer.valueOf(cedulaencargado)) {
+				encargado = encargadoo;
+			}
+		}
+		Fichatecnica fichatecnica = null;
+		for (Fichatecnica fichatecnicaa : fichatecnicaDao.findAll()) {
+			if (fichatecnicaa.getTipo().equals(tipo)) {
+				fichatecnica = fichatecnicaa;
+			}
+		}
+		Sede sede = null;
+		for (Sede s : sedeDao.findAll()) {
+			if (s.getNombre().equals(nombresede)) {
+				sede = s;
+			}
+		}
+		Bloque bloque = null;
+		for (Bloque b : bloqueDao.findAll()) {
+			if (b.getBloquePk().getLetra().equals(letrabloque) && b.getSede().equals(sede)) {
+				bloque = b;
+			}
+		}
+		Piso piso = null;
+		for (Piso p : pisoDao.findAll()) {
+			if (p.getPisoPk().getNumero() == Integer.valueOf(numeropiso) && p.getBloque().equals(bloque)) {
+				piso = p;
+			}
+		}
+		extintor.getElemento().setContrato(contrato);
+		extintor.getElemento().setEncargado(encargado);
+		extintor.setFichatecnica(fichatecnica);
+		extintor.getElemento().setPiso(piso);
+		extintor.setEstado(estado);
+		extintor.setTamanio(tamanio);
+		extintor.setCaducidadanios(caducidad);
+		String[] fechaRecarga = fecharecarga.split("-");
+		extintor.setFechaultimarecarga(LocalDate.of(Integer.valueOf(fechaRecarga[0])
+				,Integer.valueOf(fechaRecarga[1])
+				,Integer.valueOf(fechaRecarga[2])));
+		extintor.setFechavencimiento(LocalDate.of(Integer.valueOf(fechaRecarga[0])+Integer.valueOf(caducidad)
+				,Integer.valueOf(fechaRecarga[1])
+				,Integer.valueOf(fechaRecarga[2])));
+		
+		extintorDao.save(extintor);
+		
 		return new ModelAndView("redirect:/consulta?tipo=extintor");
 	}
 	
@@ -187,13 +244,13 @@ public class ExtintorController {
 		}
 		Bloque bloque = null;
 		for (Bloque b : bloqueDao.findAll()) {
-			if (b.getBloquePk().getLetra().equals(letrabloque) && b.getSede()==sede) {
+			if (b.getBloquePk().getLetra().equals(letrabloque) && b.getSede().equals(sede)) {
 				bloque = b;
 			}
 		}
 		Piso piso = null;
 		for (Piso p : pisoDao.findAll()) {
-			if (p.getPisoPk().getNumero() == Integer.valueOf(numeropiso) && p.getBloque() == bloque) {
+			if (p.getPisoPk().getNumero() == Integer.valueOf(numeropiso) && p.getBloque().equals(bloque)) {
 				piso = p;
 			}
 		}
