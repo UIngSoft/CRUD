@@ -12,7 +12,11 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="pnotify.custom.min.css">
+<script src="pnotify.custom.min.js"></script>
+
 <script src="scripts.js"></script>
+
 
 <title>CEST - Home</title>
 </head>
@@ -34,4 +38,29 @@
 		</p>
 	</div>
 </body>
+<script type="text/javascript">
+	var registros = 0;
+	var consulta = function(){
+		$.post( "/buscarCambioBD",
+				{},
+				function( reg ) {
+					if(reg > registros){
+						registros = reg;
+						new PNotify({
+						    title: 'Nuevo Extintor',
+						    text: 'Un nuevo extintor ha sido ingresado al sistema',
+						    addclass: 'custom',
+						    icon: 'fa fa-file-image-o',
+						    nonblock: {
+						        nonblock: true
+						    }
+						});
+					}
+				}
+		);
+	};	
+	var intervalo = 1000; //milisegundos
+	setInterval(consulta, intervalo);
+
+</script>
 </html>
