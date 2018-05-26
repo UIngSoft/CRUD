@@ -26,10 +26,13 @@
 		<div class="container col-md-6 center">
 			<form class="form-signin" action="#" th:action="@{/iniciarSesion}" th:object="${usuario}" method="post">
 		        <h2 class="form-signin-heading">Por favor inicie sesión</h2>
+		        
 		        <label class="sr-only">Nombre de usuario</label>
-		        <input type="text" th:field="*{usuario}" class="form-control" placeholder="Nombre de usuario" required autofocus>
+		        <input type="text" th:field="*{usuario}" class="form-control" placeholder="Nombre de usuario" required autofocus pattern="[A-Za-z]+" title="el campo solo puede conterner letras">
+		        
 		        <label class="sr-only">Contraseña</label>
 		        <input type="password" th:field="*{contrasena}" class="form-control" placeholder="Contraseña" required>
+		        
 		        <div class="checkbox">
 		          <label>
 		            <input type="checkbox" value="remember-me"> Recuérdame

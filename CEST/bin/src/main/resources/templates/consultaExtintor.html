@@ -21,71 +21,95 @@
 </script> 
 
 <title>CEST - Extintores</title>
+<script type="text/javascript">
+	function filtrar(){
+		var sede = document.getElementById('sedeSelected').value;
+		var bloque = document.getElementById('bloqueSelected').value;
+		var piso = document.getElementById('pisoSelected').value;
+		var idelemento = document.getElementById('idelemento').value;
+		location.href='/consulta?tipo=extintor&nombresede='+sede+'&nombrebloque='+bloque+'&nombrepiso='+piso+'&idelemento='+idelemento;
+	}
+	
+</script>
 </head>
+
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron" style="background: rgb(13,67,113)">
-			<h1 align="center" style="color: white">Consulta de extintores</h1>
+		<div class="jumbotron">
+			<h1 align="center">Consulta de extintores</h1>
 		</div>
 		<div class="row"> 
 		<div class="col-md-2"> 
 			<label>Identificador</label> <br>
-			<input type="text" class="form-control">
+			<input id="idelemento" type="text" class="form-control">
 		</div>
 		<div class="col-md-2"></div>
 		<div class="col-md-2">
 			<label>Sede</label> <br>
-			<select class="form-control" name="tamanio" style="width: 100%">
-			   	<option>Palogrande</option>
-			   	<option>Salud</option>
-			   	<option>Veterinaria</option>
-			   	<option>Juridicas</option>					   	
+			<select id="sedeSelected"  style="width: 100%" onchange="filtrar();" >
+			<option></option>
+			<th:block th:each="sede:${sedes}">
+			   	<option th:text="${sede.nombre}" ></option>
+			</th:block>				   	
+
 			</select>
 		</div>
-		<div class="col-md-1">
+		<div class="col-md-2">
 			<label>Bloque</label> <br>
-			<select class="form-control" name="tamanio" style="width: 100%">
-			   							   	
+			<select id="bloqueSelected"  style="width: 100%" onchange="filtrar();" >
+			<option></option>
+			<th:block th:each="bloque:${bloques}">
+			   	<option th:text="${bloque.letra}" ></option>
+			</th:block>	   	
 			</select>
 		</div>
-		<div class="col-md-1">
+		<div class="col-md-2">
 			<label>Piso</label> <br>
-			<select class="form-control" name="tamanio" style="width: 100%">
-			 	  				   	
+			<select id="pisoSelected"  style="width: 100%" onchange="filtrar();" >
+			<option></option>
+			<th:block th:each="piso:${pisos}">
+			   	<option th:text="${piso.numero}" ></option>
+			</th:block>	   	
+
 			</select>
 		</div>
+		
+		<div class="col-md-2"> 
+			<a class="btn btn-primary" onclick="filtrar();"/> <span class="glyphicon glyphicon-search"></span></a>
+		 </div>
+		
+		
 		<div class="col-md-1"></div>
-		<div class="col-md-1">
-			<a class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span></a>
-		</div>
 	 </div>
+	 <br>
 		
 	</div>
 	<div class="container">
 		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
     			<div class="form-group">
     				<table id="registros" class="table table-bordered table-striped">
+    				
     					<tr>
 	    					<td><label>Identificador</label></td>
 							<td><label>Tipo</label></td>
 							<td><label>Tamaño</label></td>
-							<td><label>Fecha de recarga</label></td>
+							<td><label>Fecha ultima recarga</label></td>
 							<td><label>Fecha de vencimiento</label></td>
-							<td><label>Caducidad(años)</label></td>
+							<td><label>Caducidad (años)</label></td>
 							<td><label>Estado</label></td>
 							<td><label>Acciones</label></td>
 						</tr>
     					<th:block th:each="extintor:${extintores}">
 						      <tr>
-						         <td id="idelemento" th:text="${extintor.idelemento}"><label>Identificador</label></td>
-						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
+						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
+						         <td th:text="${extintor.fichatecnica}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
-						         <td th:text="${extintor.caducidadanios}"><label>Caducidad(años)</label></td>
+						         <td th:text="${extintor.caducidadanios}"><label>Caducidad (años)</label></td>
 						         <td th:text="${extintor.estado}"><label>estado</label></td>		        
 						         <td >
-						         	<button th:id="${extintor.idelemento}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>
+						         	<button th:id="${extintor.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>
 									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
 								</td>
 						      </tr>
