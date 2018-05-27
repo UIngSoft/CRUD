@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Reporte {
 	@Id
 	private int id;
-	/*Foreign Key*/
+	
 	private int idelemento;
 	
 	private String descripcion;
