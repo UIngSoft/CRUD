@@ -95,9 +95,8 @@
 						         <td th:text="${extintor.elemento.piso.pisoPk.letrabloque}"><label>Bloque</label></td>
 						         <td th:text="${extintor.elemento.piso.pisoPk.numero}"><label>Piso</label></td>
 						         <td th:text="${extintor.estado}"><label>Estado</label></td>		        
-						         <td >
-						         	<button th:id="${extintor.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);"></button>
-									<button class="glyphicon glyphicon-trash btn btn-danger"></button>
+						         <td align="center">
+						         	<button th:id="${extintor.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);" title="Editar Extintor" ></button>
 								</td>
 						      </tr>
 						</th:block>
