@@ -12,8 +12,8 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="pnotify.custom.min.css">
-<script src="pnotify.custom.min.js"></script>
+<link rel="stylesheet" href="pnotify.custom.css">
+<script src="pnotify.custom.js"></script>
 
 <script src="scripts.js"></script>
 
@@ -49,11 +49,7 @@
 						new PNotify({
 						    title: 'Nuevo Extintor',
 						    text: 'Un nuevo extintor ha sido ingresado al sistema',
-						    addclass: 'custom',
-						    icon: 'fa fa-file-image-o',
-						    nonblock: {
-						        nonblock: true
-						    }
+						    type: 'info'
 						});
 					}
 				}
