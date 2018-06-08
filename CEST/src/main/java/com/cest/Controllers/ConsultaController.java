@@ -102,14 +102,6 @@ public class ConsultaController {
 		return nombreempresa;
 	}
 	
-	@PostMapping(value = "/buscarCambioBD")
-	@ResponseBody
-	public int getCambio() {
-		int registros = 0;
-		for (Extintor extintor : extintorDao.findAll()) {
-			registros++;
-		}
-		return registros;
-	}
+	
 	
 }

@@ -21,6 +21,7 @@ public class Reporte {
 	private String argumento;
 	private String estado;
 	private String ubicacion;
+	private boolean leido;
 	
 	public Reporte() {
 		// TODO Auto-generated constructor stub
@@ -122,6 +123,14 @@ public class Reporte {
 	 */
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+	public boolean isLeido() {
+		return leido;
+	}
+
+	public void setLeido(boolean leido) {
+		this.leido = leido;
 	}
 	
 }

@@ -11,15 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
+import com.cest.Models.Extintor;
 import com.cest.Models.Reporte;
 
 @Controller
 @RequestMapping
 public class ReporteController {
+	
+	@Autowired
+	private ExtintorDAO extintorDao;
 	
 	@Autowired
 	private SedeDAO sedeDao;
@@ -49,6 +55,16 @@ public class ReporteController {
 		reporte.setUbicacion("Sede: "+sede+" Bloque: "+bloque+" Piso: "+piso);
 		reporteDao.save(reporte);
 		return new ModelAndView("redirect:/");
+	}
+	
+	@PostMapping(value = "/buscarCambioBD")
+	@ResponseBody
+	public int getCambio() {
+		int registros = 0;
+		for (Extintor extintor : extintorDao.findAll()) {
+			registros++;
+		}
+		return registros;
 	}
 
 }
