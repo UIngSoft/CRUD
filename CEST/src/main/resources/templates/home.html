@@ -44,41 +44,4 @@ $.get("/navBar", function(data){
 		</p>
 	</div>
 </body>
-
-<script type="text/javascript">
-	var consulta = function(){
-		$.post( "/buscarCambioBD",
-				{},
-				function( reportes ) {
-					$.each(reportes, 
-							function(i,reporte){
-								//Notificacion infinita
-								if(reporte.notificado == "No"){
-									console.log("Notificando reporte");
-									new PNotify({
-									    title: 'Nuevo Reporte',
-									    text: 'Han enviado un reporte.',
-									    type: 'info'
-									});
-									
-									//Cambiar estado notificado
-									$.post( "/cambiarNotificado",
-											{id:reporte.id},
-											function( report ) {
-												
-																
-											}
-									);
-									//Fin estado notificado									
-								}
-									
-							}
-					);				
-				}
-		);
-	};	
-	var intervalo = 1000; //milisegundos
-	setInterval(consulta, intervalo);
-
-</script>
 </html>
