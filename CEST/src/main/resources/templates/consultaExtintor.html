@@ -23,6 +23,12 @@
 
 <title>CEST - Extintores</title>
 </head>
+<nav id="menu"></nav>
+<script>
+$.get("/navBar", function(data){
+    $("#menu").replaceWith(data);
+});
+</script>
 <body>
 	<div class="container theme-showcase" role="main">
 		<div>

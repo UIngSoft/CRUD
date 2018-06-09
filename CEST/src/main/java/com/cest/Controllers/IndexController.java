@@ -20,4 +20,9 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping(value = "/navBar")
+	public String getNavbar() {
+		return "navBar";
+	}
+	
 }
