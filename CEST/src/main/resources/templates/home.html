@@ -39,19 +39,34 @@
 	</div>
 </body>
 <script type="text/javascript">
-	var registros = 0;
 	var consulta = function(){
 		$.post( "/buscarCambioBD",
 				{},
-				function( reg ) {
-					if(reg > registros){
-						registros = reg;
-						new PNotify({
-						    title: 'Nuevo Extintor',
-						    text: 'Un nuevo extintor ha sido ingresado al sistema',
-						    type: 'info'
-						});
-					}
+				function( reportes ) {
+					$.each(reportes, 
+							function(i,reporte){
+								//Notificacion infinita
+								if(reporte.notificado == "No"){
+									console.log("Notificando reporte");
+									new PNotify({
+									    title: 'Nuevo Reporte',
+									    text: 'Han enviado un reporte.',
+									    type: 'info'
+									});
+									
+									//Cambiar estado notificado
+									$.post( "/cambiarNotificado",
+											{id:reporte.id},
+											function( report ) {
+												
+																
+											}
+									);
+									//Fin estado notificado									
+								}
+									
+							}
+					);				
 				}
 		);
 	};	

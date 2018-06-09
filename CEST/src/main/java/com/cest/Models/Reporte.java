@@ -21,6 +21,8 @@ public class Reporte {
 	private String argumento;
 	private String estado;
 	private String ubicacion;
+	private String leido;
+	private String notificado;
 	
 	public Reporte() {
 		// TODO Auto-generated constructor stub
@@ -122,6 +124,34 @@ public class Reporte {
 	 */
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+	/**
+	 * @return the leido
+	 */
+	public String getLeido() {
+		return leido;
+	}
+
+	/**
+	 * @param leido the leido to set
+	 */
+	public void setLeido(String leido) {
+		this.leido = leido;
+	}
+
+	/**
+	 * @return the notificado
+	 */
+	public String getNotificado() {
+		return notificado;
+	}
+
+	/**
+	 * @param notificado the notificado to set
+	 */
+	public void setNotificado(String notificado) {
+		this.notificado = notificado;
 	}
 	
 }

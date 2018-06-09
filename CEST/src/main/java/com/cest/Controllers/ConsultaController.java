@@ -18,11 +18,13 @@ import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.PisoDAO;
+import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
 import com.cest.Models.Bloque;
 import com.cest.Models.Contrato;
 import com.cest.Models.Extintor;
 import com.cest.Models.Piso;
+import com.cest.Models.Reporte;
 
 
 
@@ -43,6 +45,8 @@ public class ConsultaController {
 	private PisoDAO pisoDao;
 	@Autowired
 	private ContratoDAO contratoDao;
+	@Autowired
+	private ReporteDAO reporteDao;
 	
 	/*
 	 * Visualiza pagina de consultas
@@ -104,12 +108,14 @@ public class ConsultaController {
 	
 	@PostMapping(value = "/buscarCambioBD")
 	@ResponseBody
-	public int getCambio() {
-		int registros = 0;
-		for (Extintor extintor : extintorDao.findAll()) {
-			registros++;
+	public List<Reporte> getCambio() {
+		List<Reporte> reportes = new LinkedList<>();
+		for (Reporte reporte : reporteDao.findAll()) {
+			if (reporte.getLeido().equalsIgnoreCase("No")) {
+				reportes.add(reporte);
+			}
 		}
-		return registros;
+		return reportes;
 	}
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.ReporteDAO;
@@ -28,13 +29,13 @@ public class ReporteController {
 	private ReporteDAO reporteDao;
 	
 	@GetMapping(value="/reportarElemento")
-	public String getReporte(Model modelo) {
+	public String getRegistrarReporte(Model modelo) {
 		modelo.addAttribute("sedes", sedeDao.findAll());
 		return "reporte";
 	}
 	
 	@PostMapping(value="/reportarElemento")
-	public ModelAndView postReporte(@RequestParam("tipoelemento") String tipoelemento
+	public ModelAndView postRegistrarReporte(@RequestParam("tipoelemento") String tipoelemento
 			,@RequestParam("sede") String sede
 			,@RequestParam("bloque") String bloque
 			,@RequestParam("piso") String piso
@@ -47,8 +48,25 @@ public class ReporteController {
 		reporte.setDescripcion(descripcion);
 		reporte.setEstado("Pendiente");
 		reporte.setUbicacion("Sede: "+sede+" Bloque: "+bloque+" Piso: "+piso);
+		reporte.setLeido("No");
+		reporte.setNotificado("No");
 		reporteDao.save(reporte);
 		return new ModelAndView("redirect:/");
+	}
+	
+	@PostMapping(value="/cambiarNotificado")
+	@ResponseBody
+	public Reporte cambiarNotificado(@RequestParam int id)
+	{
+		System.out.println("Buscando a "+id);
+		for (Reporte reporte : reporteDao.findAll()) {
+			if (reporte.getId() == id) {
+				reporte.setNotificado("Si");
+				reporteDao.save(reporte);
+				return reporte;
+			}
+		}
+		return null;
 	}
 
 }
