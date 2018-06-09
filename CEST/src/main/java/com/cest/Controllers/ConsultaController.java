@@ -106,16 +106,4 @@ public class ConsultaController {
 		return nombreempresa;
 	}
 	
-	@PostMapping(value = "/buscarCambioBD")
-	@ResponseBody
-	public List<Reporte> getCambio() {
-		List<Reporte> reportes = new LinkedList<>();
-		for (Reporte reporte : reporteDao.findAll()) {
-			if (reporte.getLeido().equalsIgnoreCase("No")) {
-				reportes.add(reporte);
-			}
-		}
-		return reportes;
-	}
-	
 }

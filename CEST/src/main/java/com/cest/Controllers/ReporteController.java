@@ -3,6 +3,8 @@ package com.cest.Controllers;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
+import com.cest.Models.Extintor;
 import com.cest.Models.Reporte;
 
 @Controller
 @RequestMapping
 public class ReporteController {
+	
+	@Autowired
+	private ExtintorDAO extintorDao;
 	
 	@Autowired
 	private SedeDAO sedeDao;
@@ -67,6 +74,18 @@ public class ReporteController {
 			}
 		}
 		return null;
+	}
+
+	@PostMapping(value = "/buscarCambioBD")
+	@ResponseBody
+	public List<Reporte> getCambio() {
+		List<Reporte> reportes = new LinkedList<>();
+		for (Reporte reporte : reporteDao.findAll()) {
+			if (reporte.getLeido().equalsIgnoreCase("No")) {
+				reportes.add(reporte);
+			}
+		}
+		return reportes;
 	}
 
 }
