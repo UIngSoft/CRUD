@@ -16,32 +16,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
-import com.cest.Models.Extintor;
 import com.cest.Models.Reporte;
 
 @Controller
 @RequestMapping
 public class ReporteController {
-	
-	@Autowired
-	private ExtintorDAO extintorDao;
-	
 	@Autowired
 	private SedeDAO sedeDao;
 	
 	@Autowired
 	private ReporteDAO reporteDao;
 	
-	@GetMapping(value="/reportarElemento")
+	@GetMapping(value="/registrarReporte")
 	public String getRegistrarReporte(Model modelo) {
 		modelo.addAttribute("sedes", sedeDao.findAll());
 		return "reporte";
 	}
 	
-	@PostMapping(value="/reportarElemento")
+	@PostMapping(value="/registrarReporte")
 	public ModelAndView postRegistrarReporte(@RequestParam("tipoelemento") String tipoelemento
 			,@RequestParam("sede") String sede
 			,@RequestParam("bloque") String bloque
