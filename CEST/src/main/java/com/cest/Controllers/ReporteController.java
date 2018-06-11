@@ -88,4 +88,21 @@ public class ReporteController {
 		return reportes;
 	}
 
+	@GetMapping(value = "/consultarReporte")
+	public List<Reporte> getConsultarReporte() {
+		List<Reporte> reportes = new LinkedList<>();
+		for (Reporte reporte : reporteDao.findAll()) {
+			reportes.add(reporte);
+		}
+		return reportes;
+	}
+	@PostMapping(value = "/modificarReporte")
+	public void postModificarReporte(@RequestParam int id) {
+		
+	}
+	@GetMapping(value = "/modificarReporte")
+	public ModelAndView getModificarReporte() {
+		return null;
+		
+	}
 }
