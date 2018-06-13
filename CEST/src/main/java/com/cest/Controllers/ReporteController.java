@@ -57,9 +57,7 @@ public class ReporteController {
 	
 	@PostMapping(value="/cambiarNotificado")
 	@ResponseBody
-	public Reporte cambiarNotificado(@RequestParam int id)
-	{
-		System.out.println("Buscando a "+id);
+	public Reporte cambiarNotificado(@RequestParam int id){
 		for (Reporte reporte : reporteDao.findAll()) {
 			if (reporte.getId() == id) {
 				reporte.setNotificado("Si");
