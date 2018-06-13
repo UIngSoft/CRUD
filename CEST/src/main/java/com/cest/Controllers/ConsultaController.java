@@ -1,6 +1,10 @@
 package com.cest.Controllers;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.Collections;
+>>>>>>> backup
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,11 +25,20 @@ import com.cest.Dao.PisoDAO;
 import com.cest.Models.Extintor;
 
 import com.cest.Dao.BloqueDAO;
+import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.PisoDAO;
+<<<<<<< HEAD
 
+=======
+import com.cest.Dao.ReporteDAO;
+import com.cest.Dao.SedeDAO;
+>>>>>>> backup
 import com.cest.Models.Bloque;
+import com.cest.Models.Contrato;
+import com.cest.Models.Extintor;
 import com.cest.Models.Piso;
+import com.cest.Models.Reporte;
 
 /**
  * 
@@ -44,9 +57,15 @@ public class ConsultaController {
 	@Autowired
 	private ExtintorDAO extintorDao;
 	@Autowired
+	private SedeDAO sedeDao;
+	@Autowired
 	private BloqueDAO bloqueDao;
 	@Autowired
 	private PisoDAO pisoDao;
+	@Autowired
+	private ContratoDAO contratoDao;
+	@Autowired
+	private ReporteDAO reporteDao;
 	
 	@Autowired
 	private SedeDAO sedeDao;
@@ -70,6 +89,7 @@ public class ConsultaController {
 			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
+<<<<<<< HEAD
 			if(idelemento.equals("")) {				
 				modelo.addAttribute("extintores", extintorDao.findAll());			
 			}
@@ -130,6 +150,10 @@ public class ConsultaController {
 				modelo.addAttribute("sedes", sedeDao.findAll());
 			}
 			
+=======
+			modelo.addAttribute("extintores", extintorDao.findAll());
+			modelo.addAttribute("sedes", sedeDao.findAll());
+>>>>>>> backup
 			return "consultaExtintor";
 		}else if (tipo.equals("botiquin")) {
 			return "consultaBotiquin";
@@ -141,12 +165,13 @@ public class ConsultaController {
 	@PostMapping(value = "/obtenerBloques")
 	@ResponseBody
 	public List<String> getBloques(@RequestParam String sede) {
-		List<String> misBloques = new LinkedList<>();
+		List<String> misBloques = new ArrayList<>();
 		for (Bloque bloque : bloqueDao.findAll()) {
 			if (bloque.getSede().getNombre().equals(sede)) {
 				misBloques.add(bloque.bloquePk.getLetra());
 			}
 		}
+		Collections.sort(misBloques);
 		return misBloques;
 	}
 	
@@ -163,4 +188,20 @@ public class ConsultaController {
 		}
 		return misPisos;
 	}
+<<<<<<< HEAD
+=======
+	
+	@PostMapping(value = "/obtenerEmpresa")
+	@ResponseBody
+	public String getEmpresa(@RequestParam String numerocontrato) {
+		String nombreempresa = null;
+		for (Contrato contrato : contratoDao.findAll()) {
+			if (contrato.getNumero() == Integer.valueOf(numerocontrato)) {
+				nombreempresa = contrato.getEmpresa().getNombre();
+			}
+		}
+		return nombreempresa;
+	}
+	
+>>>>>>> backup
 }

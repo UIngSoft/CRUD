@@ -13,7 +13,10 @@ public class Encargado {
 	
 	private String nombre;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> backup
 	/**
 	 * @return the cedula
 	 */
@@ -35,7 +38,10 @@ public class Encargado {
 	/**
 	 * @param nombre the nombre to set
 	 */
+<<<<<<< HEAD
 	
+=======
+>>>>>>> backup
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}

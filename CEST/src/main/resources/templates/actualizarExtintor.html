@@ -14,11 +14,16 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script src="scripts.js"></script>
-
-
+	<script src="cargarActualizar.js"></script>
+	
 	<title>Actualizar Extintor</title>
 </head>
-
+<nav id="menu"></nav>
+<script>
+$.get("/navBar", function(data){
+    $("#menu").replaceWith(data);
+});
+</script>
 <body>
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron" style="background: rgb(13,67,113)">
@@ -27,135 +32,130 @@
 
 		<div class="container">
 			<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>
-				<form id="RegExtForm" class="form-signin" action="#" th:object="${extintor}" th:method="post">
-
-					<div class="row">
-						<div class="col-md-4">
-							<label>ID</label>
-							<input th:value="*{elemento.id}"name="id" type="text" class="form-control" disabled="disabled">
-						</div>
-
-						<div class="col-md-4">
-							<label>Tipo</label> <br>
-							<select id="fichatecnica" class="form-control" name="tipo" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
-							   	<option th:text="*{fichatecnica.tipo}"></option>
-							   	<th:block th:each="fichatecnica:${fichastecnicas}">
-						   			<option th:text="${fichatecnica.tipo}"></option>
-						   		</th:block>
-							</select>
-						</div>
-
-						<div class="col-md-4">
-							<label>Tamaño</label> <br>
-							<select class="form-control" name="tamanio" style="width: 100%">
-								<option th:text="*{tamanio}"></option>
-							   	<option>10 libras</option>
-							   	<option>15 libras</option>
-							   	<option>20 libras</option>
-							   	<option>370 gramos</option>
-							   	<option>2,5 litros</option>
-							   	<option>150 litros</option>
-							</select>
-						</div>
-					</div>
-					<br>
-
-					<div class="row">
-						<div class="col-md-4">
-							<label>Fecha ultima Recarga</label>
-							<input th:value="*{fechaultimarecarga}" type="date" class="form-control" required="se queriere la fecha"/>
-						</div>
-
-						<div class="col-md-4">
-							<label>Caducidad años</label>
-							<select class="form-control" id="caducidad" name="caducidad" style="width: 100%" onchange="fecha();">
-								<option th:text="*{caducidadanios}"></option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-
-						<div class="col-md-4">
-							<label>Fecha Proxima Recarga</label>
-							<input th:value="*{fechavencimiento}" type="date" class="form-control" disabled="disabled"/>
-							
-						</div>
-					</div>
-					<br>
-
-					<div class="row">
-						<div class="col-md-4">
-							<label>Código Contrato</label>
-							<input th:value="*{elemento.contrato.numero}" type="text" class="form-control" required/>
-						</div>
-
-						<div class="col-md-4">
-							<label>Cédula Encargado</label>
-							<input th:value="*{elemento.encargado.cedula}" type="text" class="form-control" required/>
-						</div>
-
-						<div class="col-md-4">
-							<label>Estado Extintor</label> <br>
-							<select class="form-control" name="tamanio"style="width: 100%">
-								<option th:text="*{estado}"></option>
-							   	<option>Activo</option>
-							   	<option>Baja</option>
-							   	<option>Mantenimiento</option>
-							   	<option>Vencido</option>
-							</select>
-						</div>
-					</div>
-
+			<form class="form-signin" action="/actualizarExtintor" method="post">
 				<div class="row">
-					<div class="col-md-6">
-						<label><br>Ubicación: </label>
+					<div class="col-md-4">
+						<label>ID</label>
+						<input id="id" name="id" type="text" class="form-control" readonly="readonly">
+					</div>
+					
+					<div class="col-md-4">
+						<label>Cédula de encargado</label>
+						<input id="cedulaencargado" name="cedulaencargado" type="text" class="form-control"  required maxlength="10" pattern="\d+" title="lA CÉDULA DEBE SER NUMÉRICA">
+					</div>
+					
+					<div class="col-md-4">
+						<label>Código contrato</label>
+						<input id="numerocontrato" name="numerocontrato" type="text" class="form-control"  onblur="ObtenerEmpresa();" required pattern="\d+" title="INGRESA UN VALOR NUMÉRICO">
 					</div>
 				</div>
-
+				
+				<div class="row">
+					
+					<div class="col-md-4">
+						<label>Tamaño</label> <br>
+						<select id="tamanio" name="tamanio" class="form-control"  style="width: 100%" required title="SELECCIONA EL TAMAÑO DEL EXTINTOR">
+						   	<option value="10 Libras">10 libras</option>
+						   	<option value="15 Libras">15 libras</option>
+						   	<option value="20 Libras">20 libras</option>
+						   	<option value="370 Gramos">370 gramos</option>
+						   	<option value="2,5 Litros">2,5 litros</option>
+						   	<option value="150 Libras">150 litros</option>						   	
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Tipo</label> <br>
+						<select id="fichatecnica"  class="form-control" name="fichatecnica" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
+						   	<option value="">Seleccione</option>
+						   	<th:block th:each="fichatecnica:${fichastecnicas}">
+						   		<option th:value="${fichatecnica.tipo}" th:text="${fichatecnica.tipo}"></option>	
+						   	</th:block>	
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Empresa</label>
+						<input id="empresa" name="empresa" type="text" class="form-control" readonly="readonly"/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<label>Fecha última recarga</label>
+						<input id="fechaultimarecarga" name="fechaultimarecarga" type="date" class="form-control" required onchange="document.getElementById('caducidad').disabled=false;"/>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Caducidad en años</label>
+						<select id="caducidad" class="form-control" name="caducidad" required style="width: 100%" onchange="CalcularVencimiento(this.value);">
+						   	<option value="">Seleccione</option>
+						   	<option value="1">1</option>
+						   	<option value="2">2</option>
+						   	<option value="3">3</option>
+						   	<option value="4">4</option>
+						   	<option value="5">5</option>	   	
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Fecha de vencimiento</label>
+						<input id="fechavencimiento" name="fechavencimiento" type="date" class="form-control" readonly="readonly" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<label>Estado Extintor</label> <br>
+						<select id="estado" name="estado" class="form-control" style="width: 100%" required title="SELECCIONA EL ESTADO DEL EXTINTOR">
+						   	<option value="Activo">Activo</option>
+						   	<option value="Baja">Baja</option>
+						   	<option value="Mantenimiento">Mantenimiento</option>
+						   	<option value="Vencido">Vencido</option>				   	
+						</select>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-md-6">
+						<label><br>Ubicacion: </label>						
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="col-md-4">
 						<label>Sede</label> <br>
-						<select id="sede" name="sede" class="form-control" style="width: 100%" onchange="ObtenerBloques();">
-						<option th:text="*{elemento.piso.bloque.sede.nombre}"></option>
-						   	<option>Seleccione</option>
+						<select id="sede" class="form-control" name="sede" style="width: 100%" onchange="ObtenerBloques();">	   	
+							<option value="">Seleccione</option>
 						   	<th:block th:each="sede:${sedes}">
-						   		<option th:text="${sede.nombre}"></option>	
-						   	</th:block>		   	
+						   		<option th:value="${sede.nombre}" th:text="${sede.nombre}"></option>	
+						   	</th:block>
 						</select>						
 					</div>				
 					
 					<div class="col-md-4">
 						<label>Bloque</label> <br>
-						<select id="bloque" name="bloque" class="form-control" style="width: 100%" onchange="ObtenerPisos();">
-							
-						   	<option>Seleccione</option>	   	
+						<select id="bloque" class="form-control" name="bloque" style="width: 100%" onchange="ObtenerPisos();">   	
 						</select>						
 					</div>
 					
 					<div class="col-md-4">
 						<label>Piso</label> <br>
-						
-						<select id="piso" name="piso" class="form-control" style="width: 100%">
-						   	<option>Seleccione</option>	   	
+						<select id="piso" class="form-control" name="piso" style="width: 100%">  	
 						</select>						
 					</div>					
 				</div>
-					<br>
+				<br>
+				<div class="row">
 
-        		<div class="col-md-5">
-        		</div>
-
-        		<div class="col-md-2">
-					<button type="submit" class="btn btn-lg btn-primary" value="save" >Actualizar</button>
-	    		</div>
-
-	    		<div class="col-md-5">
-	    		</div>
-
-	        </form>
+					<div class="col-md-5"></div>
+	    			<div class="col-md-2">
+	    				<button type="submit" class="btn btn-lg btn-primary btn-block" >Actualizar</button>
+	    			</div>
+	    			<div class="col-md-5"></div>					
+				</div>		
+     		</form>
 		</div>
 	</div>
 </body>
