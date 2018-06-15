@@ -24,6 +24,13 @@
 
 <title>Registro de elementos - CEST</title>
 </head>
+
+<nav id="menu"></nav>
+<script>
+$.get("/navBar", function(data){
+    $("#menu").replaceWith(data);
+});
+</script>
 <body>
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron" style="background: rgb(13,67,113)">
@@ -31,7 +38,7 @@
 		</div>
 		<div class="container">
 			<h2 class="form-signin-heading">Por favor llenar todos los campos</h2>
-			<form id="RegExtForm" class="form-signin" action="#" th:action="@{/registrarExtintor}" th:object="${extintor}" th:method="post">
+			<form class="form-signin" action="#" th:action="@{/registrarExtintor}" th:object="${extintor}" th:method="post">
 				<div class="row">
 					<div class="col-md-4">
 						<label>ID</label>
@@ -45,7 +52,7 @@
 					
 					<div class="col-md-4">
 						<label>Código contrato</label>
-						<input id="numerocontrato" name="numerocontrato" type="text" class="form-control"  required pattern="\d+" title="INGRESA UN VALOR NUMÉRICO">
+						<input id="numerocontrato" name="numerocontrato" type="text" class="form-control"  onblur="ObtenerEmpresa();" required pattern="\d+" title="INGRESA UN VALOR NUMÉRICO">
 					</div>
 				</div>
 				
@@ -59,13 +66,13 @@
 						   	<option value="20 Libras">20 libras</option>
 						   	<option value="370 Gramos">370 gramos</option>
 						   	<option value="2,5 Litros">2,5 litros</option>
-						   	<option value="150 Libras">150 litros</option>						   	
+						   	<option value="150 Litros">150 litros</option>						   	
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Tipo</label> <br>
-						<select id="fichatecnica"  class="form-control" name="tipo" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
+						<select id="fichatecnica"  class="form-control" name="fichatecnica" style="width: 100%" required title="SELECCIONA EL TIPO DE EXTINTOR">
 						   	<option value="">Seleccione</option>
 						   	<th:block th:each="fichatecnica:${fichastecnicas}">
 						   		<option th:text="${fichatecnica.tipo}"></option>	
@@ -75,25 +82,20 @@
 					
 					<div class="col-md-4">
 						<label>Empresa</label>
-						<input type="text" class="form-control" disabled="disabled"/>
+						<input id="empresa" name="empresa" type="text" class="form-control" disabled="disabled"/>
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col-md-4">
 						<label>Fecha última recarga</label>
-<<<<<<< HEAD
-						<input th:field="*{fechaultimarecarga}" id="fechaultimarecarga" name="fechaultimarecarga" type="date" class="form-control" required />
-
-=======
-						<input th:field="*{fechaultimarecarga}" id="fechaultimarecarga" name="fechaultimarecarga" type="date" class="form-control" required onchange="document.getElementById('caducidad').disabled=false;"/>
->>>>>>> 7e0783600334b4386ab1725ec7858a957b8ff9de
+						<input id="fechaultimarecarga" name="fechaultimarecarga" type="date" class="form-control" required onchange="document.getElementById('caducidad').disabled=false;"/>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Caducidad en años</label>
 						<select th:field="*{caducidadanios}" id="caducidad" class="form-control" name="caducidad" required disabled="disabled" style="width: 100%" onchange="CalcularVencimiento(this.value);">
-						   	<option value="0">Seleccione</option>
+						   	<option value="">Seleccione</option>
 						   	<option value="1">1</option>
 						   	<option value="2">2</option>
 						   	<option value="3">3</option>
@@ -104,7 +106,7 @@
 					
 					<div class="col-md-4">
 						<label>Fecha de vencimiento</label>
-						<input th:field="*{fechavencimiento}" id="fechavencimiento" name="fechavencimiento" type="date" class="form-control" disabled="disabled" />
+						<input id="fechavencimiento" name="fechavencimiento" type="date" class="form-control" disabled="disabled" />
 					</div>
 				</div>
 				
@@ -141,7 +143,6 @@
 					
 					<div class="col-md-4">
 						<label>Bloque</label> <br>
-						
 						<select id="bloque" class="form-control" name="bloque" style="width: 100%" onchange="ObtenerPisos();">
 						   	<option value="">Seleccione</option>   	
 						</select>						
@@ -149,7 +150,6 @@
 					
 					<div class="col-md-4">
 						<label>Piso</label> <br>
-						
 						<select id="piso" class="form-control" name="piso" style="width: 100%">
 						   	<option value="">Seleccione</option>   	
 						</select>						
@@ -160,7 +160,7 @@
 
 					<div class="col-md-5"></div>
 	    			<div class="col-md-2">
-	    				<button type="submit" class="btn btn-lg btn-primary" >Registrar</button>
+	    				<button type="submit" class="btn btn-lg btn-primary btn-block" >Registrar</button>
 	    			</div>
 	    			<div class="col-md-5"></div>					
 				</div>		

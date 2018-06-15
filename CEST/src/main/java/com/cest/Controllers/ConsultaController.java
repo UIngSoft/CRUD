@@ -1,10 +1,9 @@
 package com.cest.Controllers;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
+
 import java.util.Collections;
->>>>>>> backup
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,12 +27,10 @@ import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.PisoDAO;
-<<<<<<< HEAD
 
-=======
 import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
->>>>>>> backup
+
 import com.cest.Models.Bloque;
 import com.cest.Models.Contrato;
 import com.cest.Models.Extintor;
@@ -67,8 +64,6 @@ public class ConsultaController {
 	@Autowired
 	private ReporteDAO reporteDao;
 	
-	@Autowired
-	private SedeDAO sedeDao;
 	
 
 	
@@ -89,7 +84,7 @@ public class ConsultaController {
 			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
-<<<<<<< HEAD
+
 			if(idelemento.equals("")) {				
 				modelo.addAttribute("extintores", extintorDao.findAll());			
 			}
@@ -150,10 +145,10 @@ public class ConsultaController {
 				modelo.addAttribute("sedes", sedeDao.findAll());
 			}
 			
-=======
+
 			modelo.addAttribute("extintores", extintorDao.findAll());
 			modelo.addAttribute("sedes", sedeDao.findAll());
->>>>>>> backup
+
 			return "consultaExtintor";
 		}else if (tipo.equals("botiquin")) {
 			return "consultaBotiquin";
@@ -188,9 +183,7 @@ public class ConsultaController {
 		}
 		return misPisos;
 	}
-<<<<<<< HEAD
-=======
-	
+
 	@PostMapping(value = "/obtenerEmpresa")
 	@ResponseBody
 	public String getEmpresa(@RequestParam String numerocontrato) {
@@ -203,5 +196,5 @@ public class ConsultaController {
 		return nombreempresa;
 	}
 	
->>>>>>> backup
+
 }
