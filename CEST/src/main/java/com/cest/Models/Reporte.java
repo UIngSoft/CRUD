@@ -8,7 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /*
- * Un reporte sobre el estado de un elemento
+ * Esta clase contiene los atributos que tiene un reporte
+ * se hace un reporte sobre el estado de un elemento
  */
 @Entity
 public class Reporte {
@@ -28,7 +29,9 @@ public class Reporte {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	/**
+	 * 
 	 * @return the id
 	 */
 	public int getId() {
@@ -43,6 +46,8 @@ public class Reporte {
 	}
 
 	/**
+	 * Este es el tipo de elemento que puede existir
+	 * ya sea extintor, camilla o botiquin.
 	 * @return the tipoelemento
 	 */
 	public String getTipoelemento() {
@@ -50,6 +55,7 @@ public class Reporte {
 	}
 
 	/**
+	 * 
 	 * @param tipoelemento the tipoelemento to set
 	 */
 	public void setTipoelemento(String tipoelemento) {
@@ -57,6 +63,8 @@ public class Reporte {
 	}
 
 	/**
+	 * Fecha que se toma automaticamente cuando se registra
+	 * un nuevo reporte
 	 * @return the fechareporte
 	 */
 	public LocalDate getFechareporte() {
@@ -71,6 +79,8 @@ public class Reporte {
 	}
 
 	/**
+	 * esta es la descripcion del estado en que se
+	 * encontro cierto elemento para realizar un reporte
 	 * @return the descripcion
 	 */
 	public String getDescripcion() {
@@ -85,11 +95,15 @@ public class Reporte {
 	}
 
 	/**
+	 * este argumento sera modificado al momento de revisar 
+	 * un reporte, en este campo se ingresara si ya se cambio el elemento 
+	 * o se le hizo mantenimiento, la fecha o si esta pendiente el porque?
 	 * @return the argumento
 	 */
 	public String getArgumento() {
 		return argumento;
 	}
+	
 
 	/**
 	 * @param argumento the argumento to set
@@ -99,6 +113,8 @@ public class Reporte {
 	}
 
 	/**
+	 * este es el estado del reporte que puede ser:
+	 * pendiente, atendido, 
 	 * @return the estado
 	 */
 	public String getEstado() {
@@ -113,6 +129,8 @@ public class Reporte {
 	}
 
 	/**
+	 * esta ubicacion esta compuesta por sede, bloque y piso
+	 * donde se encontro el elemento a reportar.
 	 * @return the ubicacion
 	 */
 	public String getUbicacion() {
@@ -127,6 +145,9 @@ public class Reporte {
 	}
 
 	/**
+	 * este es un estado si el administrador ya leyo el reporte o no
+	 * este estado se cambia automaticamente en caso de que el administrador
+	 * abra el reporte y lo lea 
 	 * @return the leido
 	 */
 	public String getLeido() {
@@ -141,6 +162,7 @@ public class Reporte {
 	}
 
 	/**
+	 * 
 	 * @return the notificado
 	 */
 	public String getNotificado() {

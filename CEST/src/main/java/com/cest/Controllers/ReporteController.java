@@ -20,6 +20,14 @@ import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
 import com.cest.Models.Reporte;
 
+
+/**
+ * esta clase es el controllador de reporte encargada de realizar todos los 
+ * metodos  relacionados con el reporte, tanto el registro, la modificacion,
+ * como cambio de la notificacion, de estados y de leido o no. 
+ * @author IngSostII
+ *
+ */
 @Controller
 @RequestMapping
 public class ReporteController {
@@ -35,6 +43,18 @@ public class ReporteController {
 		return "reporte";
 	}
 	
+	
+	
+	/**
+	 * este metodo es el encargado de tomar los datos ingresados de un nuevo 
+	 * reporte y almacenarlos. 
+	 * @param tipoelemento
+	 * @param sede
+	 * @param bloque
+	 * @param piso
+	 * @param descripcion
+	 * @return
+	 */
 	@PostMapping(value="/registrarReporte")
 	public ModelAndView postRegistrarReporte(@RequestParam("tipoelemento") String tipoelemento
 			,@RequestParam("sede") String sede
@@ -55,6 +75,16 @@ public class ReporteController {
 		return new ModelAndView("redirect:/");
 	}
 	
+	
+	
+	
+	/**
+	 * metodo encargado de cambiar estado de la notificacion, 
+	 * se cambia su estado "notificado" si ya fue mostrado  de 
+	 * NO A SI
+	 * @param id
+	 * @return
+	 */
 	@PostMapping(value="/cambiarNotificado")
 	@ResponseBody
 	public Reporte cambiarNotificado(@RequestParam int id){
@@ -68,6 +98,12 @@ public class ReporteController {
 		return null;
 	}
 
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
 	@PostMapping(value = "/buscarCambioBD")
 	@ResponseBody
 	public List<Reporte> getCambio() {
@@ -79,7 +115,12 @@ public class ReporteController {
 		}
 		return reportes;
 	}
-
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping(value = "/consultarReporte")
 	public List<Reporte> getConsultarReporte() {
 		List<Reporte> reportes = new LinkedList<>();
@@ -88,10 +129,22 @@ public class ReporteController {
 		}
 		return reportes;
 	}
+	
+	
+	/**
+	 * 
+	 * @param id
+	 */
 	@PostMapping(value = "/modificarReporte")
 	public void postModificarReporte(@RequestParam int id) {
 		
 	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping(value = "/modificarReporte")
 	public ModelAndView getModificarReporte() {
 		return null;
