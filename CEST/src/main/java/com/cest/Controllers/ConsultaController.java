@@ -29,7 +29,7 @@ import com.cest.Models.Reporte;
 
 
 /*
- * Contrador para el index
+ * Controlador para el index
  */
 @Controller
 @RequestMapping

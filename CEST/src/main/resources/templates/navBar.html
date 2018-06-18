@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 
+<<<<<<< HEAD
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -33,6 +34,34 @@
 	    		</ul>
 	    	</div>
 	  	</div>
+=======
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		  <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		      <span class="sr-only">Toggle navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="#">CEST</a>
+		  </div>
+		  
+		  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  	<ul class="nav navbar-nav">
+		      <li><a href="/home">Home</a></li>
+		      <li><a href="/consulta?tipo=extintor">Extintor</a></li>
+		      <li><a href="/consulta?tipo=botiquin">Botiquín</a></li>
+		      <li><a href="/consulta?tipo=camilla">Camilla</a></li>
+		      <li class="dropdown">
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <span id="notificados" class="badge"></span> <b class="caret"></b></a>
+		        <ul class="dropdown-menu" id="reportes">
+		        </ul>
+		      </li>
+		    </ul>
+		  </div><!-- /.navbar-collapse -->
+>>>>>>> 379f7895b48b9405ce4bd4b52bad8b9163248d04
 	</nav>
 	
 	
@@ -78,6 +107,7 @@
 				{},
 				function( reportes ) {
 					$('#notificados').text(''+Object.keys(reportes).length);
+<<<<<<< HEAD
 					$('#notificado').text(''+Object.keys(reportes).length);
 					$.each(reportes, 
 							function(i,reporte){
@@ -98,8 +128,28 @@
 									);
 									//Fin estado notificado									
 								}
+=======
+					$('#reportes').empty();
+					$.each(reportes, 
+						function(i,reporte){
+							$('#reportes').append('<li><a href="/consultarReporte?id='+reporte.id+'">'+reporte.tipoelemento+'</a></li><li class="divider"></li>');
+							if(reporte.notificado == "No"){
+								new PNotify({
+								    title: 'Nuevo Reporte',
+								    text: 'Tipo de elemento: '+reporte.tipoelemento+'\nDescripción: '+reporte.descripcion,
+								    type: 'info'
+								});									
+								//Cambiar estado notificado
+								$.post( "/cambiarNotificado",
+									{id:reporte.id},
+									function( report ) {}
+								);
+								//Fin estado notificado									
+>>>>>>> 379f7895b48b9405ce4bd4b52bad8b9163248d04
 							}
-					);				
+						}
+					);
+					$('#reportes').append('<li><a href="/consultarReporte?id=-1">Todos</a></li>');
 				}
 		);
 	};	
