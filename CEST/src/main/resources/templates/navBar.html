@@ -1,47 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- Latest compiled and minified JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 
 </head>
 <body>
+
 	<nav class="navbar navbar-default">
 	 	<div class="container-fluid">
 	    	<div class="navbar-header">
 	      		<a class="navbar-brand">CEST</a>
 	    	</div>
-	    	<ul class="nav navbar-nav">
-<<<<<<< HEAD
-	      		<li class="active"><a href="#">Home</a></li>
-	      		<li><a href="#">Page <span class="badge">5</span></a></li>
-=======
-	      		<li class="active"><a href="/home">Home</a></li>
-	      		<li class="dropdown">
-		      		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes no leidos 
-		      			<span id ="notificados" class="badge" > </span>
-		      		</a>
-		      		<ul class="dropdown-menu">
-		      			<li>P1</li>
-		      			<li>P2</li>
-		      			<li>P3</li>
-		      			
-		      		</ul>
-	      		</li>
->>>>>>> b65b2d959d0dd4a1493ddcd8b35cf52587784b4f
-	      		<li><a href="#">Page 2</a></li>
-	      		<li><a href="#">Page 3</a></li>
-	    	</ul>
+	    	<div class="navbar-header">
+	    		<ul class="nav nav-pills">
+		      		<li role="presentation">
+		      			<a href="/home" role="button">Home</a>
+		      		</li>
+		      		<li>
+			      		<a data-toggle="modal" data-target="#myModal" href="#">Reportes no leidos 
+			      			<span id ="notificados" class="label label-danger"> </span>
+			      		</a>
+		      		</li>
+		      		<li>
+		      			<a href="#">Page 2</a>
+		      		</li>
+	    		</ul>
+	    	</div>
 	  	</div>
 	</nav>
+	
+	
+	
+	
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Reportes Sin Leer</h4>
+        </div>
+        <div class="modal-body">
+        
+        <!-- Lista dentr de modal-->
+        <dl class="list-goup">
+        	<dt> <a class="list-group-item" href="#">Link 1</a> </li>
+        	<dt> <a class="list-group-item">Link 2</a> </li>
+        	<dt> <a class="list-group-item">Link 3</a> </li>
+        </dl>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+	
+	
+	
+	
+
 </body>
 <script type="text/javascript">
 	var consulta = function(){
@@ -49,6 +78,7 @@
 				{},
 				function( reportes ) {
 					$('#notificados').text(''+Object.keys(reportes).length);
+					$('#notificado').text(''+Object.keys(reportes).length);
 					$.each(reportes, 
 							function(i,reporte){
 								//Notificacion infinita
@@ -63,14 +93,11 @@
 									//Cambiar estado notificado
 									$.post( "/cambiarNotificado",
 											{id:reporte.id},
-											function( report ) {
-												
-																
+											function( report ) {																
 											}
 									);
 									//Fin estado notificado									
 								}
-									
 							}
 					);				
 				}
@@ -78,6 +105,6 @@
 	};	
 	var intervalo = 1000; //milisegundos
 	setInterval(consulta, intervalo);
-
 </script>
+
 </html>
