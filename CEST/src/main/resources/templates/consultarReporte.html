@@ -14,7 +14,11 @@
 
 <script src="scripts.js"></script>
 
-
+<script>
+	function enviar(id){
+		location.href='/modificarReporte?id='+id;
+	}
+</script> 
 <title>CEST - Reportes</title>
 
 </head>
@@ -40,40 +44,8 @@
 							<td><label>Ubicacion</label></td>
 							<td><label>Estado</label></td>
 							<td><label>Visibilidad</label></td>
-					</tr>
+						</tr>
 
-					 <tr>
-					    <td <label>2354</label></td>
-					    <td <label>22/10/2017</label></td>
-					    <td <label>En el edificio c, al llegar al 3er piso el primer extintor de la columna de la izquierda se encuentra quebrado el vidrio de la caja que lo contiene.</label></td>
-					    <td <label>Pendiente</label></td>
-					    <td <label>No leido</label></td>
-					    <td >
-					    	<a href="modificarReporte.html" class="glyphicon glyphicon-pencil btn btn-primary" ></a>
-						</td>
-					 </tr>
-
-					 <tr>
-					    <td <label>2586</label></td>
-					    <td <label>22/10/2017</label></td>
-					    <td <label>Edificio D, Piso 3</label></td>
-					    <td <label>Revisado</label></td>
-					    <td <label>leido</label></td>
-					    <td>
-						<button th:id="${extintor.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary"></button>
-						</td>
-					 </tr>
-
-					<tr>
-						<td <label>2586</label></td>
-  					    <td <label>22/10/2017</label></td>
-  					    <td <label>Edificio D, Piso 3</label></td>
-  					    <td <label>Revisado</label></td>
-  					    <td <label>leido</label></td>
-					    <td >
-							<button th:id="${extintor.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary"></button>
-						</td>
-					 </tr>
 			        </table>
     			</div>
     			<div class="col-md-5"></div>
