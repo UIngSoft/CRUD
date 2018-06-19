@@ -29,6 +29,9 @@ public class ReporteController {
 	@Autowired
 	private ReporteDAO reporteDao;
 	
+	
+	
+	
 	@GetMapping(value="/registrarReporte")
 	public String getRegistrarReporte(Model modelo) {
 		modelo.addAttribute("sedes", sedeDao.findAll());
@@ -90,13 +93,42 @@ public class ReporteController {
 		}
 		return reportes;
 	}
-	@PostMapping(value = "/modificarReporte")
-	public void postModificarReporte(@RequestParam int id) {
-		
-	}
+	
+	
 	@GetMapping(value = "/modificarReporte")
-	public ModelAndView getModificarReporte() {
+	public Reporte getModificarReporte(@RequestParam int id) {
+		for (Reporte reporte : reporteDao.findAll()) {
+			if (reporte.getId() == id) {
+				return reporte;
+			}
+		}
 		return null;
 		
 	}
+	@PostMapping(value = "/modificarReporte")
+	public ModelAndView postModificarReporte(@RequestParam("id") int id,
+			@RequestParam("fecha") LocalDate  fecha,
+			@RequestParam("descripcion") String descripcion,
+			@RequestParam("argumentacion") String argumentacion,
+			@RequestParam("estado") String estado,
+			@RequestParam("visibilidad") String visibilidad
+			) {
+		
+		for (Reporte reporte1 : reporteDao.findAll()) {
+			if (reporte1.getId() == id) {
+				Reporte reporte = reporte1;
+				reporte.setFechareporte(fecha);
+				reporte.setDescripcion(descripcion);
+				reporte.setArgumento(argumentacion);
+				reporte.setEstado(estado);
+				reporte.setLeido(visibilidad);
+				reporteDao.save(reporte);
+				
+				return new ModelAndView("redirect:/consultarReporte");
+			}
+		}
+		
+		return null;
+	}
+	
 }
