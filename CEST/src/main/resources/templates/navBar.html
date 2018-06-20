@@ -49,16 +49,15 @@
         
         <!-- Lista dentr de modal-->
         <dl class="list-goup">
-        	<dt> <a class="list-group-item" href="#">Link 1</a> </li>
-        	<dt> <a class="list-group-item">Link 2</a> </li>
-        	<dt> <a class="list-group-item">Link 3</a> </li>
+        	<dt> <a class="list-group-item" href="#">Link 1</a> </dt>
+        	<dt> <a class="list-group-item">Link 2</a> </dt>
+        	<dt> <a class="list-group-item">Link 3</a> </dt>
         </dl>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -78,7 +77,7 @@
 					$('#reportes').empty();
 					$.each(reportes, 
 						function(i,reporte){
-							$('#reportes').append('<li><a href="/consultarReporte?id='+reporte.id+'">'+reporte.tipoelemento+'</a></li><li class="divider"></li>');
+							$('#reportes').append('<li><a href="/consultarReporte?id='+reporte.id+'">'+reporte.ubicacion+'TIPO:'+reporte.tipoelemento+'</a></li><li class="divider"></li>');
 							if(reporte.notificado == "No"){
 								new PNotify({
 								    title: 'Nuevo Reporte',
