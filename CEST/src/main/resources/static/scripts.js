@@ -47,8 +47,7 @@ function CalcularVencimiento(caducidad){
 function ObtenerEmpresa(){
 	$.post( "/obtenerEmpresa",
 			{numerocontrato: $('#numerocontrato').val()},
-			function( data ) {
-				
+			function( data ) 
 				if(data == ""){
 					var confirmacion = confirm('El contrato No. '+$('#numerocontrato').val()+' no existe.\nDesea registrarlo?');
 					if(confirmacion == true){
