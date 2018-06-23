@@ -18,8 +18,6 @@ public class Contrato {
 
 	@ManyToOne
 	private Empresa empresa;
-	
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private LocalDate fecha;
 	private float valor;
 	private String descripcion;
