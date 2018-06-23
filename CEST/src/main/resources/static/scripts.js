@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+function filtrar(){
+	var sede = document.getElementById('sedeSelected').value;
+	alert('Será redirecionado');
+	location.href='/consulta?tipo=general&sede='+sede+'&bloque&piso';
+}
+=======
+=======
 function BuscarId(id){
 	$.post( "/buscarID",
 			{id: id},
@@ -7,6 +16,7 @@ function BuscarId(id){
 	);
 }
 
+>>>>>>> backup
 function ObtenerBloques(){
 	$.post( "/obtenerBloques",
 			{sede: $('#sede').val()},
@@ -38,6 +48,12 @@ function ObtenerPisos(){
 }
 
 function CalcularVencimiento(caducidad){
+<<<<<<< HEAD
+	var fecharecarga = $('#fechaultimarecarga').val();
+	alert(fecharecarga);
+}
+>>>>>>> backup
+=======
 	var array = $('#fechaultimarecarga').val().split('-');
 	var fechavencimiento = (parseInt(array[0])+parseInt(caducidad))+'-'+array[1]+'-'+array[2]
 	$('#fechavencimiento').val(fechavencimiento);
@@ -63,6 +79,7 @@ function ObtenerEmpresa(){
 			}
 	);
 }
+<<<<<<< HEAD
 
 function ValidarCedula(){
 	$.post( "/buscarEncargado",
@@ -77,3 +94,6 @@ function ValidarCedula(){
 			}
 	);
 }
+=======
+>>>>>>> backup
+>>>>>>> master
