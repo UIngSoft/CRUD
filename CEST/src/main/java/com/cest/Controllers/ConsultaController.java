@@ -18,13 +18,10 @@ import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.PisoDAO;
-import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
 import com.cest.Models.Bloque;
 import com.cest.Models.Contrato;
-import com.cest.Models.Extintor;
 import com.cest.Models.Piso;
-import com.cest.Models.Reporte;
 
 
 
@@ -45,8 +42,6 @@ public class ConsultaController {
 	private PisoDAO pisoDao;
 	@Autowired
 	private ContratoDAO contratoDao;
-	@Autowired
-	private ReporteDAO reporteDao;
 	
 	/*
 	 * Visualiza pagina de consultas

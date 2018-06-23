@@ -40,7 +40,7 @@ public class ReporteController {
 	@GetMapping(value="/registrarReporte")
 	public String getRegistrarReporte(Model modelo) {
 		modelo.addAttribute("sedes", sedeDao.findAll());
-		return "reporte";
+		return "VentanaRegistrarReporte";
 	}
 	
 	
