@@ -44,12 +44,26 @@ function CalcularVencimiento(caducidad){
 	$('#fechavencimiento').text(fechavencimiento);
 }
 
-function ObtenerEmpresa(nit){
+function ObtenerEmpresa(){
 	$.post( "/obtenerEmpresa",
 			{numerocontrato: $('#numerocontrato').val()},
 			function( data ) {
 				$('#empresa').val(data);
 				$('#empresa').text(data);
+			}
+	);
+}
+
+function ValidarCedula(){
+	$.post( "/buscarEncargado",
+			{cedula: $('#cedulaencargado').val()},
+			function( data ) {
+				if ( data == "" ){
+					var confirmacion = confirm('la cedula no esta en el sistema \nDesea registrarla?');
+					if ( confirmacion == true ){
+						location.href = '/registrarEncargado';
+					}
+				}
 			}
 	);
 }

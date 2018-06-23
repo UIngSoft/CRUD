@@ -39,7 +39,7 @@ $.get("/navBar", function(data){
 					
 					<div class="col-md-4">
 						<label>Cédula de encargado</label>
-						<input id="cedulaencargado" name="cedulaencargado" type="text" class="form-control"  required maxlength="10" pattern="\d+" title="lA CÉDULA DEBE SER NUMÉRICA">
+						<input id="cedulaencargado" name="cedulaencargado" type="text" class="form-control"  onblur="ValidarCedula();" required maxlength="10" pattern="\d+" title="lA CÉDULA DEBE SER NUMÉRICA">
 					</div>
 					
 					<div class="col-md-4">
