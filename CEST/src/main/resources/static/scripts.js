@@ -48,6 +48,17 @@ function ObtenerEmpresa(nit){
 	$.post( "/obtenerEmpresa",
 			{numerocontrato: $('#numerocontrato').val()},
 			function( data ) {
+				
+				if(data == ""){
+					var confirmacion = confirm('El contrato No. '+$('#numerocontrato').val()+' no existe.\nDesea registrarlo?');
+					if(confirmacion == true){
+						location.href='/registrarContrato';
+					}else{
+						alert('No registrar');
+					}
+				}else{
+					console.log('Empresa: '+data);
+				}
 				$('#empresa').val(data);
 				$('#empresa').text(data);
 			}
