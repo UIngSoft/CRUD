@@ -85,14 +85,14 @@ public class Contrato {
 	/**
 	 * @return the descripcion
 	 */
-	private String getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 
 	/**
 	 * @param descripcion the descripcion to set
 	 */
-	private void setDescripcion(String descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 }

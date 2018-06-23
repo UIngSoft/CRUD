@@ -21,19 +21,7 @@ import com.cest.Dao.SedeDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.PisoDAO;
-import com.cest.Models.Extintor;
-
-import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.ContratoDAO;
-import com.cest.Dao.ExtintorDAO;
-import com.cest.Dao.PisoDAO;
-<<<<<<< HEAD
-=======
-
-import com.cest.Dao.ReporteDAO;
->>>>>>> master
-import com.cest.Dao.SedeDAO;
-
 import com.cest.Models.Bloque;
 import com.cest.Models.Contrato;
 import com.cest.Models.Piso;
@@ -78,76 +66,13 @@ public class ConsultaController {
 	 * @return
 	 */
 	@GetMapping(value = "/consulta")
-	public String getHome(Model modelo, @RequestParam String tipo, @RequestParam String nombresede, @RequestParam String nombrebloque, @RequestParam String nombrepiso, @RequestParam String idelemento) {
+	public String getHome(Model modelo, @RequestParam String tipo) {
 		if (tipo.equals("general")) {
 			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
-
-			if(idelemento.equals("")) {				
-				modelo.addAttribute("extintores", extintorDao.findAll());			
-			}
-			else if(!idelemento.equals("")) {				
-					List<Extintor> extintores = new ArrayList<>();		
-					for (Extintor extintor: extintorDao.findAll()) {
-						if (extintor.getIdelemento() == Integer.parseInt(idelemento)) {
-							extintores.add(extintor);
-						}
-					}
-					modelo.addAttribute("extintores", extintores);			
-			}
-			if(idelemento.equals("")) {				
-				modelo.addAttribute("extintores", extintorDao.findAll());			
-			
-			}
-			if(!idelemento.equals("")) {				
-					List<Extintor> extintores = new ArrayList<>();		
-					for (Extintor extintor: extintorDao.findAll()) {
-						if (extintor.getIdelemento() == Integer.parseInt(idelemento)) {
-							extintores.add(extintor);
-						}
-					}
-					modelo.addAttribute("extintores", extintores);			
-				
-			}
-				
-			if(nombrepiso.equals("")) {
-				modelo.addAttribute("extintores", extintorDao.findAll());
-				modelo.addAttribute("sedes", sedeDao.findAll());
-				List<Bloque> bloques = new ArrayList<>();
-				List<Piso> pisos = new ArrayList<>();
-				if(!nombresede.equals("")) {
-					for (Bloque bloque: bloqueDao.findAll()) {
-						if (bloque.getSede().getNombre().equals(nombresede)) {
-							bloques.add(bloque);
-							
-						}
-					}
-					modelo.addAttribute("bloques", bloques);
-				}
-				if(!nombrebloque.equals("")) {
-					for (Piso piso: pisoDao.findAll()) {
-						if (piso.getBloque().getNombre().equals(nombrebloque)) {
-							pisos.add(piso);
-						}
-					}
-					modelo.addAttribute("pisos", pisos);
-				}
-			}else {
-				List<Extintor> Extintores = new ArrayList<>();
-				for (Extintor extintor: extintorDao.findAll()) {
-					if (extintor.getElemento().getPiso().equals(nombrepiso)) {
-						Extintores.add(extintor);
-					}
-				}
-				modelo.addAttribute("extintores", Extintores);
-				modelo.addAttribute("sedes", sedeDao.findAll());
-			}
-			
-
 			modelo.addAttribute("extintores", extintorDao.findAll());
 			modelo.addAttribute("sedes", sedeDao.findAll());
-
 			return "consultaExtintor";
 		}else if (tipo.equals("botiquin")) {
 			return "consultaBotiquin";

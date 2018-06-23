@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
+import com.cest.Models.Extintor;
 import com.cest.Models.Reporte;
 
 
@@ -45,8 +46,6 @@ public class ReporteController {
 		modelo.addAttribute("sedes", sedeDao.findAll());
 		return "VentanaRegistrarReporte";
 	}
-	
-	
 	
 	/**
 	 * este metodo es el encargado de tomar los datos ingresados de un nuevo 
@@ -125,32 +124,21 @@ public class ReporteController {
 	 * @return
 	 */
 	@GetMapping(value = "/consultarReporte")
-	public List<Reporte> getConsultarReporte() {
-		List<Reporte> reportes = new LinkedList<>();
-		for (Reporte reporte : reporteDao.findAll()) {
-			reportes.add(reporte);
+	public String getConsultarReporte(Model modelo, @RequestParam String id) {
+		if (Integer.valueOf(id) == -1) {
+			modelo.addAttribute("reportes", reporteDao.findAll());
+		}else {
+			List<Reporte> reportes = new LinkedList<>();
+			for (Reporte reporte : reporteDao.findAll()) {
+				if (reporte.getId() == Integer.valueOf(id)) {
+					reportes.add(reporte);
+				}
+			}
+			modelo.addAttribute("reportes", reportes);
 		}
-		return reportes;
+		return "consultarReporte";
 	}
-	
-	
-<<<<<<< HEAD
-	/**
-	 * 
-	 * @param id
-	 */
-	@PostMapping(value = "/modificarReporte")
-	public void postModificarReporte(@RequestParam int id) {
-		
-	}
-	
-	
-	/**
-	 * 
-	 * @return
-	 */
-=======
->>>>>>> master
+
 	@GetMapping(value = "/modificarReporte")
 	public Reporte getModificarReporte(@RequestParam int id) {
 		for (Reporte reporte : reporteDao.findAll()) {

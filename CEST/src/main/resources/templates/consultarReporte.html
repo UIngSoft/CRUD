@@ -25,30 +25,32 @@
 
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-			<h1 align="center">Consultar Reporte</h1>
+		<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color: white">Consultar Reporte</h1>
 		</div>
 
 		<div class="col-md-1"></div>
+		
+		<div class="form-group">
+    		<table id="registros" class="table table-bordered table-striped">
+    			<tr>
+	    			<td><label>Elemento</label></td>
+					<td><label>Fecha</label></td>
+					<td><label>Ubicación</label></td>
+					<td><label>Descripción</label></td>
+					<td><label>Estado</label></td>
+				</tr>
+				<th:block th:each="reporte:${reportes}">
+					<tr>
+				        <td th:text="${reporte.tipoelemento}"><label>Elemento</label></td>
+				        <td th:text="${reporte.fechareporte}"><label>Fecha</label></td>
+						<td th:text="${reporte.ubicacion}"><label>Ubicación</label></td>
+						<td th:text="${reporte.descripcion}"><label>Descripción</label></td>
+						<td th:text="${reporte.estado}"><label>Estado</label></td>
+					</tr>
+				</th:block>
+		    </table>
+    	</div>
 	 </div>
-	 <br>
-
-	</div>
-	<div class="container">
-		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
-    			<div class="form-group">
-    				<table id="registros" class="table table-bordered table-striped">
-    					<tr>
-	    					<td><label>Elemento</label></td>
-							<td><label>Fecha</label></td>
-							<td><label>Ubicacion</label></td>
-							<td><label>Estado</label></td>
-							<td><label>Visibilidad</label></td>
-						</tr>
-
-			        </table>
-    			</div>
-    			<div class="col-md-5"></div>
-	</div>
 </body>
 </html>
