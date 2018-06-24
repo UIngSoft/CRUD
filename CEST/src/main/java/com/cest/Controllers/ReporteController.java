@@ -134,23 +134,7 @@ public class ReporteController {
 	}
 	
 	
-<<<<<<< HEAD
-	/**
-	 * 
-	 * @param id
-	 */
-	@PostMapping(value = "/modificarReporte")
-	public void postModificarReporte(@RequestParam int id) {
-		
-	}
-	
-	
-	/**
-	 * 
-	 * @return
-	 */
-=======
->>>>>>> master
+
 	@GetMapping(value = "/modificarReporte")
 	public Reporte getModificarReporte(@RequestParam int id) {
 		for (Reporte reporte : reporteDao.findAll()) {
