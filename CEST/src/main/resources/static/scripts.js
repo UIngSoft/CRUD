@@ -75,7 +75,7 @@ function ValidarCedula(){
 			{cedula: $('#cedulaencargado').val()},
 			function( data ) {
 				if ( data == "" ){
-					var confirmacion = confirm('la cedula no esta en el sistema \nDesea registrarla?');
+					var confirmacion = confirm('la cedula no esta registrada en el sistema \nDesea registrarla?');
 					if ( confirmacion == true ){
 						location.href = '/registrarEncargado';
 					}
