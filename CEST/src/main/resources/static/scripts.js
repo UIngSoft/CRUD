@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 function filtrar(){
 	var sede = document.getElementById('sedeSelected').value;
 	alert('Será redirecionado');
 	location.href='/consulta?tipo=general&sede='+sede+'&bloque&piso';
 }
-=======
-=======
+
 function BuscarId(id){
 	$.post( "/buscarID",
 			{id: id},
@@ -16,7 +13,6 @@ function BuscarId(id){
 	);
 }
 
->>>>>>> backup
 function ObtenerBloques(){
 	$.post( "/obtenerBloques",
 			{sede: $('#sede').val()},
@@ -48,12 +44,6 @@ function ObtenerPisos(){
 }
 
 function CalcularVencimiento(caducidad){
-<<<<<<< HEAD
-	var fecharecarga = $('#fechaultimarecarga').val();
-	alert(fecharecarga);
-}
->>>>>>> backup
-=======
 	var array = $('#fechaultimarecarga').val().split('-');
 	var fechavencimiento = (parseInt(array[0])+parseInt(caducidad))+'-'+array[1]+'-'+array[2]
 	$('#fechavencimiento').val(fechavencimiento);
@@ -79,14 +69,13 @@ function ObtenerEmpresa(){
 			}
 	);
 }
-<<<<<<< HEAD
 
 function ValidarCedula(){
 	$.post( "/buscarEncargado",
 			{cedula: $('#cedulaencargado').val()},
 			function( data ) {
 				if ( data == "" ){
-					var confirmacion = confirm('la cedula no esta registrada en el sistema \nDesea registrarla?');
+					var confirmacion = confirm('la cedula no esta en el sistema \nDesea registrarla?');
 					if ( confirmacion == true ){
 						location.href = '/registrarEncargado';
 					}
@@ -94,6 +83,3 @@ function ValidarCedula(){
 			}
 	);
 }
-=======
->>>>>>> backup
->>>>>>> master

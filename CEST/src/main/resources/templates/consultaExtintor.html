@@ -25,16 +25,6 @@
 </script> 
 
 <title>CEST - Extintores</title>
-<script type="text/javascript">
-	function filtrar(){
-		var sede = document.getElementById('sedeSelected').value;
-		var bloque = document.getElementById('bloqueSelected').value;
-		var piso = document.getElementById('pisoSelected').value;
-		var idelemento = document.getElementById('idelemento').value;
-		location.href='/consulta?tipo=extintor&nombresede='+sede+'&nombrebloque='+bloque+'&nombrepiso='+piso+'&idelemento='+idelemento;
-	}
-	
-</script>
 </head>
 <nav id="menu"></nav>
 <script>
@@ -105,7 +95,7 @@ $.get("/navBar", function(data){
     					<th:block th:each="extintor:${extintores}">
 						      <tr>
 						         <td th:text="${extintor.idelemento}"><label>Identificador</label></td>
-						         <td th:text="${extintor.fichatecnica}"><label>Tipo</label></td>
+						         <td th:text="${extintor.fichatecnica.tipo}"><label>Tipo</label></td>
 						         <td th:text="${extintor.tamanio}"><label>Tamaño</label></td>
 						         <td th:text="${extintor.fechaultimarecarga}"><label>Fecha de recarga</label></td>
 						         <td th:text="${extintor.fechavencimiento}"><label>Fecha de vencimiento</label></td>
