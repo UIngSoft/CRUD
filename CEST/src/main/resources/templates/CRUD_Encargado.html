@@ -31,7 +31,7 @@
 					<div class="col-md-4">
 						<div class="row">
 								<label>Cédula</label>
-								<input id="cedula" name="cedula" class="form-control"/>
+								<input id="cedula" name="cedula" class="form-control" required maxlength="10" minlength="8"  title="Solo Número"/>
 						</div>
 					</div>
 
@@ -41,7 +41,7 @@
 					<div class="col-md-4">
 						<div class="row">
 							<label>Nombre</label>
-							<input id="nombre" name="nombre" class="form-control"/>
+							<input id="nombre" name="nombre" class="form-control"/ required pattern="[A-Za-z]*" title="Solo Letras">
 						</div>
 					</div>
 				</div>
