@@ -136,15 +136,10 @@ public class ReporteController {
 			}
 			modelo.addAttribute("reportes", reportes);
 		}
-<<<<<<< HEAD
-		return reportes;
-	}
-	
-	
-=======
+
 		return "consultarReporte";
 	}
->>>>>>> 7ea8892f4f1c99ad3c3942ab046a9ea118e8b7de
+
 
 	@GetMapping(value = "/modificarReporte")
 	public Reporte getModificarReporte(@RequestParam int id) {
