@@ -1,6 +1,7 @@
 package com.cest.Controllers;
 
 import java.time.LocalDate;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -20,6 +21,12 @@ import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
 import com.cest.Models.Reporte;
 
+/*
+ * @author Lorenzo Zuluaga Urrea
+ * @version 07/22/2018
+ */
+
+
 @Controller
 @RequestMapping
 public class ReporteController {
@@ -28,8 +35,6 @@ public class ReporteController {
 	
 	@Autowired
 	private ReporteDAO reporteDao;
-	
-	
 	
 	
 	@GetMapping(value="/registrarReporte")
@@ -86,42 +91,49 @@ public class ReporteController {
 	}
 
 	@GetMapping(value = "/consultarReporte")
-	public List<Reporte> getConsultarReporte() {
+	public List<Reporte> getConsultarReporte(Model modelo, @RequestParam String estado) {
 		List<Reporte> reportes = new LinkedList<>();
-		for (Reporte reporte : reporteDao.findAll()) {
-			reportes.add(reporte);
+		if(estado.equals("")) {
+			modelo.addAttribute("reportes", reporteDao.findAll());
+		}else{
+			for (Reporte reporte : reporteDao.findAll()) {
+				if (reporte.getEstado().equals(estado)) {
+					reportes.add(reporte);
+				}
+			}
+			modelo.addAttribute("reportes", reportes);
 		}
+		
 		return reportes;
 	}
-	
 	
 	@GetMapping(value = "/modificarReporte")
 	public Reporte getModificarReporte(@RequestParam int id) {
 		for (Reporte reporte : reporteDao.findAll()) {
 			if (reporte.getId() == id) {
+				reporte.setLeido("Si");
+				
+				reporteDao.save(reporte);
 				return reporte;
 			}
 		}
 		return null;
-		
 	}
+	
+	
 	@PostMapping(value = "/modificarReporte")
+	@ResponseBody
 	public ModelAndView postModificarReporte(@RequestParam("id") int id,
-			@RequestParam("fecha") LocalDate  fecha,
 			@RequestParam("descripcion") String descripcion,
-			@RequestParam("argumentacion") String argumentacion,
-			@RequestParam("estado") String estado,
-			@RequestParam("visibilidad") String visibilidad
+			@RequestParam("argumentacion") String argumentacion
 			) {
 		
 		for (Reporte reporte1 : reporteDao.findAll()) {
 			if (reporte1.getId() == id) {
 				Reporte reporte = reporte1;
-				reporte.setFechareporte(fecha);
+				reporte.setEstado("Revisado");
 				reporte.setDescripcion(descripcion);
 				reporte.setArgumento(argumentacion);
-				reporte.setEstado(estado);
-				reporte.setLeido(visibilidad);
 				reporteDao.save(reporte);
 				
 				return new ModelAndView("redirect:/consultarReporte");
