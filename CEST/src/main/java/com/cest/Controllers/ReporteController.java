@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.ReporteDAO;
 import com.cest.Dao.SedeDAO;
-import com.cest.Models.Extintor;
 import com.cest.Models.Reporte;
 
 
@@ -136,10 +135,15 @@ public class ReporteController {
 			}
 			modelo.addAttribute("reportes", reportes);
 		}
+<<<<<<< HEAD
 
 		return "consultarReporte";
 	}
 
+=======
+		return "consultarReporte";
+	}
+>>>>>>> 0814d0fd73f561389d7f433dad94d11041120c4d
 
 	@GetMapping(value = "/modificarReporte")
 	public Reporte getModificarReporte(@RequestParam int id) {
