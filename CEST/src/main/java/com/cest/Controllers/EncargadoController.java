@@ -13,6 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cest.Dao.EncargadoDAO;
 import com.cest.Models.Encargado;
 
+
+/**
+ * este clase permite regstrar y buscar los encargado
+ * @author PABLO
+ *
+ */
 @Controller
 @RequestMapping
 public class EncargadoController {
