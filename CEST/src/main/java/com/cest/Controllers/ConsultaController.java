@@ -21,20 +21,7 @@ import com.cest.Dao.SedeDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.PisoDAO;
-<<<<<<< HEAD
-
-
-import com.cest.Models.Extintor;
 import com.cest.Dao.ContratoDAO;
-import com.cest.Dao.ReporteDAO;
-
-
-
-import com.cest.Dao.ContratoDAO;
-
-=======
-import com.cest.Dao.ContratoDAO;
->>>>>>> 7396cbf6999c062806c6b030b7f4addfb49cf69d
 import com.cest.Models.Bloque;
 import com.cest.Models.Contrato;
 import com.cest.Models.Piso;
