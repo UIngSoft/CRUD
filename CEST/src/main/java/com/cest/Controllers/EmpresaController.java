@@ -1,8 +1,5 @@
 package com.cest.Controllers;
 
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,10 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.EmpresaDAO;
-import com.cest.Dao.ReporteDAO;
-import com.cest.Dao.SedeDAO;
 import com.cest.Models.Empresa;
-import com.cest.Models.Reporte;
 
 @Controller
 @RequestMapping
@@ -32,13 +26,13 @@ public class EmpresaController {
 
 	
 	
-	@GetMapping(value = "/crearEmpresa")
+	@GetMapping(value = "/registrarEmpresa")
 	public List<Empresa> getRegistrarEmpresas(Model modelo) {
 		List<Empresa> empresas = new LinkedList<>();
 		modelo.addAttribute("empresas", empresaDao.findAll());
 		return empresas;
 	}
-	@GetMapping(value = "/crudEmpresa")
+	@GetMapping(value = "/consultarEmpresa")
 	public List<Empresa> getConsultarEmpresas(Model modelo) {
 		List<Empresa> empresas = new LinkedList<>();
 		modelo.addAttribute("empresas", empresaDao.findAll());

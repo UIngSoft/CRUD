@@ -25,10 +25,18 @@
 
 </head>
 
+<nav id="menu"></nav>
+
+<script>
+$.get("/navBar", function(data){
+    $("#menu").replaceWith(data);
+});
+</script>
+
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-			<h1 align="center">Modificar Reporte</h1>
+		<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color:white">Modificar Reporte</h1>
 		</div>
 		<div class="col-md-1"></div>
 	 </div>

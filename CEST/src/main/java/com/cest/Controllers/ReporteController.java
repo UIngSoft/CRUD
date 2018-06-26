@@ -126,9 +126,8 @@ public class ReporteController {
 	 * 
 	 * @return
 	 */
-	@GetMapping(value = "/consultarReporte")
-
-	public String getConsultarReporte(Model modelo, @RequestParam String id) {
+	@GetMapping(value = "/consultarReporteId")
+	public String getConsultarReporteId(Model modelo, @RequestParam String id) {
 		if (Integer.valueOf(id) == -1) {
 			modelo.addAttribute("reportes", reporteDao.findAll());
 		}else {
@@ -141,8 +140,25 @@ public class ReporteController {
 			}
 			modelo.addAttribute("reportes", reportes);
 		}
-		return "consultarReporteL";
+		return "consultarReporte";
 	}
+	
+	@GetMapping(value = "/consultarReporteEstado")
+	public String getConsultarReporteEstado(Model modelo, @RequestParam String estado) {
+		List<Reporte> reportes = new LinkedList<>();
+		if(estado.equals("")) {
+			modelo.addAttribute("reportes", reporteDao.findAll());
+		}else{
+			for (Reporte reporte : reporteDao.findAll()) {
+				if (reporte.getEstado().equals(estado)) {
+					reportes.add(reporte);
+				}
+			}
+			modelo.addAttribute("reportes", reportes);
+		}
+		return "consultarReporte";
+	}
+	
 
 	@GetMapping(value = "/modificarReporte")
 	public Reporte getModificarReporte(@RequestParam int id) {
