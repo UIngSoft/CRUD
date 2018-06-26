@@ -1,6 +1,7 @@
 package com.cest.Controllers;
 
 import java.time.LocalDate;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -28,6 +29,11 @@ import com.cest.Models.Reporte;
  * @author IngSostII
  *
  */
+
+/*
+ * @author Lorenzo Zuluaga Urrea
+ * @version 07/22/2018
+ */
 @Controller
 @RequestMapping
 public class ReporteController {
@@ -36,8 +42,6 @@ public class ReporteController {
 	
 	@Autowired
 	private ReporteDAO reporteDao;
-	
-	
 	
 	
 	@GetMapping(value="/registrarReporte")
@@ -123,6 +127,7 @@ public class ReporteController {
 	 * @return
 	 */
 	@GetMapping(value = "/consultarReporte")
+
 	public String getConsultarReporte(Model modelo, @RequestParam String id) {
 		if (Integer.valueOf(id) == -1) {
 			modelo.addAttribute("reportes", reporteDao.findAll());
@@ -130,41 +135,42 @@ public class ReporteController {
 			List<Reporte> reportes = new LinkedList<>();
 			for (Reporte reporte : reporteDao.findAll()) {
 				if (reporte.getId() == Integer.valueOf(id)) {
+
 					reportes.add(reporte);
 				}
 			}
 			modelo.addAttribute("reportes", reportes);
 		}
-		return "consultarReporte";
+		return "consultarReporteL";
 	}
 
 	@GetMapping(value = "/modificarReporte")
 	public Reporte getModificarReporte(@RequestParam int id) {
 		for (Reporte reporte : reporteDao.findAll()) {
 			if (reporte.getId() == id) {
+				reporte.setLeido("Si");
+				
+				reporteDao.save(reporte);
 				return reporte;
 			}
 		}
 		return null;
-		
 	}
+	
+	
 	@PostMapping(value = "/modificarReporte")
+	@ResponseBody
 	public ModelAndView postModificarReporte(@RequestParam("id") int id,
-			@RequestParam("fecha") LocalDate  fecha,
 			@RequestParam("descripcion") String descripcion,
-			@RequestParam("argumentacion") String argumentacion,
-			@RequestParam("estado") String estado,
-			@RequestParam("visibilidad") String visibilidad
+			@RequestParam("argumentacion") String argumentacion
 			) {
 		
 		for (Reporte reporte1 : reporteDao.findAll()) {
 			if (reporte1.getId() == id) {
 				Reporte reporte = reporte1;
-				reporte.setFechareporte(fecha);
+				reporte.setEstado("Revisado");
 				reporte.setDescripcion(descripcion);
 				reporte.setArgumento(argumentacion);
-				reporte.setEstado(estado);
-				reporte.setLeido(visibilidad);
 				reporteDao.save(reporte);
 				
 				return new ModelAndView("redirect:/consultarReporte");
