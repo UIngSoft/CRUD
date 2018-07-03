@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.EmpresaDAO;
+import com.cest.Models.Contrato;
 import com.cest.Models.Empresa;
 
 @Controller
@@ -24,7 +26,8 @@ public class EmpresaController {
 	@Autowired
 	private EmpresaDAO empresaDao;
 
-	
+	@Autowired
+	private ContratoDAO contratoDao;
 	
 	@GetMapping(value = "/registrarEmpresa")
 	public List<Empresa> getRegistrarEmpresas(Model modelo) {
@@ -106,7 +109,17 @@ public class EmpresaController {
 		return null;
 	}
 	 
-
+	@PostMapping(value = "/obtenerEmpresa")
+	@ResponseBody
+	public String getEmpresa(@RequestParam String numerocontrato) {
+		String nombreempresa = null;
+		for (Contrato contrato : contratoDao.findAll()) {
+			if (contrato.getNumero() == Integer.valueOf(numerocontrato)) {
+				nombreempresa = contrato.getEmpresa().getNombre();
+			}
+		}
+		return nombreempresa;
+	}
 	
 
 	
