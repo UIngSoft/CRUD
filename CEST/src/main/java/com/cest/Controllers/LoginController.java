@@ -42,12 +42,17 @@ public class LoginController {
 	@PostMapping(value = "/iniciarSesion")
 	public ModelAndView POST(Model modelo, @ModelAttribute Usuario usuario) {
 		ModelAndView modelandview = null;
+		Usuario userLogin = null;
 		for (Usuario user : usuarioDao.findAll()) {
 			if (usuario.getUsuario().equals(user.getUsuario()) && usuario.getContrasena().equals(user.getContrasena())) {
-				modelandview = new ModelAndView("redirect:/home");
-			}else {
-				modelandview = new ModelAndView("redirect:/iniciarSesion");
+				userLogin = user;
+				break;
 			}
+		}
+		if(userLogin != null) {
+			modelandview = new ModelAndView("redirect:/home");
+		}else {
+			modelandview = new ModelAndView("redirect:/iniciarSesion");
 		}
 		return modelandview; 
 	}

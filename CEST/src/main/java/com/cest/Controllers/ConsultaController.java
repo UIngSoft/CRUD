@@ -21,13 +21,15 @@ import com.cest.Dao.SedeDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.PisoDAO;
+<<<<<<< HEAD
 
 import com.cest.Dao.ContratoDAO;
 
 
 
+=======
+>>>>>>> 5f342568f5a95c4a763fd7141c2900bff24c9cce
 import com.cest.Models.Bloque;
-import com.cest.Models.Contrato;
 import com.cest.Models.Piso;
 
 /**
@@ -52,11 +54,6 @@ public class ConsultaController {
 	private BloqueDAO bloqueDao;
 	@Autowired
 	private PisoDAO pisoDao;
-	@Autowired
-	private ContratoDAO contratoDao;
-	
-	
-
 	
 	/**
 	 * Recibe la vista y los atributos requeridos para las busquedas(ubicacion, id)
@@ -70,9 +67,8 @@ public class ConsultaController {
 	 * @return
 	 */
 	@GetMapping(value = "/consulta")
-	public String getHome(Model modelo, @RequestParam String tipo) {
+	public String getConsulta(Model modelo, @RequestParam String tipo) {
 		if (tipo.equals("general")) {
-			modelo.addAttribute("elementos", extintorDao.findAll());
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
 			modelo.addAttribute("extintores", extintorDao.findAll());
@@ -111,18 +107,5 @@ public class ConsultaController {
 		}
 		return misPisos;
 	}
-
-	@PostMapping(value = "/obtenerEmpresa")
-	@ResponseBody
-	public String getEmpresa(@RequestParam String numerocontrato) {
-		String nombreempresa = null;
-		for (Contrato contrato : contratoDao.findAll()) {
-			if (contrato.getNumero() == Integer.valueOf(numerocontrato)) {
-				nombreempresa = contrato.getEmpresa().getNombre();
-			}
-		}
-		return nombreempresa;
-	}
-	
 
 }

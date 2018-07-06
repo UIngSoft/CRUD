@@ -1,6 +1,5 @@
 package com.cest.Controllers;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.time.LocalDate;
 
@@ -14,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.ContratoDAO;
 import com.cest.Models.Contrato;
-import com.cest.Models.Empresa;
-import com.cest.Models.Fichatecnica;
 
 @Controller
 @RequestMapping

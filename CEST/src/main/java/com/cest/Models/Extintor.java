@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Extintor{
-	/*Foreign Key*/
+	/*Primery Key*/
 	@Id
 	private int idelemento;
 	

@@ -67,7 +67,7 @@
 					$('#reportes').empty();
 					$.each(reportes, 
 						function(i,reporte){
-							$('#reportes').append('<li><a href="/consultarReporte?id='+reporte.id+'">'+reporte.ubicacion+' TIPO:'+reporte.tipoelemento+'</a></li><li class="divider"></li>');
+							$('#reportes').append('<li><a href="/consultarReporteId?id='+reporte.id+'">'+reporte.ubicacion+' TIPO:'+reporte.tipoelemento+'</a></li><li class="divider"></li>');
 							if(reporte.notificado == "No"){
 								new PNotify({
 								    title: 'Nuevo Reporte',
@@ -83,7 +83,7 @@
 							}
 						}
 					);
-					$('#reportes').append('<li><a href="/consultarReporte?id=-1">Todos</a></li>');
+					$('#reportes').append('<li><a href="/consultarReporteId?id=-1">Todos</a></li>');
 				}
 		);
 	};	

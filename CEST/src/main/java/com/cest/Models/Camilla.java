@@ -1,7 +1,5 @@
 package com.cest.Models;
 
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -11,17 +9,26 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Camilla{
-	/*Foreign Key*/
+	/*Primary Key*/
 	@Id
 	private int idelemento;
 	
 	@ManyToOne
 	private Elemento elemento;
 	
-	private LocalDate tiemposervicio;
-	private int resistencia;
-	private String color;
-	private float ancho;
-	private float largo;
-	private String material;
+	private String tipocamilla;
+
+	/**
+	 * @return the tipocamilla
+	 */
+	public String getTipocamilla() {
+		return tipocamilla;
+	}
+
+	/**
+	 * @param tipocamilla the tipocamilla to set
+	 */
+	public void setTipocamilla(String tipocamilla) {
+		this.tipocamilla = tipocamilla;
+	}
 }
