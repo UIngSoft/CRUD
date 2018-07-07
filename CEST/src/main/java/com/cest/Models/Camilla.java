@@ -18,6 +18,14 @@ public class Camilla{
 	private int encargado;
 	private String tipocamilla;
 
+	
+	/**
+	 * @return the tipocamilla
+	 */
+	public int getIdElemento() {
+		return idelemento;
+	}
+	
 	/**
 	 * @return the tipocamilla
 	 */
