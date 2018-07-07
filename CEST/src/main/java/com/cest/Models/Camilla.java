@@ -39,9 +39,10 @@ public class Camilla{
 	public void setTipocamilla(String tipocamilla) {
 		this.tipocamilla = tipocamilla;
 	}
-	
-	/*	
-	 * @return encargado
+		
+	/**	
+	 * 
+	 * @return retorna la cedula del encargado
 	 */
 	public int getEncargado() {
 		return encargado;
