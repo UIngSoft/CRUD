@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Latest compiled and minified JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="scripts.js"></script>
+
+<script>
+	function obtenerId(){
+		var nit = document.getElementById('nit').value;
+		
+	}
+</script>
+
+<title>CEST - Camillas</title>
+
+</head>
+
+<body>
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron">
+			<h1 align="center">Modificar Camilla</h1>
+		</div>
+		<div class="col-md-1"></div>
+	 </div>
+	 <br>
+
+	</div>
+	<div class="container" style="text-align:center;">
+		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
+				<form action="/modificarEmpresa" th:object="${empresa}" method="post">
+				  	<div>
+    					<div>
+    						Codigo: <input type="text" id="codigo" name="codigo" required th:value="${camilla.codigo} "/>
+    					</div>
+
+    					<div>
+    						Tipo: <input type="text" id="tipo" name="tipo" required th:value="${camilla.tipo}"/>
+    					</div>
+    					<div>
+    						Encargado: <input type="text" id="encargado" name="encargado" required th:value="${camilla.encargado}"/>
+    					</div>
+    					<div>
+    						Ubicacion: <input type="text" id="ubicacion" name="ubicacion" required th:value="${camilla.ubicacion}"/>
+    					</div>
+   					</div>
+   					<div></div>
+   					<a href='/consultarCamilla'> <span class="glyphicon glyphicon-arrow-left btn btn-danger"> </span></a>
+				 	 <input class="btn btn-lg btn-primary"  type="submit" value="Modificar">
+				 	 
+				</form> 
+				  
+	    		<div class="col-md-5"></div>
+	</div>
+</body>
+</html>
