@@ -50,7 +50,7 @@ public class Camilla{
 	/**
 	 * @param encargado the encargado to set
 	 */
-	public void setTipocamilla(int encargado) {
+	public void setEncargado(int encargado) {
 		this.encargado = encargado;
 	}
 	
