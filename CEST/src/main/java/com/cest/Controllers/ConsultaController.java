@@ -1,5 +1,6 @@
 package com.cest.Controllers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.Collections;
@@ -21,15 +22,8 @@ import com.cest.Dao.SedeDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.PisoDAO;
-<<<<<<< HEAD
-
-import com.cest.Dao.ContratoDAO;
-
-
-
-=======
->>>>>>> 5f342568f5a95c4a763fd7141c2900bff24c9cce
 import com.cest.Models.Bloque;
+import com.cest.Models.Extintor;
 import com.cest.Models.Piso;
 
 /**
@@ -38,6 +32,31 @@ import com.cest.Models.Piso;
  * @author Santiago granada aguirre
  *
  */
+
+
+final class Element{
+	String tipoelemento;
+	int id;
+	String ubicacion;
+	String tipo;
+	String fechavencimiento;
+	
+	public Element(String tipoelemento, int id, String ubicacion, String tipo, String fechavencimiento) {
+		super();
+		this.tipoelemento = tipoelemento;
+		this.id = id;
+		this.ubicacion = ubicacion;
+		this.tipo = tipo;
+		this.fechavencimiento = fechavencimiento;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Element [tipoelemento="+tipoelemento+", id="+id+", ubicacion="+ubicacion+", tipo="+tipo+", fechavencimiento="+fechavencimiento+"]";
+	}
+}
+
 
 /*
  * Controlador para el index
@@ -69,6 +88,22 @@ public class ConsultaController {
 	@GetMapping(value = "/consulta")
 	public String getConsulta(Model modelo, @RequestParam String tipo) {
 		if (tipo.equals("general")) {
+			List<Element> elementos = new LinkedList<>();
+			String tipoelemento;
+			int id;
+			String ubicacion;
+			String tipoo;
+			String fechavencimiento;
+			for (Extintor extintor : extintorDao.findAll()) {
+				tipoelemento = "Extintor";
+				id = extintor.getIdelemento();
+				ubicacion = extintor.getElemento().getPiso().getBloque().getSede().getNombre()
+						+"->"+extintor.getElemento().getPiso().getPisoPk().getLetrabloque()
+						+"->"+extintor.getElemento().getPiso().getPisoPk().getNumero();
+				tipoo = extintor.getFichatecnica().getTipo();
+				fechavencimiento = ""+extintor.getFechavencimiento();
+				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+			}
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
 			modelo.addAttribute("extintores", extintorDao.findAll());
