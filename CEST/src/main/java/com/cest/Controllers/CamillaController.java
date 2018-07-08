@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.CamillaDAO;
@@ -48,25 +47,21 @@ public class CamillaController {
 	 * @return
 	 */
 	@PostMapping(value = "/modificarCamilla")
-	@ResponseBody
 	public ModelAndView postModificarCamilla(@RequestParam("idelemento") int idelemento,
 			@RequestParam("tipocamilla") String tipocamilla,
 			@RequestParam("encargado") int encargado,
 			@RequestParam("ubicacion") String ubicacion
 			) {
 		
-		for (Camilla camilla1 : camillaDao.findAll()) {
-			if (camilla1.getIdElemento() == idelemento) {
-				Camilla camilla = camilla1;
+		for (Camilla camilla : camillaDao.findAll()) {
+			if (camilla.getIdElemento() == idelemento) {
 				camilla.setEncargado(encargado);
 				camilla.setTipocamilla(tipocamilla);
 				camillaDao.save(camilla);
-				
-				return new ModelAndView("redirect:/consulta?tipo=camilla");
+				break;				
 			}
 		}
-		
-		return null;
+		return new ModelAndView("redirect:/consulta?tipo=camilla");
 	}
 
 }

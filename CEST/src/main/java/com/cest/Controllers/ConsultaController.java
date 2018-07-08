@@ -1,6 +1,5 @@
 package com.cest.Controllers;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.Collections;
@@ -21,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cest.Dao.SedeDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
+import com.cest.Dao.CamillaDAO;
 import com.cest.Dao.PisoDAO;
 import com.cest.Models.Bloque;
+import com.cest.Models.Camilla;
 import com.cest.Models.Extintor;
 import com.cest.Models.Piso;
 
@@ -35,25 +36,59 @@ import com.cest.Models.Piso;
 
 
 final class Element{
-	String tipoelemento;
-	int id;
-	String ubicacion;
-	String tipo;
-	String fechavencimiento;
+	private String tipoelemento;
+	private int id;
+	private String ubicacion;
+	private String tipo;
+	private String fechavencimiento;
 	
 	public Element(String tipoelemento, int id, String ubicacion, String tipo, String fechavencimiento) {
 		super();
-		this.tipoelemento = tipoelemento;
-		this.id = id;
-		this.ubicacion = ubicacion;
-		this.tipo = tipo;
-		this.fechavencimiento = fechavencimiento;
+		this.setTipoelemento(tipoelemento);
+		this.setId(id);
+		this.setUbicacion(ubicacion);
+		this.setTipo(tipo);
+		this.setFechavencimiento(fechavencimiento);
 	}
 	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Element [tipoelemento="+tipoelemento+", id="+id+", ubicacion="+ubicacion+", tipo="+tipo+", fechavencimiento="+fechavencimiento+"]";
+	public String getTipoelemento() {
+		return tipoelemento;
+	}
+
+	public void setTipoelemento(String tipoelemento) {
+		this.tipoelemento = tipoelemento;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getFechavencimiento() {
+		return fechavencimiento;
+	}
+
+	public void setFechavencimiento(String fechavencimiento) {
+		this.fechavencimiento = fechavencimiento;
 	}
 }
 
@@ -67,6 +102,8 @@ public class ConsultaController {
 
 	@Autowired
 	private ExtintorDAO extintorDao;
+	@Autowired
+	private CamillaDAO camillaDao;
 	@Autowired
 	private SedeDAO sedeDao;
 	@Autowired
@@ -104,6 +141,17 @@ public class ConsultaController {
 				fechavencimiento = ""+extintor.getFechavencimiento();
 				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
 			}
+			for (Camilla camilla : camillaDao.findAll()) {
+				tipoelemento = "Camilla";
+				id = camilla.getIdElemento();
+				ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
+						+"->"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
+						+"->"+camilla.getElemento().getPiso().getPisoPk().getNumero();
+				tipoo = camilla.getTipocamilla();
+				fechavencimiento = "No aplica";
+				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+			}
+			modelo.addAttribute("elementos", elementos);
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
 			modelo.addAttribute("extintores", extintorDao.findAll());

@@ -15,8 +15,8 @@ public class Camilla{
 	
 	@ManyToOne
 	private Elemento elemento;
-	private int encargado;
 	private String tipocamilla;
+	private int encargado;
 
 	
 	/**
@@ -39,18 +39,19 @@ public class Camilla{
 	public void setTipocamilla(String tipocamilla) {
 		this.tipocamilla = tipocamilla;
 	}
-		
-	/**	
-	 * 
-	 * @return retorna la cedula del encargado
-	 */
+
+	public Elemento getElemento() {
+		return elemento;
+	}
+
+	public void setElemento(Elemento elemento) {
+		this.elemento = elemento;
+	}
+
 	public int getEncargado() {
 		return encargado;
 	}
-	
-	/**
-	 * @param encargado the encargado to set
-	 */
+
 	public void setEncargado(int encargado) {
 		this.encargado = encargado;
 	}

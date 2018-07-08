@@ -53,7 +53,6 @@ public class BloquePK implements Serializable, Cloneable{
 	public boolean equals(Object obj) {
         if(obj == this) return true;
         if(!(obj instanceof BloquePK)) return false;
-        if(obj == null) return false;
         BloquePK pk = (BloquePK) obj;
         return pk.idSede == idSede && pk.letra.equals(letra);
     }
