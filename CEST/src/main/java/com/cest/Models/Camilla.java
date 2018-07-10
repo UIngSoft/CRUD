@@ -11,25 +11,12 @@ import javax.persistence.ManyToOne;
 public class Camilla{
 	/*Primary Key*/
 	@Id
-	private int codigo;
+	private int idelemento;
 	
 	@ManyToOne
 	private Elemento elemento;
 	private String tipocamilla;
-<<<<<<< HEAD
-	
-	
-=======
 	private int encargado;
->>>>>>> b92c74f89b12fb689f20ff50c3eec23e95eaa3dd
-
-	
-	/**
-	 * @return the tipocamilla
-	 */
-	public int getIdElemento() {
-		return idelemento;
-	}
 	
 	/**
 	 * @return the tipocamilla
@@ -45,17 +32,6 @@ public class Camilla{
 		this.tipocamilla = tipocamilla;
 	}
 
-<<<<<<< HEAD
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
-=======
->>>>>>> b92c74f89b12fb689f20ff50c3eec23e95eaa3dd
 	public Elemento getElemento() {
 		return elemento;
 	}
@@ -63,8 +39,6 @@ public class Camilla{
 	public void setElemento(Elemento elemento) {
 		this.elemento = elemento;
 	}
-<<<<<<< HEAD
-=======
 
 	public int getEncargado() {
 		return encargado;
@@ -73,8 +47,14 @@ public class Camilla{
 	public void setEncargado(int encargado) {
 		this.encargado = encargado;
 	}
-	
->>>>>>> b92c74f89b12fb689f20ff50c3eec23e95eaa3dd
+
+	public int getIdelemento() {
+		return idelemento;
+	}
+
+	public void setIdelemento(int idelemento) {
+		this.idelemento = idelemento;
+	}
 	
 	
 	

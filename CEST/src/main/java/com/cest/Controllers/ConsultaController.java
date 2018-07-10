@@ -22,10 +22,6 @@ import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.CamillaDAO;
 import com.cest.Dao.PisoDAO;
-<<<<<<< HEAD
-import com.cest.Dao.ContratoDAO;
-=======
->>>>>>> b92c74f89b12fb689f20ff50c3eec23e95eaa3dd
 import com.cest.Models.Bloque;
 import com.cest.Models.Camilla;
 import com.cest.Models.Extintor;
@@ -147,7 +143,7 @@ public class ConsultaController {
 			}
 			for (Camilla camilla : camillaDao.findAll()) {
 				tipoelemento = "Camilla";
-				id = camilla.getIdElemento();
+				id = camilla.getIdelemento();
 				ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
 						+"->"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
 						+"->"+camilla.getElemento().getPiso().getPisoPk().getNumero();

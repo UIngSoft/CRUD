@@ -1,49 +1,50 @@
 package com.cest.Controllers;
 
-<<<<<<< HEAD
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-=======
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> b92c74f89b12fb689f20ff50c3eec23e95eaa3dd
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.CamillaDAO;
 import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.ElementoDAO;
 import com.cest.Dao.EncargadoDAO;
-import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.PisoDAO;
 import com.cest.Dao.SedeDAO;
+import com.cest.Models.Bloque;
 import com.cest.Models.Camilla;
+import com.cest.Models.Contrato;
 import com.cest.Models.Elemento;
 import com.cest.Models.Encargado;
-import com.cest.Models.Extintor;
-import com.cest.Models.Fichatecnica;
-=======
-import com.cest.Dao.CamillaDAO;
-import com.cest.Models.Camilla;
->>>>>>> b92c74f89b12fb689f20ff50c3eec23e95eaa3dd
+import com.cest.Models.Piso;
+import com.cest.Models.Sede;
 
 @Controller
 @RequestMapping
 public class CamillaController {
 	
 	@Autowired
+	private SedeDAO sedeDao;
+	@Autowired
+	private BloqueDAO bloqueDao;
+	@Autowired 
+	private PisoDAO pisoDao;
+	@Autowired
+	private ElementoDAO elementoDao;
+	@Autowired
 	private CamillaDAO camillaDao;
+	@Autowired
+	private EncargadoDAO encargadoDao;
+	@Autowired
+	private ContratoDAO contratoDao;
 	
 	/**	
 	 * @author Lorenzo Zuluaga Urrea
@@ -55,7 +56,7 @@ public class CamillaController {
 	@GetMapping(value = "/modificarCamilla")
 	public Camilla getModificarEmpresa(@RequestParam int idelemento) {
 		for (Camilla camilla : camillaDao.findAll()) {
-			if (camilla.getIdElemento() == idelemento) {			
+			if (camilla.getIdelemento() == idelemento) {			
 				camillaDao.save(camilla);
 				return camilla;
 			}
@@ -81,7 +82,7 @@ public class CamillaController {
 			) {
 		
 		for (Camilla camilla : camillaDao.findAll()) {
-			if (camilla.getIdElemento() == idelemento) {
+			if (camilla.getIdelemento() == idelemento) {
 				camilla.setEncargado(encargado);
 				camilla.setTipocamilla(tipocamilla);
 				camillaDao.save(camilla);
@@ -90,17 +91,6 @@ public class CamillaController {
 		}
 		return new ModelAndView("redirect:/consulta?tipo=camilla");
 	}
-
-	@Autowired
-	private SedeDAO sedeDao;
-	@Autowired
-	private BloqueDAO bloqueDao;
-	@Autowired 
-	private PisoDAO pisoDao;
-	@Autowired
-	private ElementoDAO elementoDao;
-	@Autowired
-	private CamillaDAO camillaDao;
 
 	@GetMapping(value = "/registrarCamilla")
 	public String getRegistrarCamilla(Model modelo) {
@@ -112,22 +102,21 @@ public class CamillaController {
 	@PostMapping(value = "/registrarCamilla")
 	public ModelAndView postRegistrarCamilla(Model modelo, 
 			@ModelAttribute("camilla") Camilla camilla, 
-			@RequestParam("cedulaencargado") String id, 
-			@RequestParam ("tipo") String tipo, 
+			@RequestParam("cedulaencargado") String cedulaencargado, 
 			@RequestParam("sede") String nombresede, 
 			@RequestParam("bloque") String letrabloque,
 			@RequestParam("piso") String numeropiso) {
 		
-		Elemento elemento = BuscarElemento(camilla.getCodigo());
+		Elemento elemento = BuscarElemento(camilla.getIdelemento());
 		
 		if (elemento != null) {
-			extintor.setElemento(elemento);
+			camilla.setElemento(elemento);
+			System.out.println("id elemnto if " + elemento.getId());
 		}else {
-			elemento = registrarElemento(extintor.getIdelemento(), nombresede, letrabloque, numeropiso, cedulaencargado, numerocontrato);
-			extintor.setElemento(elemento);
+			elemento = registrarElemento(camilla.getIdelemento(), nombresede, letrabloque, numeropiso, cedulaencargado, "0");
+			camilla.setElemento(elemento);
+			System.out.println("id elemnto else " + elemento.getId());
 		}
-		
-		camilla.setTipocamilla(tipocamilla);
 		
 		camillaDao.save(camilla);
 		
@@ -140,6 +129,51 @@ public class CamillaController {
 			if (e.getId() == codigo) {
 				elemento = e;
 			}
+		}
+		return elemento;
+	}
+	
+	/*
+	 * Registra un elemento en la base de datos
+	 */
+	public Elemento registrarElemento(int id, String nombresede
+			, String letrabloque, String numeropiso
+			, String cedulaencargado, String numerocontrato)
+	{
+		Encargado encargado = null;
+		for (Encargado e : encargadoDao.findAll()) {
+			if (e.getCedula() == Integer.valueOf(cedulaencargado)) {
+				encargado = e;
+			}
+		}
+		Contrato contrato = null;
+		Sede sede = null;
+		for (Sede s : sedeDao.findAll()) {
+			if (s.getNombre().equals(nombresede)) {
+				sede = s;
+			}
+		}
+		Bloque bloque = null;
+		for (Bloque b : bloqueDao.findAll()) {
+			if (b.getBloquePk().getLetra().equals(letrabloque) && b.getSede().equals(sede)) {
+				bloque = b;
+			}
+		}
+		Piso piso = null;
+		for (Piso p : pisoDao.findAll()) {
+			if (p.getPisoPk().getNumero() == Integer.valueOf(numeropiso) && p.getBloque().equals(bloque)) {
+				piso = p;
+			}
+		}
+		Elemento elemento = null;
+		if (encargado != null) {
+				elemento = new Elemento();
+				elemento.setId(id);
+				elemento.setContrato(contrato);
+				elemento.setEncargado(encargado);
+				elemento.setPiso(piso);
+				elementoDao.save(elemento);
+			
 		}
 		return elemento;
 	}
