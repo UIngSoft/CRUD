@@ -17,14 +17,6 @@ public class Camilla{
 	private Elemento elemento;
 	private String tipocamilla;
 	private int encargado;
-
-	
-	/**
-	 * @return the tipocamilla
-	 */
-	public int getIdElemento() {
-		return idelemento;
-	}
 	
 	/**
 	 * @return the tipocamilla
@@ -55,7 +47,14 @@ public class Camilla{
 	public void setEncargado(int encargado) {
 		this.encargado = encargado;
 	}
-	
+
+	public int getIdelemento() {
+		return idelemento;
+	}
+
+	public void setIdelemento(int idelemento) {
+		this.idelemento = idelemento;
+	}
 	
 	
 	

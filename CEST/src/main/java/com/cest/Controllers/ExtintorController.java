@@ -286,7 +286,7 @@ public class ExtintorController {
 
 	@PostMapping(value = "/buscarUbicacion")
 	@ResponseBody
-	public List<Extintor> buscarBunicacion(@RequestParam("sede") String sede, @RequestParam("bloque") String bloque, @RequestParam("piso") String piso){
+	public List<Extintor> buscarUbicacion(@RequestParam("sede") String sede, @RequestParam("bloque") String bloque, @RequestParam("piso") String piso){
 		List<Extintor> extintores = null;
 		if (!sede.equals("")) {
 			if (!bloque.equals("Seleccione") && !bloque.equals("")) {

@@ -143,7 +143,7 @@ public class ConsultaController {
 			}
 			for (Camilla camilla : camillaDao.findAll()) {
 				tipoelemento = "Camilla";
-				id = camilla.getIdElemento();
+				id = camilla.getIdelemento();
 				ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
 						+"->"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
 						+"->"+camilla.getElemento().getPiso().getPisoPk().getNumero();
