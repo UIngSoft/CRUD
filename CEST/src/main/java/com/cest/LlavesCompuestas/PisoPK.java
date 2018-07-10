@@ -53,7 +53,6 @@ public class PisoPK implements Serializable, Cloneable{
 	public boolean equals(Object obj) {
         if(obj == this) return true;
         if(!(obj instanceof PisoPK)) return false;
-        if(obj == null) return false;
         PisoPK pk = (PisoPK) obj;
         return pk.numero == numero && pk.letraBloque.equals(letraBloque);
     }

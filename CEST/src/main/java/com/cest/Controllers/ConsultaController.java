@@ -20,9 +20,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cest.Dao.SedeDAO;
 import com.cest.Dao.ExtintorDAO;
 import com.cest.Dao.BloqueDAO;
+import com.cest.Dao.CamillaDAO;
 import com.cest.Dao.PisoDAO;
+<<<<<<< HEAD
 import com.cest.Dao.ContratoDAO;
+=======
+>>>>>>> b92c74f89b12fb689f20ff50c3eec23e95eaa3dd
 import com.cest.Models.Bloque;
+import com.cest.Models.Camilla;
+import com.cest.Models.Extintor;
 import com.cest.Models.Piso;
 
 /**
@@ -31,6 +37,65 @@ import com.cest.Models.Piso;
  * @author Santiago granada aguirre
  *
  */
+
+
+final class Element{
+	private String tipoelemento;
+	private int id;
+	private String ubicacion;
+	private String tipo;
+	private String fechavencimiento;
+	
+	public Element(String tipoelemento, int id, String ubicacion, String tipo, String fechavencimiento) {
+		super();
+		this.setTipoelemento(tipoelemento);
+		this.setId(id);
+		this.setUbicacion(ubicacion);
+		this.setTipo(tipo);
+		this.setFechavencimiento(fechavencimiento);
+	}
+	
+	public String getTipoelemento() {
+		return tipoelemento;
+	}
+
+	public void setTipoelemento(String tipoelemento) {
+		this.tipoelemento = tipoelemento;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getFechavencimiento() {
+		return fechavencimiento;
+	}
+
+	public void setFechavencimiento(String fechavencimiento) {
+		this.fechavencimiento = fechavencimiento;
+	}
+}
+
 
 /*
  * Controlador para el index
@@ -41,6 +106,8 @@ public class ConsultaController {
 
 	@Autowired
 	private ExtintorDAO extintorDao;
+	@Autowired
+	private CamillaDAO camillaDao;
 	@Autowired
 	private SedeDAO sedeDao;
 	@Autowired
@@ -62,6 +129,33 @@ public class ConsultaController {
 	@GetMapping(value = "/consulta")
 	public String getConsulta(Model modelo, @RequestParam String tipo) {
 		if (tipo.equals("general")) {
+			List<Element> elementos = new LinkedList<>();
+			String tipoelemento;
+			int id;
+			String ubicacion;
+			String tipoo;
+			String fechavencimiento;
+			for (Extintor extintor : extintorDao.findAll()) {
+				tipoelemento = "Extintor";
+				id = extintor.getIdelemento();
+				ubicacion = extintor.getElemento().getPiso().getBloque().getSede().getNombre()
+						+"->"+extintor.getElemento().getPiso().getPisoPk().getLetrabloque()
+						+"->"+extintor.getElemento().getPiso().getPisoPk().getNumero();
+				tipoo = extintor.getFichatecnica().getTipo();
+				fechavencimiento = ""+extintor.getFechavencimiento();
+				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+			}
+			for (Camilla camilla : camillaDao.findAll()) {
+				tipoelemento = "Camilla";
+				id = camilla.getIdElemento();
+				ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
+						+"->"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
+						+"->"+camilla.getElemento().getPiso().getPisoPk().getNumero();
+				tipoo = camilla.getTipocamilla();
+				fechavencimiento = "No aplica";
+				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+			}
+			modelo.addAttribute("elementos", elementos);
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
 			modelo.addAttribute("extintores", extintorDao.findAll());

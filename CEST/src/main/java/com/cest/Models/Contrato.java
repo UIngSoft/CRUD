@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 /*
  * Un contrato que tendrá involucrados diferentes elementos
  */
