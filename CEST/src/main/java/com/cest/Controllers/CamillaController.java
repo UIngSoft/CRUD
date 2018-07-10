@@ -111,11 +111,9 @@ public class CamillaController {
 		
 		if (elemento != null) {
 			camilla.setElemento(elemento);
-			System.out.println("id elemnto if " + elemento.getId());
 		}else {
 			elemento = registrarElemento(camilla.getIdelemento(), nombresede, letrabloque, numeropiso, cedulaencargado, "0");
 			camilla.setElemento(elemento);
-			System.out.println("id elemnto else " + elemento.getId());
 		}
 		
 		camillaDao.save(camilla);
