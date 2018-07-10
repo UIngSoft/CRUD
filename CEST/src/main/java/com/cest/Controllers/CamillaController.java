@@ -2,7 +2,6 @@ package com.cest.Controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.BloqueDAO;
 import com.cest.Dao.CamillaDAO;
-import com.cest.Dao.ContratoDAO;
 import com.cest.Dao.ElementoDAO;
 import com.cest.Dao.EncargadoDAO;
 import com.cest.Dao.PisoDAO;
@@ -43,8 +41,6 @@ public class CamillaController {
 	private CamillaDAO camillaDao;
 	@Autowired
 	private EncargadoDAO encargadoDao;
-	@Autowired
-	private ContratoDAO contratoDao;
 	
 	/**	
 	 * @author Lorenzo Zuluaga Urrea

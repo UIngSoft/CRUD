@@ -160,6 +160,7 @@ public class ConsultaController {
 		}else if (tipo.equals("botiquin")) {
 			return "consultaBotiquin";
 		}else{
+			modelo.addAttribute("camillas", camillaDao.findAll());
 			return "consultaCamilla";
 		}
 	}
