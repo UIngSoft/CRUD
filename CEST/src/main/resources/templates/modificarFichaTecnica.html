@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Latest compiled and minified JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="scripts.js"></script>
+
+<script>
+	function obtenertipo(){
+		var tipo= document.getElementById('tipo').value;
+		//location.href='/actualizarExtintor?id='+id;
+	}
+</script>
+
+<title>CEST - Ficha Tecnica</title>
+
+</head>
+
+
+<nav id="menu"></nav>
+
+<script>
+$.get("/navBar", function(data){
+    $("#menu").replaceWith(data);
+});
+</script>
+
+<body>
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron">
+			<h1 align="center">Modificar Ficha Tecnica</h1>
+		</div>
+		<div class="col-md-1"></div>
+	 </div>
+	 <br>
+
+	</div>
+	<div class="container" style="text-align:center;">
+		
+				<form action="/modificarFichaTecnica" th:object="${fichatecnica}" method="post">
+				  	<div>
+    					<div>
+    					    <label>Tipo</label>
+    						 <input type="text" id="tipo" name="tipo" required th:value="${fichatecnica.tipo} "/>
+    					</div>
+    					
+    					<div class="col-md-2">
+					</div>
+
+    					<div>
+    					    <label>Componentes</label>
+    						 <input type="text" id="componentes" name="componentes" required th:value="${fichatecnica.componentes}"/>
+    					</div>
+    					
+    					<div class="col-md-2">
+					</div>
+					
+					
+    					<div>
+    					   <label>Descripcion</label>
+    						<input type="text" id="descripcion" name="descripcion" required th:value="${fichatecnica.descripcion}"/>
+    					</div>
+    					
+   					</div>
+   					<div></div>
+   					<a href='/crudFichaTecnica'> <span class="glyphicon glyphicon-arrow-left btn btn-danger"> </span></a>
+				 	 <input class="btn btn-lg btn-primary"  type="submit" value="Modificar">
+				 	 
+				</form> 
+				  
+	    		<div class="col-md-5"></div>
+	</div>
+</body>
+</html>
