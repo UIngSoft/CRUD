@@ -11,12 +11,14 @@ import javax.persistence.ManyToOne;
 public class Camilla{
 	/*Primary Key*/
 	@Id
-	private int idelemento;
+	private int codigo;
 	
 	@ManyToOne
 	private Elemento elemento;
 	
 	private String tipocamilla;
+	
+	
 
 	/**
 	 * @return the tipocamilla
@@ -31,4 +33,23 @@ public class Camilla{
 	public void setTipocamilla(String tipocamilla) {
 		this.tipocamilla = tipocamilla;
 	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public Elemento getElemento() {
+		return elemento;
+	}
+
+	public void setElemento(Elemento elemento) {
+		this.elemento = elemento;
+	}
+	
+	
+	
 }
