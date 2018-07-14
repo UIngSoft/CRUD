@@ -30,6 +30,27 @@ $.get("/navBar", function(data){
 });
 </script>
 <body>
+<div class="col-md-2">
+					<label>Sede</label> <br>
+					<select id="sede" name="sede" class="form-control" style="width: 100%" onchange="ObtenerBloques(); BuscarUbicacion();">
+						<option value="">Todos</option>
+					   	<th:block th:each="sede:${sedes}">
+					   		<option th:text="${sede.nombre}"></option>	
+						</th:block>				   	
+					</select>
+				</div>
+				<div class="col-md-2">
+					<label>Bloque</label> <br>
+						<select id="bloque" name="bloque" class="form-control" style="width: 100%" onchange="ObtenerPisos(); BuscarUbicacion();">
+						
+						</select>
+				</div>
+				<div class="col-md-2">
+					<label>Piso</label> <br>
+						<select id="piso" name="piso" class="form-control" style="width: 100%" onchange="BuscarUbicacion();">
+				
+						</select>
+				</div>
 	<div class="container theme-showcase" role="main">
 		<div>
 			<div class="jumbotron" style="background: rgb(13,67,113)">
