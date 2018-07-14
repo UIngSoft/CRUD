@@ -6,8 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/*
+/**
  * Un contrato que tendrá involucrados diferentes elementos
+ * @author IngeSoftII
+ * @version
+ * fecha: 12/07/2018
  */
 @Entity
 public class Contrato {

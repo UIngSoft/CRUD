@@ -25,6 +25,12 @@ import com.cest.Models.Encargado;
 import com.cest.Models.Piso;
 import com.cest.Models.Sede;
 
+/**
+ * esta clase se encagar de registar, midifcar, consutar las camillas
+ * @author IngeSoftII
+ * @version
+ * fecha: 12/07/2018
+ */
 @Controller
 @RequestMapping
 public class CamillaController {
@@ -87,12 +93,23 @@ public class CamillaController {
 		}
 		return new ModelAndView("redirect:/consulta?tipo=camilla");
 	}
-@GetMapping(value = "/consultarCamilla")
+	
+	/**
+	 * 
+	 * @param modelo
+	 * @return
+	 */
+	@GetMapping(value = "/consultarCamilla")
 	public String getHome(Model modelo) {
 		modelo.addAttribute("camillas", camillaDao.findAll());
 		return "consultaCamilla";
 	}
-
+	
+	/**
+	 * realiza una solicitud get de la vista con la ruta registrarCamilla
+	 * @param modelo
+	 * @return string registraCamilla que es la ruta de la vista
+	 */
 	@GetMapping(value = "/registrarCamilla")
 	public String getRegistrarCamilla(Model modelo) {
 		modelo.addAttribute("camilla", new Camilla());
@@ -100,6 +117,16 @@ public class CamillaController {
 		return "registrarCamilla";
 	}
 	
+	/**
+	 * realiza la insercion a la base de datos de la camilla con sus parametros
+	 * @param modelo
+	 * @param camilla
+	 * @param cedulaencargado
+	 * @param nombresede
+	 * @param letrabloque
+	 * @param numeropiso
+	 * @return
+	 */
 	@PostMapping(value = "/registrarCamilla")
 	public ModelAndView postRegistrarCamilla(Model modelo, 
 			@ModelAttribute("camilla") Camilla camilla, 
@@ -108,7 +135,7 @@ public class CamillaController {
 			@RequestParam("bloque") String letrabloque,
 			@RequestParam("piso") String numeropiso) {
 		
-		Elemento elemento = BuscarElemento(camilla.getIdelemento());
+		Elemento elemento = buscarElemento(camilla.getIdelemento());
 		
 		if (elemento != null) {
 			camilla.setElemento(elemento);
@@ -122,7 +149,12 @@ public class CamillaController {
 		return new ModelAndView("redirect:/registrarCamilla");
 	}
 	
-	public Elemento BuscarElemento(int codigo) {
+	/**
+	 * busca un elemnto por codigo en la table elemento
+	 * @param codigo del elemento a buscar
+	 * @return el elemnto que coincide el codigo con el id
+	 */
+	public Elemento buscarElemento(int codigo) {
 		Elemento elemento = null;
 		for (Elemento e : elementoDao.findAll()) {
 			if (e.getId() == codigo) {
@@ -132,8 +164,16 @@ public class CamillaController {
 		return elemento;
 	}
 	
-	/*
+	
+	/**
 	 * Registra un elemento en la base de datos
+	 * @param id
+	 * @param nombresede
+	 * @param letrabloque
+	 * @param numeropiso
+	 * @param cedulaencargado
+	 * @param numerocontrato
+	 * @return
 	 */
 	public Elemento registrarElemento(int id, String nombresede
 			, String letrabloque, String numeropiso

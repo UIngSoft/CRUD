@@ -6,8 +6,12 @@ import javax.persistence.ManyToOne;
 
 import com.cest.LlavesCompuestas.PisoPK;
 
-/*
+
+/**
  * Un piso perteneciente a un bloque de la sede
+ * @author IngeSoftII
+ * @version
+ * fecha: 12/07/2018
  */
 @Entity
 public class Piso{

@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/*
- * Una camilla que será almacenada en la base de datos
+/**
+ * 
+ * @author IngeSoftII
+ * @version
+ * fecha: 12/07/2018
  */
 @Entity
 public class Camilla{

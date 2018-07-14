@@ -5,8 +5,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-/*
+/**
  * Un elemento que será registrado en el sistema
+ * @author IngeSoftII
+ * @version
+ * fecha: 12/07/2018
  */
 @Entity
 public class Elemento{

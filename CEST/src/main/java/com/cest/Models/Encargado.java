@@ -3,8 +3,11 @@ package com.cest.Models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-/*
+/**
  * Una persona que tendrá a su cargo varios elementos
+ * @author IngeSoftII
+ * @version
+ * fecha: 12/07/2018
  */
 @Entity
 public class Encargado {
