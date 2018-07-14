@@ -84,6 +84,7 @@ function BuscarUbicacion(){
 	);
 }
 
+
 function LimpiarFiltros(){
 	$('#id').val('');
 	$('#sede').val('');

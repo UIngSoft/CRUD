@@ -125,37 +125,8 @@ public class ConsultaController {
 	@GetMapping(value = "/consulta")
 	public String getConsulta(Model modelo, @RequestParam String tipo) {
 		if (tipo.equals("general")) {
-			List<Element> elementos = new LinkedList<>();
-			String tipoelemento;
-			int id;
-			String ubicacion;
-			String tipoo;
-			String fechavencimiento;
-			for (Extintor extintor : extintorDao.findAll()) {
-				if (extintor.getEstado().equalsIgnoreCase("activo")) {
-					tipoelemento = "Extintor";
-					id = extintor.getIdelemento();
-					ubicacion = extintor.getElemento().getPiso().getBloque().getSede().getNombre()
-							+"->"+extintor.getElemento().getPiso().getPisoPk().getLetrabloque()
-							+"->"+extintor.getElemento().getPiso().getPisoPk().getNumero();
-					tipoo = extintor.getFichatecnica().getTipo();
-					fechavencimiento = ""+extintor.getFechavencimiento();
-					elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
-				}				
-			}
-			for (Camilla camilla : camillaDao.findAll()) {
-				if (camilla.getEstado().equalsIgnoreCase("activo")) {
-					tipoelemento = "Camilla";
-					id = camilla.getIdelemento();
-					ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
-							+"->"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
-							+"->"+camilla.getElemento().getPiso().getPisoPk().getNumero();
-					tipoo = camilla.getTipocamilla();
-					fechavencimiento = "No aplica";
-					elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
-				}				
-			}
-			modelo.addAttribute("elementos", elementos);
+			modelo.addAttribute("elementos", ObtenerElementos());
+			modelo.addAttribute("sedes", sedeDao.findAll());
 			return "consultaGeneral";
 		}else if (tipo.equals("extintor")) {
 			modelo.addAttribute("extintores", extintorDao.findAll());
@@ -165,8 +136,106 @@ public class ConsultaController {
 			return "consultaBotiquin";
 		}else{
 			modelo.addAttribute("camillas", camillaDao.findAll());
+			modelo.addAttribute("sedes", sedeDao.findAll());
 			return "consultaCamilla";
 		}
+	}
+	
+	private List<Element> ObtenerElementos(){
+		List<Element> elementos = new LinkedList<>();
+		String tipoelemento;
+		int id;
+		String ubicacion;
+		String tipoo;
+		String fechavencimiento;
+		for (Extintor extintor : extintorDao.findAll()) {
+			if (extintor.getEstado().equalsIgnoreCase("activo")) {
+				tipoelemento = "Extintor";
+				id = extintor.getIdelemento();
+				ubicacion = extintor.getElemento().getPiso().getBloque().getSede().getNombre()
+						+"-"+extintor.getElemento().getPiso().getPisoPk().getLetrabloque()
+						+"-"+extintor.getElemento().getPiso().getPisoPk().getNumero();
+				tipoo = extintor.getFichatecnica().getTipo();
+				fechavencimiento = ""+extintor.getFechavencimiento();
+				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+			}				
+		}
+		for (Camilla camilla : camillaDao.findAll()) {
+			if (camilla.getEstado().equalsIgnoreCase("activo")) {
+				tipoelemento = "Camilla";
+				id = camilla.getIdelemento();
+				ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
+						+"-"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
+						+"-"+camilla.getElemento().getPiso().getPisoPk().getNumero();
+				tipoo = camilla.getTipocamilla();
+				fechavencimiento = "No aplica";
+				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+			}				
+		}
+		return elementos;
+	}
+	
+	@PostMapping(value = "/buscarElementoTipo")
+	@ResponseBody
+	public List<Element> getElementosTipo(@RequestParam String tipo) {
+		List<Element> elementos = new LinkedList<>();
+		if (tipo.equals("")) {
+			elementos = ObtenerElementos();
+		}else {
+			for (Element elemento : ObtenerElementos()) {
+				if (elemento.getTipoelemento().equalsIgnoreCase(tipo)) {
+					elementos.add(elemento);
+				}
+			}
+		}
+		return elementos;
+	}
+	
+	@PostMapping(value = "/buscarUbicacionElmt")
+	@ResponseBody
+	public List<Element> getElementosUbicacion(@RequestParam("sede") String sede, @RequestParam("bloque") String bloque, @RequestParam("piso") String piso){
+		List<Element> elementos = null;
+		if (!sede.equals("")) {
+			if (!bloque.equals("Seleccione") && !bloque.equals("")) {
+				if (!piso.equals("Seleccione") && !piso.equals("")) {
+					//Busqueda por Sede, Bloque y Piso
+					elementos = new LinkedList<>();
+					for (Element elemento : ObtenerElementos()) {
+						String[] ubicacion = elemento.getUbicacion().split("-");
+						if (ubicacion[0].equalsIgnoreCase(sede)) {
+							if (ubicacion[1].equalsIgnoreCase(bloque)) {
+								if (ubicacion[2].equalsIgnoreCase(piso)) {
+									elementos.add(elemento);
+								}
+							}
+						}
+					}
+				}else {
+					//Busqueda por Sede y Bloque
+					elementos = new LinkedList<>();
+					for (Element elemento : ObtenerElementos()) {
+						String[] ubicacion = elemento.getUbicacion().split("-");
+						if (ubicacion[0].equals(sede)) {
+							if (ubicacion[1].equalsIgnoreCase(bloque)) {
+								elementos.add(elemento);
+							}
+						}
+					}
+				}
+			}else {
+				//Busqueda por Sede
+				elementos = new LinkedList<>();
+				for (Element elemento : ObtenerElementos()) {
+					String[] ubicacion = elemento.getUbicacion().split("-");
+					if (ubicacion[0].equalsIgnoreCase(sede)) {
+						elementos.add(elemento);
+					}
+				}
+			}
+		}else {
+			elementos = ObtenerElementos();
+		}
+		return elementos;
 	}
 	
 	@PostMapping(value = "/obtenerBloques")
