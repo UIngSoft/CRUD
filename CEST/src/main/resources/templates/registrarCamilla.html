@@ -14,6 +14,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script src="scripts.js"></script>
+<script>
+	function existeCamilla(){
+		$.post( "/existeCamilla",
+				{id: $('#id').val()},
+				function( existe ) {
+					if(existe == true){
+						alert('La camilla con Id: '+$('#id').val()+' ya esxiste.');
+						$('#id').val('');
+					}
+				}
+		);
+	}
+</script>
 
 <title>Registrar Camilla - CEST</title>
 </head>
@@ -40,7 +53,7 @@ $.get("/navBar", function(data){
 				<div class="row">
 					<div class="col-md-4">
 						<label>Id</label>
-						<input th:field="*{idelemento}" type="text" id="id" class="form-control" required pattern="\d+" title="INGRESA VALOR NUMÉRICO">
+						<input th:field="*{idelemento}" type="text" id="id" class="form-control" onchange="existeCamilla();" required pattern="\d+" title="INGRESA VALOR NUMÉRICO">
 					</div>
 					<div class="col-md-4">
 						<label>Tipo</label>
@@ -54,19 +67,6 @@ $.get("/navBar", function(data){
 						<label>Cédula de encargado</label>
 						<input id="cedulaencargado" name="cedulaencargado" type="text" class="form-control"  onblur="ValidarCedula();" required maxlength="10" pattern="\d+" title="lA CÉDULA DEBE SER NUMÉRICA">
 					</div>				
-				</div>
-				
-				<div class="row">
-					<div class="col-md-4">
-						<label>Estado</label> <br>
-						<select th:field="*{estado}" id="estado" name="estado" class="form-control" style="width: 100%" required title="SELECCIONA EL ESTADO DE LA CAMILLA">
-						   	<option value="Activo">Activo</option>
-						   	<option value="Baja">Baja</option>
-						   	<option value="Mantenimiento">Mantenimiento</option>
-						   	<option value="Vencido">Vencido</option>
-						   					   	
-						</select>
-					</div>
 				</div>
 				
 				<div class="row">

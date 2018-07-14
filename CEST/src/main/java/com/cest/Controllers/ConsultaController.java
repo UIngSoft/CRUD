@@ -161,16 +161,14 @@ public class ConsultaController {
 			}				
 		}
 		for (Camilla camilla : camillaDao.findAll()) {
-			if (camilla.getEstado().equalsIgnoreCase("activo")) {
-				tipoelemento = "Camilla";
-				id = camilla.getIdelemento();
-				ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
-						+"-"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
-						+"-"+camilla.getElemento().getPiso().getPisoPk().getNumero();
-				tipoo = camilla.getTipocamilla();
-				fechavencimiento = "No aplica";
-				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
-			}				
+			tipoelemento = "Camilla";
+			id = camilla.getIdelemento();
+			ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
+					+"-"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
+					+"-"+camilla.getElemento().getPiso().getPisoPk().getNumero();
+			tipoo = camilla.getTipocamilla();
+			fechavencimiento = "No aplica";
+			elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
 		}
 		return elementos;
 	}

@@ -16,7 +16,8 @@
 
 <script>
 	function enviar(tipo){
-		location.href='/modificarFichaTecnica?tipo='+tipo;
+		alert(tipo);
+		//location.href='/modificarFichaTecnica?tipo='+tipo;
 	}
 	
 	function eliminar(tipo){
@@ -69,8 +70,8 @@ $.get("/navBar", function(data){
 					   
 					         <td>
 					         	<label>
-					         		<button th:onclick="'javascript:enviar(' + ${fichatecnica.tipo} + ')'"  class="btn btn-primary"> <span class="glyphicon glyphicon-pencil"></span></button>
-					         		<button th:onclick="'javascript:eliminar(' + ${fichatecnica.tipo} + ')'"  class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span></button>
+					         		<button th:id="${fichatecnica.tipo}" onclick="enviar(this.id);"  class="btn btn-primary"> <span class="glyphicon glyphicon-pencil"></span></button>
+					         		<button th:id="${fichatecnica.tipo}" onclick="eliminar(this.id);"  class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span></button>
 					         		
 					         	</label>
 					         </td>

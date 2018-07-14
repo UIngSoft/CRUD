@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cest.Dao.BloqueDAO;
@@ -145,7 +146,8 @@ public class CamillaController {
 			@RequestParam("sede") String nombresede, 
 			@RequestParam("bloque") String letrabloque,
 			@RequestParam("piso") String numeropiso,
-			@RequestParam("estado") String estado) {
+			@RequestParam("estado") String estado) 
+	{
 		
 		Elemento elemento = buscarElemento(camilla.getIdelemento());
 		
@@ -159,6 +161,17 @@ public class CamillaController {
 		camillaDao.save(camilla);
 		
 		return new ModelAndView("redirect:/registrarCamilla");
+	}
+	
+	@PostMapping(value = "/existeCamilla")
+	@ResponseBody
+	public boolean existeCamilla(@RequestParam("id") String id) {
+		for (Camilla camilla : camillaDao.findAll()) {
+			if (camilla.getIdelemento() == Integer.valueOf(id)) {
+				return true;
+			}
+		}
+		return false;		
 	}
 	
 	/**

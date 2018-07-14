@@ -101,6 +101,17 @@ public class ExtintorController {
 		extintorDao.save(extintor);
 		return new ModelAndView("redirect:/consulta?tipo=extintor");
 	}
+	
+	@PostMapping(value = "/existeExtintor")
+	@ResponseBody
+	public boolean existeExtintor(@RequestParam("id") String id) {
+		for (Extintor extintor : extintorDao.findAll()) {
+			if (extintor.getIdelemento() == Integer.valueOf(id)) {
+				return true;
+			}
+		}
+		return false;		
+	}
 
 	public Elemento BuscarElemento(int idelemento) {
 		Elemento elemento = null;
