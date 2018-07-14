@@ -1,6 +1,9 @@
 package com.cest.Controllers;
 
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +27,7 @@ import com.cest.Models.Camilla;
 import com.cest.Models.Contrato;
 import com.cest.Models.Elemento;
 import com.cest.Models.Encargado;
+import com.cest.Models.Extintor;
 import com.cest.Models.Piso;
 import com.cest.Models.Sede;
 
@@ -241,5 +245,47 @@ public class CamillaController {
 		}
 		return elemento;
 	}
-		
+	@PostMapping(value = "/buscarUbicacion")
+	@ResponseBody
+	public List<Camilla> buscarUbicacion(@RequestParam("sede") String sede, @RequestParam("bloque") String bloque, @RequestParam("piso") String piso){
+		List<Camilla> camillas = null;
+		if (!sede.equals("")) {
+			if (!bloque.equals("Seleccione") && !bloque.equals("")) {
+				if (!piso.equals("Seleccione") && !piso.equals("")) {
+					//Busqueda por Sede, Bloque y Piso
+					camillas = new LinkedList<>();
+					for (Camilla camilla : camillaDao.findAll()) {
+						if (camilla.getElemento().getPiso().getBloque().getSede().getNombre().equals(sede)) {
+							if (camilla.getElemento().getPiso().getBloque().getBloquePk().getLetra().equals(bloque)) {
+								if (camilla.getElemento().getPiso().getPisoPk().getNumero() == Integer.valueOf(piso)) {
+									camillas.add(camilla);
+								}
+							}
+						}
+					}
+				}else {
+					//Busqueda por Sede y Bloque
+					camillas = new LinkedList<>();
+					for (Camilla camilla : camillaDao.findAll()) {
+						if (camilla.getElemento().getPiso().getBloque().getSede().getNombre().equals(sede)) {
+							if (camilla.getElemento().getPiso().getBloque().getBloquePk().getLetra().equals(bloque)) {
+							camillas.add(camilla);
+							}
+						}
+					}
+				}
+			}else {
+				//Busqueda por Sede
+				camillas = new LinkedList<>();
+				for (Camilla camilla : camillaDao.findAll()) {
+					if (camilla.getElemento().getPiso().getBloque().getSede().getNombre().equals(sede)) {
+						camillas.add(camilla);
+					}
+				}
+			}
+		}else {
+			camillas = (List<Camilla>) camillaDao.findAll();
+		}
+		return camillas;
+	}
 }
