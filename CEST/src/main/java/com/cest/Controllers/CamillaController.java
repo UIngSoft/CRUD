@@ -109,18 +109,9 @@ public class CamillaController {
 		return new ModelAndView("redirect:/consulta?tipo=camilla");
 	}
 	
-<<<<<<< HEAD
-	/**
-	 * 
-	 * @param modelo
-	 * @return
-	 */
-	@GetMapping(value = "/consultarCamilla")
-	public String getHome(Model modelo) {
-=======
+
 	@GetMapping(value = "/consultarCamilla")
 	public String getConsultarCamilla(Model modelo) {
->>>>>>> 1402ca58f2d014f65b91d718b227b70636320f33
 		modelo.addAttribute("camillas", camillaDao.findAll());
 		return "consultaCamilla";
 	}

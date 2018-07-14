@@ -17,8 +17,8 @@ function ObtenerBloques(){
 	$.post( "/obtenerBloques",
 			{sede: $('#sede').val()},
 			function( data ) {
-				$('#bloque').html('<option>Seleccione</option>');
-				$('#piso').html('<option>Seleccione</option>');
+				$('#bloque').html('<option value ="">Seleccione</option>');
+				$('#piso').html('<option value="">Seleccione</option>');
 				$.each(data, 
 						function(i,val){
 							$('#bloque').append('<option value="'+val+'">'+val+'</option>');
@@ -33,7 +33,7 @@ function ObtenerPisos(){
 	$.post( "/obtenerPisos",
 			{sede: $('#sede').val(), bloque: $('#bloque').val()},
 			function( data ) {
-				$('#piso').html('<option>Seleccione</option>');
+				$('#piso').html('<option value="">Seleccione</option>');
 				$.each(data, 
 						function(i,val){
 							$('#piso').append('<option value="'+val+'">'+val+'</option>');
