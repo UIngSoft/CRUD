@@ -132,24 +132,28 @@ public class ConsultaController {
 			String tipoo;
 			String fechavencimiento;
 			for (Extintor extintor : extintorDao.findAll()) {
-				tipoelemento = "Extintor";
-				id = extintor.getIdelemento();
-				ubicacion = extintor.getElemento().getPiso().getBloque().getSede().getNombre()
-						+"->"+extintor.getElemento().getPiso().getPisoPk().getLetrabloque()
-						+"->"+extintor.getElemento().getPiso().getPisoPk().getNumero();
-				tipoo = extintor.getFichatecnica().getTipo();
-				fechavencimiento = ""+extintor.getFechavencimiento();
-				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+				if (extintor.getEstado().equalsIgnoreCase("activo")) {
+					tipoelemento = "Extintor";
+					id = extintor.getIdelemento();
+					ubicacion = extintor.getElemento().getPiso().getBloque().getSede().getNombre()
+							+"->"+extintor.getElemento().getPiso().getPisoPk().getLetrabloque()
+							+"->"+extintor.getElemento().getPiso().getPisoPk().getNumero();
+					tipoo = extintor.getFichatecnica().getTipo();
+					fechavencimiento = ""+extintor.getFechavencimiento();
+					elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+				}				
 			}
 			for (Camilla camilla : camillaDao.findAll()) {
-				tipoelemento = "Camilla";
-				id = camilla.getIdelemento();
-				ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
-						+"->"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
-						+"->"+camilla.getElemento().getPiso().getPisoPk().getNumero();
-				tipoo = camilla.getTipocamilla();
-				fechavencimiento = "No aplica";
-				elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+				if (camilla.getEstado().equalsIgnoreCase("activo")) {
+					tipoelemento = "Camilla";
+					id = camilla.getIdelemento();
+					ubicacion = camilla.getElemento().getPiso().getBloque().getSede().getNombre()
+							+"->"+camilla.getElemento().getPiso().getPisoPk().getLetrabloque()
+							+"->"+camilla.getElemento().getPiso().getPisoPk().getNumero();
+					tipoo = camilla.getTipocamilla();
+					fechavencimiento = "No aplica";
+					elementos.add(new Element(tipoelemento, id, ubicacion, tipoo, fechavencimiento));
+				}				
 			}
 			modelo.addAttribute("elementos", elementos);
 			return "consultaGeneral";

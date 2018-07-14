@@ -46,6 +46,7 @@ $.get("/navBar", function(data){
 							<td><label>Sede</label></td>
 							<td><label>Bloque</label></td>
 							<td><label>Piso</label></td>
+							<td><label>Estado</label></td>
 						
 						</tr>
     					<th:block th:each="camilla:${camillas}">
@@ -55,7 +56,8 @@ $.get("/navBar", function(data){
 						         <td th:text="${camilla.elemento.encargado.cedula}"><label>Cedula encargado</label></td>
 						         <td th:text="${camilla.elemento.piso.bloque.sede.nombre}"><label>Sede</label></td>
 						         <td th:text="${camilla.elemento.piso.bloque.bloquePk.letra}"><label>Bloque</label></td>
-						         <td th:text="${camilla.elemento.piso.pisoPk.numero}"><label>Piso</label></td>		        
+						         <td th:text="${camilla.elemento.piso.pisoPk.numero}"><label>Piso</label></td>
+						         <td th:text="${camilla.estado}"><label>Estado</label></td>		        
 						         <td align="center">
 						         	<button th:id="${camilla.elemento.id}" class="glyphicon glyphicon-pencil btn btn-primary" onclick="enviar(this.id);" title="Editar Camilla" ></button>
 								</td>
