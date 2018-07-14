@@ -21,7 +21,7 @@
 	}
 </script>
 
-<title>CEST - Camillas</title>
+<title>CEST - Modificar camilla</title>
 
 </head>
 
@@ -34,32 +34,82 @@
 	 </div>
 	 <br>
 
-	</div>
-	<div class="container" style="text-align:center;">
-		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
-				<form action="/modificarEmpresa" th:object="${empresa}" method="post">
-				  	<div>
-    					<div>
-    						Codigo: <input type="text" id="codigo" name="codigo" required th:value="${camilla.codigo} "/>
-    					</div>
-
-    					<div>
-    						Tipo: <input type="text" id="tipo" name="tipo" required th:value="${camilla.tipo}"/>
-    					</div>
-    					<div>
-    						Encargado: <input type="text" id="encargado" name="encargado" required th:value="${camilla.encargado}"/>
-    					</div>
-    					<div>
-    						Ubicacion: <input type="text" id="ubicacion" name="ubicacion" required th:value="${camilla.ubicacion}"/>
-    					</div>
-   					</div>
-   					<div></div>
-   					<a href='/consultarCamilla'> <span class="glyphicon glyphicon-arrow-left btn btn-danger"> </span></a>
-				 	 <input class="btn btn-lg btn-primary"  type="submit" value="Modificar">
-				 	 
-				</form> 
-				  
-	    		<div class="col-md-5"></div>
-	</div>
+	<div class="container">			
+			<form class="form-signin" action="#" th:action="@{/modificarCamilla}" th:object="${camilla}" th:method="post">
+				<h2>Por favor llene todos los campos</h2>
+				<div class="row">
+					<div class="col-md-4">
+						<label>Id</label>
+						<input th:field="*{idelemento}" type="text" id="id" class="form-control" readonly="readonly">
+					</div>
+					<div class="col-md-4">
+						<label>Tipo</label>
+						<select th:field="*{tipocamilla}" id="tipo" name="tipo" class="form-control"  style="width: 100%" required title="SELECCIONA EL TIPO DE CAMILLA">
+						   	<option value="">Seleccione</option>
+						   	<option value="Lona">Lona</option>
+						   	<option value="Miller">Miller</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label>Cédula de encargado</label>
+						<input th:field="*{elemento.encargado.cedula}" id="cedulaencargado" name="cedulaencargado" type="text" class="form-control"  onblur="ValidarCedula();" required maxlength="10" pattern="\d+" title="lA CÉDULA DEBE SER NUMÉRICA">
+					</div>				
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<label>Estado</label> <br>
+						<select th:field="*{estado}" id="estado" name="estado" class="form-control" style="width: 100%" required title="SELECCIONA EL ESTADO DE LA CAMILLA">
+						   	<option value="Activo">Activo</option>
+						   	<option value="Baja">Baja</option>
+						   	<option value="Mantenimiento">Mantenimiento</option>
+						   	<option value="Vencido">Vencido</option>
+						   					   	
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6">
+						<label><br>Ubicacion: </label>						
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<label>Sede</label> <br>
+						<select th:field="*{elemento.piso.bloque.sede.nombre}" id="sede" class="form-control" name="sede" style="width: 100%" onchange="ObtenerBloques();">
+						   	<option value="">Seleccione</option>
+						   	<th:block th:each="sede:${sedes}">
+						   		<option th:value="${sede.nombre}" th:text="${sede.nombre}"></option>	
+						   	</th:block>		   	
+						</select>						
+					</div>				
+					
+					<div class="col-md-4">
+						<label>Bloque</label> <br>
+						<select th:field="*{elemento.piso.bloque.bloquePk.letra}" id="bloque" class="form-control" name="bloque" style="width: 100%" onchange="ObtenerPisos();">
+						   	<option value="">Seleccione</option>   	
+						</select>						
+					</div>
+					
+					<div class="col-md-4">
+						<label>Piso</label> <br>
+						<select  id="piso" class="form-control" name="piso" style="width: 100%">
+						   	<option value="">Seleccione</option>   	
+						</select>						
+					</div>					
+				</div>
+				
+				<div class="row">
+					<div class="col-md-5"></div>
+					<div class="col-md-2">
+						<br>
+						<button type="submit" class="btn btn-primary btn-block">Modificar</button>
+					</div>
+					<div class="col-md-5"></div>
+				</div>	
+			</form>
+		</div>
 </body>
 </html>

@@ -19,6 +19,7 @@ public class Camilla{
 	@ManyToOne
 	private Elemento elemento;
 	private String tipocamilla;
+	private String estado;
 	private int encargado;
 	
 	/**
@@ -57,6 +58,20 @@ public class Camilla{
 
 	public void setIdelemento(int idelemento) {
 		this.idelemento = idelemento;
+	}
+
+	/**
+	 * @return the estado
+	 */
+	public String getEstado() {
+		return estado;
+	}
+
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 	
