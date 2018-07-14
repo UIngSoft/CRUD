@@ -12,15 +12,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="scripts.js"></script>
-
-<script>
-	function obtenertipo(){
-		var tipo= document.getElementById('tipo').value;
-		//location.href='/actualizarExtintor?id='+id;
-	}
-</script>
-
 <title>Ficha Tecnica - CEST</title>
 
 </head>
@@ -36,8 +27,8 @@ $.get("/navBar", function(data){
 
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-			<h1 align="center">Modificar Ficha Tecnica</h1>
+		<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color: white">Modificar Ficha Tecnica</h1>
 		</div>
 		<div class="col-md-1"></div>
 	 </div>
@@ -45,38 +36,39 @@ $.get("/navBar", function(data){
 
 	<div class="container" style="text-align:center;">
 		
-				<form action="/modificarFichaTecnica" th:object="${fichatecnica}" method="post">
-				  	<div>
-    					<div>
-    					    <label>Tipo</label>
-    						 <input type="text" id="tipo" name="tipo" required th:value="${fichatecnica.tipo} "/>
-    					</div>
-    					
-    					<div class="col-md-2">
-					</div>
+				<form class="form-signin" action="#" th:action="@{/modificarFichaTecnica}" th:object="${fichatecnica}" method="post">
+				  	<div class="container">
+				  		<div class="col-md-4"></div>
+				  		<div class="col-md-4">
+				  			<div class="row">
+					  		<div>
+	    					    <label>Tipo</label>
+	    						 <input class="form-control" type="text" id="tipo" name="tipo" readonly="readonly" th:value="${fichatecnica.tipo} "/>
+	    					</div>
+				  		</div>
 
-    					<div>
-    					    <label>Componentes</label>
-    						 <input type="text" id="componentes" name="componentes" required th:value="${fichatecnica.componentes}"/>
-    					</div>
-    					
-    					<div class="col-md-2">
-					</div>
+						<div class="row">						
+							<div>
+	    					    <label>Componentes</label>
+	    						 <input class="form-control" type="text" id="componentes" name="componentes" required th:value="${fichatecnica.componentes}"/>
+	    					</div>
+    					</div>    					
 					
-					
-    					<div>
-    					   <label>Descripcion</label>
-    						<input type="text" id="descripcion" name="descripcion" required th:value="${fichatecnica.descripcion}"/>
-    					</div>
-    					
+						<div class="row">
+							<div>
+	    					   	<label>Descripcion</label>
+	    						<input class="form-control" type="text" id="descripcion" name="descripcion" required th:value="${fichatecnica.descripcion}"/>
+	    					</div>
+						</div>
+				  		</div>
+				  		<div class="col-md-4"></div>
+				  		
    					</div>
-   					<div></div>
+   					<br>
    					<a href='/crudFichaTecnica'> <span class="glyphicon glyphicon-arrow-left btn btn-danger"> </span></a>
 				 	 <input class="btn btn-lg btn-primary"  type="submit" value="Modificar">
 				 	 
 				</form> 
-				  
-	    		<div class="col-md-5"></div>
 	</div>
 </body>
 </html>

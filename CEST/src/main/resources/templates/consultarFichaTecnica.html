@@ -16,13 +16,20 @@
 
 <script>
 	function enviar(tipo){
-		alert(tipo);
-		//location.href='/modificarFichaTecnica?tipo='+tipo;
+		location.href='/modificarFichaTecnica?tipo='+tipo;
 	}
 	
 	function eliminar(tipo){
+		$.post( "/eliminarFichaTecnica",
+				{tipo: tipo},
+				function( success ) {
+					if(success == true){
+						alert('La Ficha técnica '+tipo+' se ha eliminado correctamente');
+						location.href='/consultarFichaTecnica';
+					}
+				}
+		);
 		
-		location.href='/crudFichaTecnicaE?tipo='+tipo;
 	}
 </script> 
 <title>Ficha Tecnica  - CEST</title>
@@ -42,8 +49,8 @@ $.get("/navBar", function(data){
 
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-			<h1 align="center">Ficha Tecnica</h1>
+		<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color: white">Ficha Tecnica</h1>
 		</div>
 
 		<div class="col-md-1"></div>
