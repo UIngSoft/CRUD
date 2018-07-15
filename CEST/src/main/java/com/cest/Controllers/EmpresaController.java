@@ -87,7 +87,6 @@ public class EmpresaController {
 	
 	@GetMapping(value = "/crudEmpresaE")
 	public ModelAndView postEliminarEmpresa(@RequestParam("nit") int nit) {
-		
 		for (Empresa empresa : empresaDao.findAll()) {
 			if (empresa.getNit() == nit) {
 				empresaDao.delete(empresa);
