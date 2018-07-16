@@ -27,7 +27,6 @@ import com.cest.Models.Camilla;
 import com.cest.Models.Contrato;
 import com.cest.Models.Elemento;
 import com.cest.Models.Encargado;
-import com.cest.Models.Extintor;
 import com.cest.Models.Piso;
 import com.cest.Models.Sede;
 

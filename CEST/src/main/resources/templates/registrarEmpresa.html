@@ -25,10 +25,18 @@
 
 </head>
 
+<nav id="menu"></nav>
+
+<script>
+$.get("/navBar", function(data){
+    $("#menu").replaceWith(data);
+});
+</script>
+
 <body>
 	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-			<h1 align="center">Registrar Empresa</h1>
+		<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color: white">Registrar Empresa</h1>
 		</div>
 		<div class="col-md-1"></div>
 	 </div>
@@ -36,29 +44,44 @@
 
 	<div class="container" style="text-align:center;">
 		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
-				<form action="/crearEmpresa" th:object="${empresa}" method="post">
-				  	<div>
-    					<div>
-    						Nit: <input type="text" id="nit" name="nit"/>
-    					</div>
-
-    					<div>
-    						Direccion: <input type="text" id="direccion" name="direccion"/>
-    					</div>
-    					<div>
-    						Nombre: <input type="text" id="nombre" name="nombre">
-    					</div>
-    					<div>
-    						Telefono: <input type="text" id="telefono" name="telefono"/>
-    					</div>
+				<form class="form-signin" action="#" th:action="@{/registrarEmpresa}" th:object="${empresa}" method="post">
+				  	<div class="container">
+				  		<div class="col-md-4"></div>
+				  		<div class="col-md-4">
+				  			<div class="row">
+				  				<div>
+									<label>NIT</label>
+									<input th:field="*{nit}" class="form-control" type="number" id="nit" name="nit" required="required" title="INGRESA EL NIT"/>
+		    					</div>
+				  			</div>
+				  			
+				  			<div class="row">
+				  				<div>
+									<label>Dirección</label>
+									<input th:field="*{direccion}" class="form-control" type="text" id="direccion" name="direccion" required="required" title="INGRESA UNA DIRECCIÓN"/>
+		    					</div>
+				  			</div>
+				  			
+				  			<div class="row">
+				  				<div>
+									<label>Nombre</label>
+									<input th:field="*{nombre}" class="form-control" type="text" id="nombre" name="nombre" required="required" title="INGRESA UN NOMBRE"/>
+		    					</div>
+				  			</div>
+				  			
+				  			<div class="row">
+				  				<div>
+									<label>Teléfono</label>
+									<input th:field="*{telefono}" class="form-control" type="number" id="telefono" name="telefono" required="required" title="INGRESA UN NÚMERO DE TELÉFONO"/>
+		    					</div>
+				  			</div>
+				  		</div>
+				  		<div class="col-md-4"></div>
    					</div>
-   					<div></div>
-   					<a href='/consultarEmpresa'> <span class="glyphicon glyphicon-arrow-left btn btn-danger"> </span></a>
+   					<br>
 				 	 <input class="btn btn-lg btn-primary"  type="submit" value="Crear">
 				 	 
 				</form> 
-				  
-	    		<div class="col-md-5"></div>
 	</div>
 </body>
 </html>
