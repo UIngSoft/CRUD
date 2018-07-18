@@ -113,7 +113,12 @@ public class CamillaController {
 		return new ModelAndView("redirect:/consulta?tipo=camilla");
 	}
 	
-
+	/**
+	 * realiza una solicitud get de la vista consultar Camilla
+	 * @param modelo
+	 * @return string consutlarCamilla que es la ruta de la vista
+	 * @author Santiago Granada
+	 */
 	@GetMapping(value = "/consultarCamilla")
 	public String getConsultarCamilla(Model modelo) {
 		modelo.addAttribute("camillas", camillaDao.findAll());
@@ -243,7 +248,21 @@ public class CamillaController {
 		}
 		return elemento;
 	}
+<<<<<<< HEAD
 	@PostMapping(value = "/buscarUbicacionCamilla")
+=======
+	
+	/**
+	 * realiza una solicitud post la cuel permite filtrar las camillas por ubicacion, 
+	 * ya sea por sede, bloque o piso
+	 * @author Santiago Granada Aguirre
+	 * @param sede
+	 * @param bloque
+	 * @param piso
+	 * @return List<camilla> lista de camillas con las camillas filtradas
+	 */
+	@PostMapping(value = "/buscarUbicacion")
+>>>>>>> 6569757fc85163ac7e80b82528281522c4e009db
 	@ResponseBody
 	public List<Camilla> buscarUbicacion(@RequestParam("sede") String sede, @RequestParam("bloque") String bloque, @RequestParam("piso") String piso){
 		List<Camilla> camillas = null;
