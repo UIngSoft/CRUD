@@ -248,9 +248,6 @@ public class CamillaController {
 		}
 		return elemento;
 	}
-<<<<<<< HEAD
-	@PostMapping(value = "/buscarUbicacionCamilla")
-=======
 	
 	/**
 	 * realiza una solicitud post la cuel permite filtrar las camillas por ubicacion, 
@@ -261,8 +258,7 @@ public class CamillaController {
 	 * @param piso
 	 * @return List<camilla> lista de camillas con las camillas filtradas
 	 */
-	@PostMapping(value = "/buscarUbicacion")
->>>>>>> 6569757fc85163ac7e80b82528281522c4e009db
+	@PostMapping(value = "/buscarUbicacionCamilla")
 	@ResponseBody
 	public List<Camilla> buscarUbicacion(@RequestParam("sede") String sede, @RequestParam("bloque") String bloque, @RequestParam("piso") String piso){
 		List<Camilla> camillas = null;
