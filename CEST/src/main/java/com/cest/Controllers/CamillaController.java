@@ -148,8 +148,7 @@ public class CamillaController {
 			@RequestParam("cedulaencargado") String cedulaencargado, 
 			@RequestParam("sede") String nombresede, 
 			@RequestParam("bloque") String letrabloque,
-			@RequestParam("piso") String numeropiso,
-			@RequestParam("estado") String estado) 
+			@RequestParam("piso") String numeropiso) 
 	{
 		
 		Elemento elemento = buscarElemento(camilla.getIdelemento());
@@ -163,7 +162,7 @@ public class CamillaController {
 		
 		camillaDao.save(camilla);
 		
-		return new ModelAndView("redirect:/registrarCamilla");
+		return new ModelAndView("redirect:/consulta?tipo=camilla");
 	}
 	
 	@PostMapping(value = "/existeCamilla")
@@ -244,7 +243,7 @@ public class CamillaController {
 		}
 		return elemento;
 	}
-	@PostMapping(value = "/buscarUbicacion")
+	@PostMapping(value = "/buscarUbicacionCamilla")
 	@ResponseBody
 	public List<Camilla> buscarUbicacion(@RequestParam("sede") String sede, @RequestParam("bloque") String bloque, @RequestParam("piso") String piso){
 		List<Camilla> camillas = null;

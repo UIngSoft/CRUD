@@ -29,8 +29,16 @@ $.get("/navBar", function(data){
     $("#menu").replaceWith(data);
 });
 </script>
-<body>
-<div class="col-md-2">
+<body>		
+	<div class="container theme-showcase" role="main">
+		<div>
+			<div class="jumbotron" style="background: rgb(13,67,113)">
+			<h1 align="center" style="color: white">Consulta de camillas</h1>
+		</div>
+	 	<div class="container">
+	 		<div class="container">
+	 		<label>Filtros</label> <br>
+	 			<div class="col-md-2">
 					<label>Sede</label> <br>
 					<select id="sede" name="sede" class="form-control" style="width: 100%" onchange="ObtenerBloques(); BuscarUbicacion();">
 						<option value="">Todos</option>
@@ -51,12 +59,8 @@ $.get("/navBar", function(data){
 				
 						</select>
 				</div>
-	<div class="container theme-showcase" role="main">
-		<div>
-			<div class="jumbotron" style="background: rgb(13,67,113)">
-			<h1 align="center" style="color: white">Consulta de camillas</h1>
-		</div>
-	 	<div class="container">
+	 		</div>
+	 	<br>
 		<!-- Tabla que muestra la información de la tabla contrato de la base de datos -->
     			<div id="contenido" class="form-group">
     				<table id="Extintores" class="table table-bordered">
